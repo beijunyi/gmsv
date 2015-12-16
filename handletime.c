@@ -6,21 +6,21 @@
 #include "common.h"
 #include "handletime.h"
 
-#define LSTIME_SECONDS_PER_DAY 5400 /* LSTIMEÓò  ÉÙÊÏ¼°òØ  ¼°  ÐÑ */
+#define LSTIME_SECONDS_PER_DAY 5400 /* LSTIMEåŸŸ  å°‘æ°åŠèœ‡  åŠ  é†’ */
 
 /*
-  LSTIME_SECONDS_PER_DAY Ã«  ÒüÔÂÎç£ýÁÝÃÞ¼°ñ×ÐÄÌîÄþÃ«  ÒüÔÂ³ðÎç»¥Æ¥ÎåÔÂ£Û
+  LSTIME_SECONDS_PER_DAY æ¯›  å°¹æœˆåˆï½å‡›æ£‰åŠè¤¡å¿ƒå¡«å®æ¯›  å°¹æœˆä»‡åˆäº’åŒ¹äº”æœˆï¼»
 
-  °À            LSÁÝÃÞÆ¥Óò  Ø¤Ð×Ô»¼°òØ  ¼°ÁÝÃÞÐÑ
-  9000 (  ÉÍ)   2.5 [hour]
+  è¢„            LSå‡›æ£‰åŒ¹åŸŸ  ä¸å‡¶æ›°åŠèœ‡  åŠå‡›æ£‰é†’
+  9000 (  èµ)   2.5 [hour]
   900           0.25[hour] = 15[min]
   90            0.025[hour] = 1.5[min] = 90[sec]
   9             9[sec]
 
 */
 
-#define LSTIME_HOURS_PER_DAY 1024 /* LSTIMEÓò  ÉÙÊÏ¼°LSTIME¼°ÁÝÃÞÐÑ */
-#define LSTIME_DAYS_PER_YEAR 100 /* LSTIMEÓò  ÉÙÊÏ¼°LSTIME¼°  ÐÑ */
+#define LSTIME_HOURS_PER_DAY 1024 /* LSTIMEåŸŸ  å°‘æ°åŠLSTIMEåŠå‡›æ£‰é†’ */
+#define LSTIME_DAYS_PER_YEAR 100 /* LSTIMEåŸŸ  å°‘æ°åŠLSTIMEåŠ  é†’ */
 
 
 // WON REM
@@ -44,12 +44,12 @@ struct tm *localtime(const time_t *timep)
 */
 
 /*------------------------------------------------------------
- * Óò»ï¡õÃó±åÓò¼ÔôÄÈÉÄ¾»¯£ýÁÝÃÞÃ«ñ×»§ÔÂ£Û
- * Â¦ÐÑ
- *  Ø¦ØÆ
- * ß¯Ô»°À
- *  ÔÀ      TRUE(1)
- *  ÁÃ      FALSE(0)
+ * åŸŸä¼™â–¡çš¿åžåŸŸèšè£Ÿå£¬æœ¨åŒ–ï½å‡›æ£‰æ¯›è¤¡æˆ·æœˆï¼»
+ * å¨„é†’
+ *  å…ä»„
+ * å¿’æ›°è¢„
+ *  å²³      TRUE(1)
+ *  æ’©      FALSE(0)
  ------------------------------------------------------------*/
 BOOL setNewTime( void )
 {
@@ -65,53 +65,53 @@ BOOL setNewTime( void )
 
 
 /*******************************************************************
-ÆáÝçÒï±åØÆÐ×£ÛbyHiO 1998/12/4 18:37
+æ¼†è‘­ç»Žåžä»„å‡¶ï¼»byHiO 1998/12/4 18:37
 *******************************************************************/
 static long era = (long)912766409 + 5400;
-									/* SA¼°¿Ð±åÄÚÈÕØÆÐ× */
-									/* LSÝç  Ã«ÀÃñøÔÊÔÂ»¯ÎåÎç¡õØ¦ÐÑ°À£Û
-                                    ÛÍ·ÂÄÌÊ§¼þÐþÎç  ÔªÔªÔúØ¦ÖÐÎç·Ö»§£Û*/
+									/* SAåŠå•ƒåžå†…æ—¥ä»„å‡¶ */
+									/* LSè‘­  æ¯›çƒ‚è’å…æœˆåŒ–äº”åˆâ–¡å…é†’è¢„ï¼»
+                                    å¼ä»¿å¥¶å¤±ä»¶çŽ„åˆ  å…ƒå…ƒæ‰Žå…ä¸­åˆåˆ†æˆ·ï¼»*/
 
 /*******************************************************************
-	Ñ¨ÆË¼þÁÝÃÞ¾®ÈÕLSÁÝÃÞ±åÔÊÔÂ
-	long t : timeÆ¥ÇëÔÂ
-	LSTIME *lstime : LSTIMEÑáÕ°  ³ß¼°ºÌÄÌ¼þÕý
+	ç©´æ‰‘ä»¶å‡›æ£‰äº•æ—¥LSå‡›æ£‰åžå…æœˆ
+	long t : timeåŒ¹è¯·æœˆ
+	LSTIME *lstime : LSTIMEåŽŒçž»  å°ºåŠç¦¾å¥¶ä»¶æ­£
 *******************************************************************/
 void RealTimeToLSTime(long t , LSTIME *lstime)
 {
-	long lsseconds = t - era; /* LSÝç  ¾®ÈÕ¼°  ÐÑ */
-    long lsdays; /* LSÝç  ¾®ÈÕ¼°  ÐÑ */
+	long lsseconds = t - era; /* LSè‘­  äº•æ—¥åŠ  é†’ */
+    long lsdays; /* LSè‘­  äº•æ—¥åŠ  é†’ */
 
-    /* Ýç  ¾®ÈÕ¼°  ÐÑÃ«1  ñ²Ô»¼°  ÐÑÆ¥à«ÔÂÎç£ý  ±åØ¦ÔÂ */
+    /* è‘­  äº•æ—¥åŠ  é†’æ¯›1  ç™«æ›°åŠ  é†’åŒ¹å–ƒæœˆåˆï½  åžå…æœˆ */
 	lstime->year = (int)( lsseconds/(LSTIME_SECONDS_PER_DAY*LSTIME_DAYS_PER_YEAR) );
 
-    lsdays = lsseconds/LSTIME_SECONDS_PER_DAY;/* ÒýÄÚÝç  ¾®ÈÕ¼°  ÐÑÃ«»ÍÒ£ØÆ»¯ */
-	lstime->day  = lsdays % LSTIME_DAYS_PER_YEAR;/*   ñ²Ð×Ô»¼°  ÐÑÆ¥à«ÔÈÐ×Ø¤ÒýÔ»»¥  */
+    lsdays = lsseconds/LSTIME_SECONDS_PER_DAY;/* å¼•å†…è‘­  äº•æ—¥åŠ  é†’æ¯›ç…Œé¥ä»„åŒ– */
+	lstime->day  = lsdays % LSTIME_DAYS_PER_YEAR;/*   ç™«å‡¶æ›°åŠ  é†’åŒ¹å–ƒåŒ€å‡¶ä¸å¼•æ›°äº’  */
 
 
-    /*(450*12)  Æ¥1  */
+    /*(450*12)  åŒ¹1  */
     lstime->hour = (int)(lsseconds % LSTIME_SECONDS_PER_DAY )
-/* ³ð³ðÒýÆ¥Æ¥£ýÓò  »¥ï§ÒýÔÈ»¯¾®ÈÕÖÏ  Ð×ÔÈÐ×¾®£Û */
+/* ä»‡ä»‡å¼•åŒ¹åŒ¹ï½åŸŸ  äº’é“µå¼•åŒ€åŒ–äº•æ—¥çª’  å‡¶åŒ€å‡¶äº•ï¼» */
         * LSTIME_HOURS_PER_DAY / LSTIME_SECONDS_PER_DAY;
-    /* Óò  Ø¤Ð×Ô»¼°  ÐÑÆ¥à«ÔÈ»¯¾®ÈÕÓò  Ø¤Ð×Ô»¼°ÁÝÃÞÐÑÃ«¾®ØêÔÂÎçòØ»þÖÏÁÝ
-     Ø¦¼°¾®»¥´õ¾®ÔÂ£Û*/
+    /* åŸŸ  ä¸å‡¶æ›°åŠ  é†’åŒ¹å–ƒåŒ€åŒ–äº•æ—¥åŸŸ  ä¸å‡¶æ›°åŠå‡›æ£‰é†’æ¯›äº•ä»ƒæœˆåˆèœ‡ç®•çª’å‡›
+     å…åŠäº•äº’æ­¹äº•æœˆï¼»*/
 
 	return;
 }
 
 /*******************************************************************
-	LSÁÝÃÞ¾®ÈÕÑ¨ÆË¼þÁÝÃÞ±åÔÊÔÂ
-	LSTIME *lstime : LSTIMEÑáÕ°  ³ß¼°ºÌÄÌ¼þÕý
-	long *t :   ÁÝÃÞ³ß¼°ºÌÄÌ¼þÕý
+	LSå‡›æ£‰äº•æ—¥ç©´æ‰‘ä»¶å‡›æ£‰åžå…æœˆ
+	LSTIME *lstime : LSTIMEåŽŒçž»  å°ºåŠç¦¾å¥¶ä»¶æ­£
+	long *t :   å‡›æ£‰å°ºåŠç¦¾å¥¶ä»¶æ­£
 *******************************************************************/
 void LSTimeToRealTime( LSTIME *lstime, long *t)
 {
 	*t=(long)(
-        ( lstime->hour*LSTIME_DAYS_PER_YEAR+lstime->day) /* ÁÝÃÞ */
+        ( lstime->hour*LSTIME_DAYS_PER_YEAR+lstime->day) /* å‡›æ£‰ */
                *LSTIME_HOURS_PER_DAY
 
         +     lstime->year)
-        /*³ð¼°èúÐÑ·´ÈÉÊ²ÔÈ»¯ÖÐÔÂ·½µ¤±åÎ­ÒüÔÂ£Ûnakamura      */
+        /*ä»‡åŠæ¥®é†’åå£¬ä»€åŒ€åŒ–ä¸­æœˆæ–¹ä¸¹åžè‹‡å°¹æœˆï¼»nakamura      */
 
 
         *450;
@@ -119,9 +119,9 @@ void LSTimeToRealTime( LSTIME *lstime, long *t)
 }
 
 /*******************************************************************
-	LSÁÝÃÞÆ¥Æá¼°ÁÝÃÞà¼ÛÐÃ«  ÔÂ
-	  Ô»°À int :   0£ýÆ»1£ýïß2£ý  3
-	LSTIME *lstime : LSTIMEÑáÕ°  ³ß¼°ºÌÄÌ¼þÕý
+	LSå‡›æ£‰åŒ¹æ¼†åŠå‡›æ£‰å—‰åŒæ¯›  æœˆ
+	  æ›°è¢„ int :   0ï½è‹¹1ï½é•ž2ï½  3
+	LSTIME *lstime : LSTIMEåŽŒçž»  å°ºåŠç¦¾å¥¶ä»¶æ­£
 *******************************************************************/
 LSTIME_SECTION getLSTime (LSTIME *lstime)
 {

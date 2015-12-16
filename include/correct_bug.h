@@ -1,31 +1,31 @@
 #ifndef __CORRECT_BUG_H__
 #define __CORRECT_BUG_H__
 
-/* ---------------------- (Î´¿ª·ÅÇø) ---------------------------*/
-//#define _NO_WARP	           // ×èµµ½øÈëÓ¢ÐÛµº²»ÏÞµÈ¼°ËæÒâ½ø³öÈëËÄ´ó´å×¯ code:½¨¾ü (²»¿É¿ª·Å)
-//#define _FAMILYBANKSTONELOG  // Syu ADD ÐÂÔö¼Ò×åÒøÐÐ´æÈ¡Log (SAACµÄÒªÒ»Æð¿ª)
-//#define _kr_ip               // WON ADD ²»ËøgmÖ¸Áîip
+/* ---------------------- (æœªå¼€æ”¾åŒº) ---------------------------*/
+//#define _NO_WARP	           // é˜»æ¡£è¿›å…¥è‹±é›„å²›ä¸é™ç­‰åŠéšæ„è¿›å‡ºå…¥å››å¤§æ‘åº„ code:å»ºå†› (ä¸å¯å¼€æ”¾)
+//#define _FAMILYBANKSTONELOG  // Syu ADD æ–°å¢žå®¶æ—é“¶è¡Œå­˜å–Log (SAACçš„è¦ä¸€èµ·å¼€)
+//#define _kr_ip               // WON ADD ä¸é”gmæŒ‡ä»¤ip
 //#define _WON_TEST            // WON TEST
-//#define _CHANGEITEMUSE	   // Syu ADD µ÷ÕûÕ½¶·ÖÐÊ¹ÓÃÁÏÀíÉè¶¨
-/* ----------------------- (´ý²âÇø) ---------------------------*/
-//#define _CRASHSTOREPETMAIL   // Syu ADD ÐÞÕý³èÎïÓÊ¼þ
+//#define _CHANGEITEMUSE	   // Syu ADD è°ƒæ•´æˆ˜æ–—ä¸­ä½¿ç”¨æ–™ç†è®¾å®š
+/* ----------------------- (å¾…æµ‹åŒº) ---------------------------*/
+//#define _CRASHSTOREPETMAIL   // Syu ADD ä¿®æ­£å® ç‰©é‚®ä»¶
 //#define _SYUTESTBATTLE       // Syu ADD
 
-/* ----------------------- (¿ª·ÅÇø) ---------------------------*/
-#define _add_item_log_name   // WON ADD ÔÚitemµÄlogÖÐÔö¼ÓitemÃû³Æ
-#define _PETSKILLBUG		 // Syu ADD ÐÞÕý³èÎïÎÊÌâ
-#define _FIXWOLF			 // Syu ADD ÐÞÕýÀÇÈË±äÉíBug
-#define _FIXMAGICBUG		 // Syu ADD ÐÞÕýÄ§·¨ÊìÁ·¡¢¿¹ÐÔ±©µôÎÊÌâ
-#define _FIXPETFALL			 // Syu ADD ÐÞÕýÂäÂíÊõ
-#define _FIX_ITEMRELIFE      // WON ADD ÐÞÕýÌæÉíÍÞÍÞÎÊÌâ
-#define _FIX_SPEED_UPLEVEL	 // WON ADD ÐÞÕý¼ÓËÙ
-#define _FIX_PETMAIL         // WON ADD ÐÞÕý³èÓÊ
-#define _FIX_EQUIP_ITEM		 // WON ADD ÐÞÕýµÀ¾ßÐèÖØÐÂ×°±¸
-#define _ADD_PETMAIL_NUM     // WON ADD ³èÓÊÊýÁ¿GMÖ¸Áî
-#define _FIX_equipNoenemy	 // WON ADD ÐÞÕýÌ«ÑôÉñÊ×ÊÎ
-#define _FIX_PETMAIL2        // WON ADD ÐÞÕý³èÓÊ2
-#define _FIXITEMANISHOW		 // Syu ADD ÐÞÕý»ØºÏÐÔ²¹Ñª×°±¸µÀ¾ßÆï³èÊ±³èÎï²»ÏÔÊ¾¶¯»­ÎÊÌâ
-#define _FIX_GP_PET_SKILL	 // WON ADD ÐÞÕýgp³è»áÂäÂíÊõ
+/* ----------------------- (å¼€æ”¾åŒº) ---------------------------*/
+#define _add_item_log_name   // WON ADD åœ¨itemçš„logä¸­å¢žåŠ itemåç§°
+#define _PETSKILLBUG		 // Syu ADD ä¿®æ­£å® ç‰©é—®é¢˜
+#define _FIXWOLF			 // Syu ADD ä¿®æ­£ç‹¼äººå˜èº«Bug
+#define _FIXMAGICBUG		 // Syu ADD ä¿®æ­£é­”æ³•ç†Ÿç»ƒã€æŠ—æ€§æš´æŽ‰é—®é¢˜
+#define _FIXPETFALL			 // Syu ADD ä¿®æ­£è½é©¬æœ¯
+#define _FIX_ITEMRELIFE      // WON ADD ä¿®æ­£æ›¿èº«å¨ƒå¨ƒé—®é¢˜
+#define _FIX_SPEED_UPLEVEL	 // WON ADD ä¿®æ­£åŠ é€Ÿ
+#define _FIX_PETMAIL         // WON ADD ä¿®æ­£å® é‚®
+#define _FIX_EQUIP_ITEM		 // WON ADD ä¿®æ­£é“å…·éœ€é‡æ–°è£…å¤‡
+#define _ADD_PETMAIL_NUM     // WON ADD å® é‚®æ•°é‡GMæŒ‡ä»¤
+#define _FIX_equipNoenemy	 // WON ADD ä¿®æ­£å¤ªé˜³ç¥žé¦–é¥°
+#define _FIX_PETMAIL2        // WON ADD ä¿®æ­£å® é‚®2
+#define _FIXITEMANISHOW		 // Syu ADD ä¿®æ­£å›žåˆæ€§è¡¥è¡€è£…å¤‡é“å…·éª‘å® æ—¶å® ç‰©ä¸æ˜¾ç¤ºåŠ¨ç”»é—®é¢˜
+#define _FIX_GP_PET_SKILL	 // WON ADD ä¿®æ­£gpå® ä¼šè½é©¬æœ¯
 
 
 #endif

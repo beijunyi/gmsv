@@ -1127,7 +1127,7 @@ int lssproto_ServerDispatchMessage(int fd, char *encoded)
 		return 0;
 	}
 
-#ifdef _FIX_DEL_MAP           // WON ADD Íæ¼Ò³éµØÍ¼ËÍ¼àÓü
+#ifdef _FIX_DEL_MAP           // WON ADD çŽ©å®¶æŠ½åœ°å›¾é€ç›‘ç‹±
 	if (func==LSSPROTO_DM_RECV) {
 	    char buffer[2];
 	    buffer[0] = '\0';
@@ -1185,7 +1185,7 @@ int lssproto_ServerDispatchMessage(int fd, char *encoded)
 	}
 #endif
 
-#ifdef _CHATROOMPROTOCOL			// (²»¿É¿ª) Syu ADD ÁÄÌìÊÒÆµµÀ
+#ifdef _CHATROOMPROTOCOL			// (ä¸å¯å¼€) Syu ADD èŠå¤©å®¤é¢‘é“
 	if (func==LSSPROTO_CHATROOM_RECV) {
 		int checksum=0, checksumrecv;
 		char test[65500];
@@ -1203,7 +1203,7 @@ int lssproto_ServerDispatchMessage(int fd, char *encoded)
 	}
 #endif
 
-#ifdef _NEWREQUESTPROTOCOL			// (²»¿É¿ª) Syu ADD ÐÂÔöProtocolÒªÇóÏ¸Ïî
+#ifdef _NEWREQUESTPROTOCOL			// (ä¸å¯å¼€) Syu ADD æ–°å¢žProtocolè¦æ±‚ç»†é¡¹
 	if ( func==LSSPROTO_RESIST_RECV ) {
 	    char buffer[2];
 	    buffer[0] = '\0';
@@ -1212,7 +1212,7 @@ int lssproto_ServerDispatchMessage(int fd, char *encoded)
 		return 0;
 	}
 #endif
-#ifdef _OUTOFBATTLESKILL			// (²»¿É¿ª) Syu ADD ·ÇÕ½¶·Ê±¼¼ÄÜProtocol
+#ifdef _OUTOFBATTLESKILL			// (ä¸å¯å¼€) Syu ADD éžæˆ˜æ–—æ—¶æŠ€èƒ½Protocol
 	if(func==LSSPROTO_BATTLESKILL_RECV){
 		int checksum = 0, checksumrecv;
 		int iNum;
@@ -1297,7 +1297,7 @@ int lssproto_ServerDispatchMessage(int fd, char *encoded)
 
 /*
    servertoclient XYD( int x, int y, int dir );
- 	Ç±±å¾ô  ±Î    ±åÃóÒÁÄÌØÀ¡õ¼°ÞË  Ã«  Æ©°ïÔÊÔÂÐ×»§±åÒøµ¤£Û
+ 	æ½œåžçˆµ  è”½    åžçš¿ä¼Šå¥¶ä¹©â–¡åŠåŒ  æ¯›  è­¬å¸®å…æœˆå‡¶æˆ·åžé“¶ä¸¹ï¼»
 */
 void lssproto_XYD_send(int fd,int x,int y,int dir)
 {
@@ -1565,110 +1565,110 @@ void lssproto_M_send(int fd,int fl,int x1,int y1,int x2,int y2,char* data)
 /*
    servertoclient C( string data );
        (Characters)
-       ÛÍ·ÂÄÌÊ§¼þÐþ·´ CA »¥  »¯£ý¹«¼°Æ½ÅÒ·Â±å¹´ÖÐ»¯Æ©Ø¦¾®ÔÈÐ×ÁÝ·´£ý C
-       Æ¥³ð¼°èúÐÑÃ«Û¢·ÆÆ¥ÎåÔÂ£ÛÈÓ¡õÌï·´ÃñÄáÓÀÛÍØÆØ¦ÖÐ£Û
+       å¼ä»¿å¥¶å¤±ä»¶çŽ„å CA äº’  åŒ–ï½å…¬åŠå¹³ä¹“ä»¿åžå‹¾ä¸­åŒ–è­¬å…äº•åŒ€å‡¶å‡›åï½ C
+       åŒ¹ä»‡åŠæ¥®é†’æ¯›é‚°è²åŒ¹äº”æœˆï¼»æ‰”â–¡ç”°åæ°‘å°¼æ°¸å¼ä»„å…ä¸­ï¼»
 
  	string data
- 		  °×ÇÉ¡õÑ¨ÓÀÐþ·´ ¶¯Æ±¼°3ÅË  ¼°ÄÛ  Ã«Îì¼þÑ¨Æ¥Ø¦ÈÕÍÍÐ×
- 	    ÊÖ¼°Æ¥Ø¤ÔÂ.¹«Ä¾ÈßÄ¾¼°ÄÛ  ¼°  Èì·´½ñÈÕ±åÐ×»¯áß'|'Æ¥ÈÊ¿ºÈÕÄ¾
- 	    »¯ÖÐÔÂ£Û
+ 		  ç™½å·§â–¡ç©´æ°¸çŽ„å åŠ¨ç¥¨åŠ3æ½˜  åŠå«©  æ¯›æˆŠä»¶ç©´åŒ¹å…æ—¥å±¯å‡¶
+ 	    æ‰‹åŠåŒ¹ä¸æœˆ.å…¬æœ¨å†—æœ¨åŠå«©  åŠ  è¤¥åä»Šæ—¥åžå‡¶åŒ–å¾‡'|'åŒ¹ä»äº¢æ—¥æœ¨
+ 	    åŒ–ä¸­æœˆï¼»
 
- 	      Ð×»¯áßÆ¥ÈÊ¿ºÈÕÄ¾Ð×Ðþ¡õÛÍ¼þ»¥12òÛ¼°èëÄþ
- 		  Ðþ¡õÛÍ¼þ¼°    ·´
+ 	      å‡¶åŒ–å¾‡åŒ¹ä»äº¢æ—¥æœ¨å‡¶çŽ„â–¡å¼ä»¶äº’12èœŠåŠæ¡¦å®
+ 		  çŽ„â–¡å¼ä»¶åŠ    å
 
  		  WHICHTYPE|CHARINDEX|X|Y|DIR|BASEIMG|LEVEL|NAMECOLOR|NAME|SELFTITLE|WALKABLE|HEIGHT|POPUPNAMECOLOR
- 		  ³ð¼°×óÆ¤³âÄáÛÍÐþ·´Æ½ÅÒ·ÂÛÍÕý¡õÆ¥Ø¤ÔÂÎçÖÐµ¤³ðÎçÆ¥Ø¤ÔÂ£Û
+ 		  ä»‡åŠå·¦çš®æ–¥å°¼å¼çŽ„åå¹³ä¹“ä»¿å¼æ­£â–¡åŒ¹ä¸æœˆåˆä¸­ä¸¹ä»‡åˆåŒ¹ä¸æœˆï¼»
 
- 		  WHICHTYPE ·´£Ý³ð¼°Æ½ÅÒ·ÂÛÍÕý¡õ»¥Éýµ¤ÖÐÔÈÐ×ÅË  ¼°ÊÖ¼°
- 		  Æ¥Ø¤ÔÂ¾®£Û³ðÄ¾·´ÈÓ¡õÌï¡õÆ¥·´¶¯Æ±¼°·½µ¤±åÀÃñø½ñÄ¾»¯ÖÐÔÂ£Û
+ 		  WHICHTYPE åï¼½ä»‡åŠå¹³ä¹“ä»¿å¼æ­£â–¡äº’å‡ä¸¹ä¸­åŒ€å‡¶æ½˜  åŠæ‰‹åŠ
+ 		  åŒ¹ä¸æœˆäº•ï¼»ä»‡æœ¨åæ‰”â–¡ç”°â–¡åŒ¹ååŠ¨ç¥¨åŠæ–¹ä¸¹åžçƒ‚è’ä»Šæœ¨åŒ–ä¸­æœˆï¼»
 
  		typedef enum
  		{
- 		    CHAR_TYPENONE,          ÖÏÆ¥ÊÖØ¦ÖÐ
- 		    CHAR_TYPEPLAYER,        ÃóÒÁÄÌØÀ¡õ
- 		    CHAR_TYPEENEMY,         ³Ä
- 		    CHAR_TYPEPET,           Ê¸ÓÀÐþ
- 		    CHAR_TYPEDOOR,          ÓñÊ§
+ 		    CHAR_TYPENONE,          çª’åŒ¹æ‰‹å…ä¸­
+ 		    CHAR_TYPEPLAYER,        çš¿ä¼Šå¥¶ä¹©â–¡
+ 		    CHAR_TYPEENEMY,         è¡¬
+ 		    CHAR_TYPEPET,           çŸ¢æ°¸çŽ„
+ 		    CHAR_TYPEDOOR,          çŽ‰å¤±
  		    CHAR_TYPEBOX ,
- 		    CHAR_TYPEMSG ,          Ôæ
- 		    CHAR_TYPEWARP ,         ·¥¡õÃóÔý¡õ¼þ
- 		    CHAR_TYPESHOP ,         ÷Ò
- 		    CHAR_TYPEHEALER ,       ¼×¡õ·Â¡õ
- 		    CHAR_TYPEOLDMAN ,       Ó®
- 		    CHAR_TYPEROOMADMIN,     æØ  Ç²ºÐ
- 		    CHAR_TYPETOWNPEOPLE,    ÒýÇÐ¼°·òÎç
- 		    CHAR_TYPEDENGON,        ÷©ÍÉ
- 		    CHAR_TYPEADM,           ÷©ÍÉ
+ 		    CHAR_TYPEMSG ,          æž£
+ 		    CHAR_TYPEWARP ,         ä¼â–¡çš¿æœ­â–¡ä»¶
+ 		    CHAR_TYPESHOP ,         é¥•
+ 		    CHAR_TYPEHEALER ,       ç”²â–¡ä»¿â–¡
+ 		    CHAR_TYPEOLDMAN ,       èµ¢
+ 		    CHAR_TYPEROOMADMIN,     å°•  é£ç›’
+ 		    CHAR_TYPETOWNPEOPLE,    å¼•åˆ‡åŠå¤«åˆ
+ 		    CHAR_TYPEDENGON,        é³—èœ•
+ 		    CHAR_TYPEADM,           é³—èœ•
  		    CHAR_TYPETEMPLE,        Temple master
- 		    CHAR_TYPESTORYTELLER,   »ßÔ»
- 		    CHAR_TYPERANKING,       æØ  Ç²·Â¼þÆ½¼þºë  Ô÷
- 		    CHAR_TYPEOTHERNPC,      ¹«¼°Ö°¼°¸¹³ñ¸²ÀÞ±åØ¦ÈÕØ¦ÖÐNPC
- 		    CHAR_TYPEPRINTPASSMAN,  ÓñÊ§¼°ÓÉµ©·¥¡õÓñ  Ô÷ÔÊÔÂNPC
- 		    CHAR_TYPENPCENEMY,      ÒáÀÃ³Ä
- 		    CHAR_TYPEACTION,        Ê§ÛÍÆËÒà¼þ±å  É±ÔÊÔÂNPC
- 		    CHAR_TYPEWINDOWMAN,     ËüÅ«¼þÓñËü  Ô÷ÔÊÔÂNPC    µ©Ðþ¾®ÊÖ)
- 		    CHAR_TYPESAVEPOINT,     ±¾¡õÆ¤ºÌÄÌ¼þÐþ
- 		    CHAR_TYPEWINDOWHEALER,  ËüÄÌ¼þÓñËüÕýÄÌÃó¼°¼×¡õ·Â¡õ
- 		    CHAR_TYPEITEMSHOP,	    ÔÆ÷Ò
- 		    CHAR_TYPESTONESHOP,	    éÞ  ºÐ  Ê¸ÓÀÐþ¼°  ºÐ
- 		    CHAR_TYPEDUELRANKING,   DUEL·Â¼þÆ½¼þºëNPC
- 		    CHAR_TYPEWARPMAN,	    ·¥¡õÃóÑ¨¼þNPC
- 		    CHAR_TYPEEVENT,	    ÄÌÃ¬¼þÐþNPC
- 		    CHAR_TYPEMIC,	    ÄÌÃ¬¼þÐþNPC
- 		    CHAR_TYPELUCKYMAN,	    ÄÌÃ¬¼þÐþNPC
- 		    CHAR_TYPEBUS,	    Ñ¨¼þÆ¹µ©Ìïµ©
- 		    CHAR_TYPECHARM,	    ÄÌÃ¬¼þÐþNPC
+ 		    CHAR_TYPESTORYTELLER,   è´¿æ›°
+ 		    CHAR_TYPERANKING,       å°•  é£ä»¿ä»¶å¹³ä»¶å¼˜  æ†Ž
+ 		    CHAR_TYPEOTHERNPC,      å…¬åŠèŒåŠè…¹ç»¸è¦†æ“‚åžå…æ—¥å…ä¸­NPC
+ 		    CHAR_TYPEPRINTPASSMAN,  çŽ‰å¤±åŠç”±æ—¦ä¼â–¡çŽ‰  æ†Žå…æœˆNPC
+ 		    CHAR_TYPENPCENEMY,      è£”çƒ‚è¡¬
+ 		    CHAR_TYPEACTION,        å¤±å¼æ‰‘äº¦ä»¶åž  æ€å…æœˆNPC
+ 		    CHAR_TYPEWINDOWMAN,     å®ƒå¥´ä»¶çŽ‰å®ƒ  æ†Žå…æœˆNPC    æ—¦çŽ„äº•æ‰‹)
+ 		    CHAR_TYPESAVEPOINT,     æœ¬â–¡çš®ç¦¾å¥¶ä»¶çŽ„
+ 		    CHAR_TYPEWINDOWHEALER,  å®ƒå¥¶ä»¶çŽ‰å®ƒæ­£å¥¶çš¿åŠç”²â–¡ä»¿â–¡
+ 		    CHAR_TYPEITEMSHOP,	    äº‘é¥•
+ 		    CHAR_TYPESTONESHOP,	    æª—  ç›’  çŸ¢æ°¸çŽ„åŠ  ç›’
+ 		    CHAR_TYPEDUELRANKING,   DUELä»¿ä»¶å¹³ä»¶å¼˜NPC
+ 		    CHAR_TYPEWARPMAN,	    ä¼â–¡çš¿ç©´ä»¶NPC
+ 		    CHAR_TYPEEVENT,	    å¥¶çŸ›ä»¶çŽ„NPC
+ 		    CHAR_TYPEMIC,	    å¥¶çŸ›ä»¶çŽ„NPC
+ 		    CHAR_TYPELUCKYMAN,	    å¥¶çŸ›ä»¶çŽ„NPC
+ 		    CHAR_TYPEBUS,	    ç©´ä»¶ä¹’æ—¦ç”°æ—¦
+ 		    CHAR_TYPECHARM,	    å¥¶çŸ›ä»¶çŽ„NPC
  		    CHAR_TYPENUM,
  		}CHAR_TYPE;
 
- 		  ¹«Ä¾·´Ö°¼°ÃóÒÁÄÌØÀ¡õÖ§NPCÖ§³ÄÆ¥Ø¤ÔÂ£ÛÈÓ¡õÌï¡õ»¥Ëªññ
- 		  ÔÊÔÂÎçÎå·´Î­ÒüÔÂ  Çø±å¹´ÖÐ»¯òå  ËªññÔÊÔÂ£Û¹´Òý
- 		  Ô»ÛÍ·ÂÄÌÊ§¼þÐþ·´£ý³ð¼°ÓÉ¸¥ÓÀÐþÃ«°¾ØêÎçÔÈÐ×ÎçÎå±å³ð¼°
- 		  ÓÉ¸¥ÓÀÐþ±åÌ¤¾®Ä¾»¯ÖÐØ¦ÖÐÆ½ÅÒ·ÂÃ«  ÔÈ»¯ÖÐÐ×ÈÕÛÕØÆ»¯ØÆ
- 		  ÒýÔÈ»¯·½ÖÐÎçÖÐµ¤³ðÎçÆ¥Ø¤ÔÂ£ÛÒýÐ×£ýÑ¨Ëüµ©ÊÐ¡õÄ©»ïÃ«Ø¤
- 		  ´õÁùÐ×ÎçÎå±å  Ô÷ÔÊÔÂÊ÷  ·´³ð¼°Ê÷  ¼°ÐÄ±åÏæÖÐ»¯ÖÐÔÂ£Û
- 		  ·Ö¾®ÈÕ£ýÑ¨Ëüµ©ÊÐ¡õÄ©»ïÃ«Ø¤´õÁùÐ×ÎçÎå±å  Ô÷ÔÊÔÂ³ðÎç»¥
- 		    µÊ½ñÄ¾Ð×èëÄþ·´£ýÈÓ¡õÌï¡õ·´£ý³ð¼°èúÐÑÃ«    ¶Á±åôÄÌ«
- 		  ·Ö½ñØ¦ØêÄ¾ÈÉØ¦ÈÕØ¦ÖÐ£Û SELFTITLE±å¹´ÖÐ»¯·´£ý·¸ØøÁ¢Õý
- 		  Æ¥Ø¤ÔÂÐ×»¯áßÃ«¿×ÈÊÒýØ¦ÖÐ·½µ¤±å¾Þµ©¸¥¡õÃó½ñÄ¾»¯ÖÐÔÂ£Û
- 		  ÛÍ·ÂÄÌÊ§¼þÐþ·´Ê§ÛÍÆËÒà¼þ¼°ÎìÑ¨¼þÓñ(CA)»¥ÈÊÔÂÒýÆ¥·´
- 		  ÇÐÆ¥  Ô÷ÔÊÔÂ£ÛCHARINDEXÈÓ¡õÌï¡õ  ¼°ÓòÀ²±åÆ½ÅÒ·ÂÃ«
- 		  ÀÃÆ¥ÎåÔÂ  Ä¯£ýBASEIMG·´  Ô÷¼°Ð×»§¼°  Ä¯£ýLEVEL·´Æ½ÅÒ
- 		  ·Â¼°ÒÁÃ¬»ï(0Ø¦ÈÕ  Ô÷ØÆØ¦ÖÐ£Û³ð¼°°À·´NPCØ¦Éý±åÒøµ¤£Û)
- 		  WALKABLE·´1¼°ÎçÎå¹«¼°ÏþÃ«É§ÁÄÔÊÔÂ³ðÎç»¥Æ¥Îå£ý0Ø¦ÈÕÉ§
- 		  ÁÄÔÊÔÂ³ðÎç»¥Æ¥ÎåØ¦ÖÐ£ÛHEIGHT·´æÎ½ñÃ«ÊÖ¹´ÊÖ¼°¾®¹«µ¤Æ¥
- 		  Ø¦ÖÐ¼°¾®¼°Ï¶ÀÃ£Û
+ 		  å…¬æœ¨åèŒåŠçš¿ä¼Šå¥¶ä¹©â–¡æ”¯NPCæ”¯è¡¬åŒ¹ä¸æœˆï¼»æ‰”â–¡ç”°â–¡äº’éœœè€¨
+ 		  å…æœˆåˆäº”åè‹‡å°¹æœˆ  åŒºåžå‹¾ä¸­åŒ–èˆ  éœœè€¨å…æœˆï¼»å‹¾å¼•
+ 		  æ›°å¼ä»¿å¥¶å¤±ä»¶çŽ„åï½ä»‡åŠç”±å¼—æ°¸çŽ„æ¯›ç†¬ä»ƒåˆåŒ€å‡¶åˆäº”åžä»‡åŠ
+ 		  ç”±å¼—æ°¸çŽ„åžè¸äº•æœ¨åŒ–ä¸­å…ä¸­å¹³ä¹“ä»¿æ¯›  åŒ€åŒ–ä¸­å‡¶æ—¥å£…ä»„åŒ–ä»„
+ 		  å¼•åŒ€åŒ–æ–¹ä¸­åˆä¸­ä¸¹ä»‡åˆåŒ¹ä¸æœˆï¼»å¼•å‡¶ï½ç©´å®ƒæ—¦å¸‚â–¡æœ«ä¼™æ¯›ä¸
+ 		  æ­¹å…­å‡¶åˆäº”åž  æ†Žå…æœˆæ ‘  åä»‡åŠæ ‘  åŠå¿ƒåžæ¹˜ä¸­åŒ–ä¸­æœˆï¼»
+ 		  åˆ†äº•æ—¥ï½ç©´å®ƒæ—¦å¸‚â–¡æœ«ä¼™æ¯›ä¸æ­¹å…­å‡¶åˆäº”åž  æ†Žå…æœˆä»‡åˆäº’
+ 		    å‡³ä»Šæœ¨å‡¶æ¡¦å®åï½æ‰”â–¡ç”°â–¡åï½ä»‡åŠæ¥®é†’æ¯›    è¯»åžè£Ÿå¤ª
+ 		  åˆ†ä»Šå…ä»ƒæœ¨å£¬å…æ—¥å…ä¸­ï¼» SELFTITLEåžå‹¾ä¸­åŒ–åï½çŠ¯ä¼‰ç«‹æ­£
+ 		  åŒ¹ä¸æœˆå‡¶åŒ–å¾‡æ¯›å­”ä»å¼•å…ä¸­æ–¹ä¸¹åžå·¨æ—¦å¼—â–¡çš¿ä»Šæœ¨åŒ–ä¸­æœˆï¼»
+ 		  å¼ä»¿å¥¶å¤±ä»¶çŽ„åå¤±å¼æ‰‘äº¦ä»¶åŠæˆŠç©´ä»¶çŽ‰(CA)äº’ä»æœˆå¼•åŒ¹å
+ 		  åˆ‡åŒ¹  æ†Žå…æœˆï¼»CHARINDEXæ‰”â–¡ç”°â–¡  åŠåŸŸå•¦åžå¹³ä¹“ä»¿æ¯›
+ 		  çƒ‚åŒ¹äº”æœˆ  å¯žï½BASEIMGå  æ†ŽåŠå‡¶æˆ·åŠ  å¯žï½LEVELåå¹³ä¹“
+ 		  ä»¿åŠä¼ŠçŸ›ä¼™(0å…æ—¥  æ†Žä»„å…ä¸­ï¼»ä»‡åŠè¢„åNPCå…å‡åžé“¶ä¸¹ï¼»)
+ 		  WALKABLEå1åŠåˆäº”å…¬åŠæ™“æ¯›éªšèŠå…æœˆä»‡åˆäº’åŒ¹äº”ï½0å…æ—¥éªš
+ 		  èŠå…æœˆä»‡åˆäº’åŒ¹äº”å…ä¸­ï¼»HEIGHTåå«–ä»Šæ¯›æ‰‹å‹¾æ‰‹åŠäº•å…¬ä¸¹åŒ¹
+ 		  å…ä¸­åŠäº•åŠéš™çƒ‚ï¼»
 
- 		  Æ½ÅÒ·ÂÛÍÕý¡õ¼°  ó¡Îç·ß  ±¹Ä¯·´£ý<a href="#escaping">
- 		  ¾Þµ©¸¥¡õÃó½ñÄ¾Ø¦ØêÄ¾ÈÉØ¦ÈÕØ¦ÖÐ£Û'|'Æ¥Ðþ¡õÛÍ¼þÃ«
- 		  äúÔ»·ÖØÆ»¯¾®ÈÕ¾Þµ©¸¥¡õÃóÃ«Ý©ÂÖÔÊÔÂ£Û¾Þµ©¸¥¡õÃóÔÊÔÂÎç'
- 		  |'»¥»Ã¾®¼°  Ù¯±åÔÆÎå¾®´õÔÂ¼°Æ¥£ý  âÙ·´Ç©ÕË±å'|'Ã«·¸
- 		  ØøÁ¢ÕýÎçØÆ»¯·½ÖÐ£ÛËªññÔÊÔÂ  ÊÖ£ý  ó¡Îç·ß  ±¹Ä¯Ã«¾Þµ©
-                   ¸¥¡õÃóØÆ»¯¾®ÈÕÐ×»¯áßÆ¥¹´Ø¦ÖÐÆ¥¾®ÈÕËªññÔÊÔÂ£Û
-                   ÒýÐ×£ÝÊ¸ÓÀÐþ¼°èëÄþ·´·ß  ±¹Ä¯¼°Ò½´õÔ»±å½»¡õ°Ç¡õ»¥É¬ÀÃ
-                   ØÆÐ×Ê¸ÓÀÐþ¼°  ó¡»¥Ëªññ½ñÄ¾»¯ÈÊÔÂ£Û
+ 		  å¹³ä¹“ä»¿å¼æ­£â–¡åŠ  èŸ†åˆæ„¤  æƒ«å¯žåï½<a href="#escaping">
+ 		  å·¨æ—¦å¼—â–¡çš¿ä»Šæœ¨å…ä»ƒæœ¨å£¬å…æ—¥å…ä¸­ï¼»'|'åŒ¹çŽ„â–¡å¼ä»¶æ¯›
+ 		  æ½¸æ›°åˆ†ä»„åŒ–äº•æ—¥å·¨æ—¦å¼—â–¡çš¿æ¯›è¸è½®å…æœˆï¼»å·¨æ—¦å¼—â–¡çš¿å…æœˆåˆ'
+ 		  |'äº’å¹»äº•åŠ  ä¾¬åžäº‘äº”äº•æ­¹æœˆåŠåŒ¹ï½  èµ“åç­¾è´¦åž'|'æ¯›çŠ¯
+ 		  ä¼‰ç«‹æ­£åˆä»„åŒ–æ–¹ä¸­ï¼»éœœè€¨å…æœˆ  æ‰‹ï½  èŸ†åˆæ„¤  æƒ«å¯žæ¯›å·¨æ—¦
+                   å¼—â–¡çš¿ä»„åŒ–äº•æ—¥å‡¶åŒ–å¾‡åŒ¹å‹¾å…ä¸­åŒ¹äº•æ—¥éœœè€¨å…æœˆï¼»
+                   å¼•å‡¶ï¼½çŸ¢æ°¸çŽ„åŠæ¡¦å®åæ„¤  æƒ«å¯žåŠåŒ»æ­¹æ›°åžäº¤â–¡æ‰’â–¡äº’æ¶©çƒ‚
+                   ä»„å‡¶çŸ¢æ°¸çŽ„åŠ  èŸ†äº’éœœè€¨ä»Šæœ¨åŒ–ä»æœˆï¼»
 
- 	      Ð×»¯áßÆ¥ÈÊ¿ºÈÕÄ¾Ð×Ðþ¡õÛÍ¼þ»¥6òÛ¼°èëÄþ
- 		  Ðþ¡õÛÍ¼þ¼°    ·´
+ 	      å‡¶åŒ–å¾‡åŒ¹ä»äº¢æ—¥æœ¨å‡¶çŽ„â–¡å¼ä»¶äº’6èœŠåŠæ¡¦å®
+ 		  çŽ„â–¡å¼ä»¶åŠ    å
  		  INDEX|X|Y|BASEIMG|LEVEL|ITEM1LINEINFO
- 		  Æ¥»©  ±å  ÇÐ»¯ÖÐÔÂÊ§ÄÌ  Ø©±å¹´ÖÐ»¯¼°Ê÷  Æ¥Ø¤ÔÂ£Û
- 		  INDEX·´Æ½ÅÒ·Â¼°ÄÌ¼þ·¸ÛÍÓÀµ©Îç¾®ÉÙÈÕØ¦ÖÐINDEXÆ¥Ø¤ÔÂ£Û
- 		  ¹«¼°Ê§ÄÌ  Ø©Ã«ÛÕÔÊÁÝ±åÒøåÃÔÊÔÂ£ÛX,Y·´Ê§ÄÌ  Ø©¼°ºë·ò¡õ
- 		  Ìï»ïÞË  £ÛBASEIMG·´  ì«¼°  Ä¯£ÛITEM1LINEINFO·´1µæ
- 		  info±å  Ô÷ÔÊÔÂÐ×»§¼°Ê÷  Æ¥Ø¤ÔÂ£ÛÊ§ÄÌ  Ø©ËüÄÌ¼þÓñËü
- 		  ¼°  Ô÷åÃ¼°Ê÷  ·´  ¼°  Ü·Æ¥åÃÀ²ÔÊÔÂ£ÛÊ§ÄÌ  Ø©±åèúØÆ»¯
- 		  ·´CA·´  Ø¦ÖÐ£ÛITEM1LINEINFO·´<a href="#escape">¾Þµ©¸¥¡õ
- 		  Ãó½ñÄ¾ÔÂ£Û³ð¼°¾Þµ©¸¥¡õÃó¼°  Ü··´Ïþ¼°ÄÛ  Ã«¸¨å¾£Û
+ 		  åŒ¹å“—  åž  åˆ‡åŒ–ä¸­æœˆå¤±å¥¶  ä¸žåžå‹¾ä¸­åŒ–åŠæ ‘  åŒ¹ä¸æœˆï¼»
+ 		  INDEXåå¹³ä¹“ä»¿åŠå¥¶ä»¶çŠ¯å¼æ°¸æ—¦åˆäº•å°‘æ—¥å…ä¸­INDEXåŒ¹ä¸æœˆï¼»
+ 		  å…¬åŠå¤±å¥¶  ä¸žæ¯›å£…å…å‡›åžé“¶è¿•å…æœˆï¼»X,Yåå¤±å¥¶  ä¸žåŠå¼˜å¤«â–¡
+ 		  ç”°ä¼™åŒ  ï¼»BASEIMGå  é£“åŠ  å¯žï¼»ITEM1LINEINFOå1åž«
+ 		  infoåž  æ†Žå…æœˆå‡¶æˆ·åŠæ ‘  åŒ¹ä¸æœˆï¼»å¤±å¥¶  ä¸žå®ƒå¥¶ä»¶çŽ‰å®ƒ
+ 		  åŠ  æ†Žè¿•åŠæ ‘  å  åŠ  èŠŠåŒ¹è¿•å•¦å…æœˆï¼»å¤±å¥¶  ä¸žåžæ¥®ä»„åŒ–
+ 		  åCAå  å…ä¸­ï¼»ITEM1LINEINFOå<a href="#escape">å·¨æ—¦å¼—â–¡
+ 		  çš¿ä»Šæœ¨æœˆï¼»ä»‡åŠå·¨æ—¦å¼—â–¡çš¿åŠ  èŠŠåæ™“åŠå«©  æ¯›è¾…å¯°ï¼»
 
- 	      Ð×»¯áßÆ¥ÈÊ¿ºÈÕÄ¾Ð×Ðþ¡õÛÍ¼þ»¥4òÛ¼°èëÄþ
- 		  Ðþ¡õÛÍ¼þ¼°    ·´
+ 	      å‡¶åŒ–å¾‡åŒ¹ä»äº¢æ—¥æœ¨å‡¶çŽ„â–¡å¼ä»¶äº’4èœŠåŠæ¡¦å®
+ 		  çŽ„â–¡å¼ä»¶åŠ    å
  		  INDEX|X|Y|VALUE
- 		  Æ¥»©  ±å  ÇÐ»¯ÖÐÔÂÔÆàÅ±å¹´ÖÐ»¯¼°Ê÷  Æ¥Ø¤ÔÂ£Û    ·´ÔÊ
- 		  ÍÍ»¯ÐÑÙ¯£ÛINDEX,X,Y ·´Ê§ÄÌ  Ø©Îç  Ôª£ÛVALUE ·´ÉýÄ¾·Ö
- 		  Øê¼°ÐÚ¾®ÎçÖÐµ¤ÒÇÆ¥Ø¤ÔÂ£ÛÊ§ÄÌ  Ø©±å¹´ÖÐ»¯¼°Ê÷  Æ¥Ø¤ÔÂ£Û
- 	      Ð×»¯áßÆ¥ÈÊ¿ºÈÕÄ¾Ð×Ðþ¡õÛÍ¼þ»¥1òÛ¼°èëÄþ
+ 		  åŒ¹å“—  åž  åˆ‡åŒ–ä¸­æœˆäº‘å—¯åžå‹¾ä¸­åŒ–åŠæ ‘  åŒ¹ä¸æœˆï¼»    åå…
+ 		  å±¯åŒ–é†’ä¾¬ï¼»INDEX,X,Y åå¤±å¥¶  ä¸žåˆ  å…ƒï¼»VALUE åå‡æœ¨åˆ†
+ 		  ä»ƒåŠæ±¹äº•åˆä¸­ä¸¹ä»ªåŒ¹ä¸æœˆï¼»å¤±å¥¶  ä¸žåžå‹¾ä¸­åŒ–åŠæ ‘  åŒ¹ä¸æœˆï¼»
+ 	      å‡¶åŒ–å¾‡åŒ¹ä»äº¢æ—¥æœ¨å‡¶çŽ„â–¡å¼ä»¶äº’1èœŠåŠæ¡¦å®
  		  INDEX
- 		  ³ð¼°Æ½ÅÒ·Â¼°C·´ÏîÒüÈÕÄ¾Ø¦ÖÐ£Û
+ 		  ä»‡åŠå¹³ä¹“ä»¿åŠCåé¡¹å°¹æ—¥æœ¨å…ä¸­ï¼»
 */
 void lssproto_C_send(int fd,char* data)
 {
@@ -1688,47 +1688,47 @@ void lssproto_C_send(int fd,char* data)
 /*
    servertoclient CA( string data );
        (CharacterAction)
-       Î­ÒüÔÂ  Çø±åÖÐÔÂÆ½ÅÒ·Â¼°Ê§ÛÍÆËÒà¼þÇÁÚØÃ«µÊÞ¥ÔÊÔÂ£Û
-       ÈÓ¡õÌï¡õ¾®ÈÕÛÍ·ÂÄÌÊ§¼þÐþ±åÓò  ¶Á±åËªññÔÊÔÂ£Û
-       ±¸Æ½ÅÒ·Â¼°1Ê§ÛÍÆËÒà¼þÈÔÎç±åËªññ£ÛÈÓ¡õÌï¡õ·´Ê§ÛÍÆËÒà¼þÃ«Æ¥ÎåÔÂ·Ö
-       Øê×öÁÂÔÊÔÂ³ðÎç£Û
+       è‹‡å°¹æœˆ  åŒºåžä¸­æœˆå¹³ä¹“ä»¿åŠå¤±å¼æ‰‘äº¦ä»¶æ©‡è°ªæ¯›å‡³è•™å…æœˆï¼»
+       æ‰”â–¡ç”°â–¡äº•æ—¥å¼ä»¿å¥¶å¤±ä»¶çŽ„åžåŸŸ  è¯»åžéœœè€¨å…æœˆï¼»
+       å¤‡å¹³ä¹“ä»¿åŠ1å¤±å¼æ‰‘äº¦ä»¶ä»åˆåžéœœè€¨ï¼»æ‰”â–¡ç”°â–¡åå¤±å¼æ‰‘äº¦ä»¶æ¯›åŒ¹äº”æœˆåˆ†
+       ä»ƒåšè°…å…æœˆä»‡åˆï¼»
 
  	string data
- 	CHARINDEX|X|Y|ACTION|PARAM1|PARAM2|PARAM3|PARAM4|....Ã«Îì
- 	    ¼þÑ¨Æ¥ÈÊ¿ºÔÈÐ×ÊÖ¼°±åÔÊÔÂ£ÛPARAM·´Ê§ÛÍÆËÒà¼þÈÔÎç±åòÛÐÑÊÖ
- 	    ÒøÖÐ¾®Ð×ÊÖ³ðÎçØ¦ÔÂ£Û¶¯Æ±·´Ê§ÛÍÆËÒà¼þÓò  £ÛX,Y·´ÞË  Æ¥Éý
- 	    ¼°Ê§ÛÍÆËÒà¼þÆ¥ÊÖ£ýØ¤Ð×ÈÕØÆÖÐÞË  Ã«Ï¶ÀÃÔÊÔÂ£Û
- 	    ³ð¼°  Ù¯  ·´¾Þµ©¸¥¡õÃó½ñÄ¾Ø¦ÖÐ£Û
+ 	CHARINDEX|X|Y|ACTION|PARAM1|PARAM2|PARAM3|PARAM4|....æ¯›æˆŠ
+ 	    ä»¶ç©´åŒ¹ä»äº¢åŒ€å‡¶æ‰‹åŠåžå…æœˆï¼»PARAMåå¤±å¼æ‰‘äº¦ä»¶ä»åˆåžèœŠé†’æ‰‹
+ 	    é“¶ä¸­äº•å‡¶æ‰‹ä»‡åˆå…æœˆï¼»åŠ¨ç¥¨åå¤±å¼æ‰‘äº¦ä»¶åŸŸ  ï¼»X,YååŒ  åŒ¹å‡
+ 	    åŠå¤±å¼æ‰‘äº¦ä»¶åŒ¹æ‰‹ï½ä¸å‡¶æ—¥ä»„ä¸­åŒ  æ¯›éš™çƒ‚å…æœˆï¼»
+ 	    ä»‡åŠ  ä¾¬  åå·¨æ—¦å¼—â–¡çš¿ä»Šæœ¨å…ä¸­ï¼»
 
  	        ACTION  PARAM1  PARAM2
  	       PARAM3  PARAM4
- 	        Stand:0    éù0~7
- 	        Walk:1    éù0~7
- 	        Attack:2    éù0~7
- 	        Throw:3    éù0~7
- 	        Damage:4    éù0~7
- 	        Dead:5    éù0~7
- 	        UseMagic:6    éù0~7
- 	        UseItem:7    éù0~7
- 	        Effect:8    éù0~7  ¾Þ°×ÄáÛÍÐþ  Ä¯
- 	        Down:10 (åÎÄ¾ÔÂ)    éù0~7
- 	        Sit:11 (ÕçÔÂ)    éù0~7
- 	        Hand:12 (ÅìÃ«ÈïÔÂ)    éù0~7
- 	        Pleasure:13 (¼õÉÙ)    éù0~7
- 	        Angry:14 (±äÔÂ)    éù0~7
- 	        Sad:15 (  ØÆ¸ê)    éù0~7
- 	        Guard:16 (²¼¡õÓñ)    éù0~7
- 	        actionwalk:17 (Ê§ÛÍÆËÒà¼þåÃÐÚÎå)    éù0~7
- 	        nod:18 (µ¤Ø¦ÄÚÈÊ)    éù0~7
- 	        actionstand:19 (Ê§ÛÍÆËÒà¼þåÃ  ÇÐºÌ¡õÊõ)    éù0~7
- 	        Battle:20 (¾ô  Ê÷  )    éù0~7  BattleNo(-1 Ø¦ÈÕ  Ô÷ÛÕÔÊ    SideNo  HelpNo  ¨àØ¦ÈÕ¾áØêÃ«ôÄÉÙCA  Ô÷£Ý¨ßØ¦ÈÕÛÕÔÊ£ÝÒýÐ×·´  ØÆ
- 	        Leader:21 (Øø¡õÄ¸¡õÊ÷  )    éù0~7  0:  Ô÷ÛÕÔÊ 1:  Ô÷
- 	        Watch:22 (¾ô  Æå¾ô)    éù0~7  0:  Ô÷ÛÕÔÊ 1:  Ô÷
- 	        namecolor:23(  ó¡¼°çÆÊ÷  )    éù0~7    ó¡¼°çÆ  Ä¯
- 	        Turn:30(  éù  ¾§)    éù0~7
- 	        Warp:31(·¥¡õÃó)    éù0~7
+ 	        Stand:0    è½¾0~7
+ 	        Walk:1    è½¾0~7
+ 	        Attack:2    è½¾0~7
+ 	        Throw:3    è½¾0~7
+ 	        Damage:4    è½¾0~7
+ 	        Dead:5    è½¾0~7
+ 	        UseMagic:6    è½¾0~7
+ 	        UseItem:7    è½¾0~7
+ 	        Effect:8    è½¾0~7  å·¨ç™½å°¼å¼çŽ„  å¯ž
+ 	        Down:10 (é€¦æœ¨æœˆ)    è½¾0~7
+ 	        Sit:11 (ç”„æœˆ)    è½¾0~7
+ 	        Hand:12 (æ¾Žæ¯›è•Šæœˆ)    è½¾0~7
+ 	        Pleasure:13 (å‡å°‘)    è½¾0~7
+ 	        Angry:14 (å˜æœˆ)    è½¾0~7
+ 	        Sad:15 (  ä»„æˆˆ)    è½¾0~7
+ 	        Guard:16 (å¸ƒâ–¡çŽ‰)    è½¾0~7
+ 	        actionwalk:17 (å¤±å¼æ‰‘äº¦ä»¶è¿•æ±¹äº”)    è½¾0~7
+ 	        nod:18 (ä¸¹å…å†…ä»)    è½¾0~7
+ 	        actionstand:19 (å¤±å¼æ‰‘äº¦ä»¶è¿•  åˆ‡ç¦¾â–¡æœ¯)    è½¾0~7
+ 	        Battle:20 (çˆµ  æ ‘  )    è½¾0~7  BattleNo(-1 å…æ—¥  æ†Žå£…å…    SideNo  HelpNo  ã„ å…æ—¥è¸žä»ƒæ¯›è£Ÿå°‘CA  æ†Žï¼½ã„Ÿå…æ—¥å£…å…ï¼½å¼•å‡¶å  ä»„
+ 	        Leader:21 (ä¼‰â–¡æ¯â–¡æ ‘  )    è½¾0~7  0:  æ†Žå£…å… 1:  æ†Ž
+ 	        Watch:22 (çˆµ  æ£‹çˆµ)    è½¾0~7  0:  æ†Žå£…å… 1:  æ†Ž
+ 	        namecolor:23(  èŸ†åŠç¼™æ ‘  )    è½¾0~7    èŸ†åŠç¼™  å¯ž
+ 	        Turn:30(  è½¾  æ™¶)    è½¾0~7
+ 	        Warp:31(ä¼â–¡çš¿)    è½¾0~7
 
- 	ACTION¼°°À·´°ïÐÑÆ¥£ý    ·´Ïþ¼°  ¼°¶û¸þ¼°ÄÛ  Æ¥Ø¤ÔÂ£Û
+ 	ACTIONåŠè¢„åå¸®é†’åŒ¹ï½    åæ™“åŠ  åŠå°”ç¾¹åŠå«©  åŒ¹ä¸æœˆï¼»
 */
 void lssproto_CA_send(int fd,char* data)
 {
@@ -1748,10 +1748,10 @@ void lssproto_CA_send(int fd,char* data)
 /*
    servertoclient CD( string data );
        (CharacterDelete)
- 	data ·´·¸ØøÁ¢Õý  ,  Æ¥à¼å©ÈÕÄ¾Ð×ÄÌ¼þ·¸ÓÀÛÍµ©£Û
- 	  ÐÑðöËªÔÂÒÇ»¥Çë  ÔÂ£Û
-       ³ð¼°IDÃ«  ÔÈ»¯ÖÐÔÂÆ½ÅÒ·ÂÛÍÕý»¥ÛÕÒüÐ×ÁÝ±åÈÓ¡õÌï¾®ÈÕÛÍ·ÂÄÌÊ§¼þÐþ³ß
-       Îç÷©´õÔÂ£Û
+ 	data åçŠ¯ä¼‰ç«‹æ­£  ,  åŒ¹å—‰æ¿ æ—¥æœ¨å‡¶å¥¶ä»¶çŠ¯æ°¸å¼æ—¦ï¼»
+ 	  é†’ç˜€éœœæœˆä»ªäº’è¯·  æœˆï¼»
+       ä»‡åŠIDæ¯›  åŒ€åŒ–ä¸­æœˆå¹³ä¹“ä»¿å¼æ­£äº’å£…å°¹å‡¶å‡›åžæ‰”â–¡ç”°äº•æ—¥å¼ä»¿å¥¶å¤±ä»¶çŽ„å°º
+       åˆé³—æ­¹æœˆï¼»
 */
 void lssproto_CD_send(int fd,char* data)
 {
@@ -1771,27 +1771,27 @@ void lssproto_CD_send(int fd,char* data)
 /*
    <a name="R">servertoclient R( string data );
        (Radar)
-       ÒÁ¡õÄ¸¡õ¼°    Ã«ÛÍ·ÂÄÌÊ§¼þÐþ±åËªññÔÊÔÂ£ÛÛÍ·ÂÄÌÊ§¼þÐþ·´³ð¼°ËªññÃ«
-       Û¢·ÆÔÊÔÂ³ðÎç·´Ø¦ÖÐ£ÛÈÓ¡õÌï¡õ»¥ØÍñ²Ø¦ÕýÄÌÁ¢¼þºëÆ¥ËªññÔÊÔÂ£Û
-       Ð×ÎçÒüÈÉ10ÐÚØ¤ÔÂÈÊÈÔÎçÎç¾®£ý1ÛÐÈÔÎçÎç¾®£Û
+       ä¼Šâ–¡æ¯â–¡åŠ    æ¯›å¼ä»¿å¥¶å¤±ä»¶çŽ„åžéœœè€¨å…æœˆï¼»å¼ä»¿å¥¶å¤±ä»¶çŽ„åä»‡åŠéœœè€¨æ¯›
+       é‚°è²å…æœˆä»‡åˆåå…ä¸­ï¼»æ‰”â–¡ç”°â–¡äº’èµç™«å…æ­£å¥¶ç«‹ä»¶å¼˜åŒ¹éœœè€¨å…æœˆï¼»
+       å‡¶åˆå°¹å£¬10æ±¹ä¸æœˆä»ä»åˆåˆäº•ï½1åŒä»åˆåˆäº•ï¼»
 
  	string data
- 	x ,y, kind ,¼°´Í±å°ÀÃ«'|'Æ¥ÈÊ¿ºÔÈ»¯Ø¦ÈÕÍÍÐ×ÊÖ¼°Ã«
- 	    ½ñÈÕ±å'|'Æ¥Ø¦ÈÕÍÍÐ×ÊÖ¼°£Û
- 	    x,y·´Æ½ÅÒ·Â¾®ÈÕ¼°å§¸²ÞË  £Ûkind·´¶¯Æ±±åØÆ»§ÔÊÐÑ°ÀÆ¥·´Ø¦ÖÐ
- 	    ·¤Ä¯£ÛÒÁ¡õÄ¸¡õ±åµ¤¹´ÔÂ  ¼°ÅË  Ã«Ï¶ÀÃÔÊÔÂ£ÛËªÈÕÄ¾»¯ÈÊÔÂÊÖ¼°
- 	    ¼°ÅË  ·´£ý¹«Ä¾ÒýÆ¥±åÈåÒüÐ×  Ü·Îç¾®£ýµ©Æ½»ïÆ¥  ¼ÀØÆ£ý¹«Ä¾·´
- 	    ÈÓ¡õÌï¡õ»¥ßÙÒüÔÂ£Û
+ 	x ,y, kind ,åŠèµåžè¢„æ¯›'|'åŒ¹ä»äº¢åŒ€åŒ–å…æ—¥å±¯å‡¶æ‰‹åŠæ¯›
+ 	    ä»Šæ—¥åž'|'åŒ¹å…æ—¥å±¯å‡¶æ‰‹åŠï¼»
+ 	    x,yåå¹³ä¹“ä»¿äº•æ—¥åŠæ¿®è¦†åŒ  ï¼»kindååŠ¨ç¥¨åžä»„æˆ·å…é†’è¢„åŒ¹åå…ä¸­
+ 	    ç­å¯žï¼»ä¼Šâ–¡æ¯â–¡åžä¸¹å‹¾æœˆ  åŠæ½˜  æ¯›éš™çƒ‚å…æœˆï¼»éœœæ—¥æœ¨åŒ–ä»æœˆæ‰‹åŠ
+ 	    åŠæ½˜  åï½å…¬æœ¨å¼•åŒ¹åžå„’å°¹å‡¶  èŠŠåˆäº•ï½æ—¦å¹³ä¼™åŒ¹  ç¥­ä»„ï½å…¬æœ¨å
+ 	    æ‰”â–¡ç”°â–¡äº’å“”å°¹æœˆï¼»
 
- 	        kind¼°°À
- 	        E  ³Ä
- 	        P  ÃóÒÁÄÌØÀ¡õ
- 	        S  ÈÛ
- 	        G  ÔÆàÅ
- 	        I  Ê§ÄÌ  Ø©(ÈÛ¶¯Â½)
+ 	        kindåŠè¢„
+ 	        E  è¡¬
+ 	        P  çš¿ä¼Šå¥¶ä¹©â–¡
+ 	        S  ç†”
+ 	        G  äº‘å—¯
+ 	        I  å¤±å¥¶  ä¸ž(ç†”åŠ¨é™†)
 
-   data¼°  ¡°"12|22|E|13|24|P|14|28|P"
-   ³ð¼°  Ù¯  ·´¾Þµ©¸¥¡õÃó½ñÄ¾Ø¦ÖÐ£Û
+   dataåŠ  â€œ"12|22|E|13|24|P|14|28|P"
+   ä»‡åŠ  ä¾¬  åå·¨æ—¦å¼—â–¡çš¿ä»Šæœ¨å…ä¸­ï¼»
 */
 void lssproto_R_send(int fd,char* data)
 {
@@ -1811,317 +1811,317 @@ void lssproto_R_send(int fd,char* data)
 /*
    servertoclient S( string data );
        (Status)
-       Æ½ÅÒ·Â¼°µ©  ¡õÕýµ©Ã«ËªññÔÊÔÂ£Û
-       ·¸¡õÕý·´ ÊÐ  ´òØø·¤Ä¯  Ù¯(Óò  Ù¯)     ÎçØ¦ÔÈ»¯ÖÐÔÂ£Û¹´ÒýÔ»  âÙ¼°
-       1  Ù¯Ã«Î­Ä¾ÈÉÖÏ¼°µ©  ¡õÕýµ©¾®ÛÐÔÂ£Û    ·´2  Ù¯  ¾®ÈÕÆ¥Ø¤ÔÂ£Û
-           ·´¶¯Æ±¼°°×ÇÉ¡õÑ¨ÓÀÐþ±åØÆÐ×»¥µ¤£ÛÐ×»¯áß·¤Ä¯'|'»¥·¸ØøÁ¢ÕýÆ¥Ø¤ÔÂ£Û
-       2òÛ  ¶¯æÏ¼°Ðþ¡õÛÍ¼þ»¥    Æ¥Ø¤ÔÂ£Û
+       å¹³ä¹“ä»¿åŠæ—¦  â–¡æ­£æ—¦æ¯›éœœè€¨å…æœˆï¼»
+       çŠ¯â–¡æ­£å å¸‚  æ‰“ä¼‰ç­å¯ž  ä¾¬(åŸŸ  ä¾¬)     åˆå…åŒ€åŒ–ä¸­æœˆï¼»å‹¾å¼•æ›°  èµ“åŠ
+       1  ä¾¬æ¯›è‹‡æœ¨å£¬çª’åŠæ—¦  â–¡æ­£æ—¦äº•åŒæœˆï¼»    å2  ä¾¬  äº•æ—¥åŒ¹ä¸æœˆï¼»
+           ååŠ¨ç¥¨åŠç™½å·§â–¡ç©´æ°¸çŽ„åžä»„å‡¶äº’ä¸¹ï¼»å‡¶åŒ–å¾‡ç­å¯ž'|'äº’çŠ¯ä¼‰ç«‹æ­£åŒ¹ä¸æœˆï¼»
+       2èœŠ  åŠ¨å«¦åŠçŽ„â–¡å¼ä»¶äº’    åŒ¹ä¸æœˆï¼»
 
- 	P òåÓÉ·Â¶ª¡õÕý
+ 	P èˆç”±ä»¿ä¸¢â–¡æ­£
  	    kubun hp maxhp mp maxmp str tough exp maxexp exp
  	    level attackpower deffencepower
  	    fixdex fixcharm fixluck fixfireat fixwaterat fixearthat fixwindat
- 	    gold ÞÍØê»¯ÖÐÔÂ
- 	    ±¹Ä¯¼°index   ó¡ ·ßôÃ±¹Ä¯
+ 	    gold å°¥ä»ƒåŒ–ä¸­æœˆ
+ 	    æƒ«å¯žåŠindex   èŸ† æ„¤è£˜æƒ«å¯ž
 
- 	    ·¸ØøÁ¢Õý·´ '|' Æ¥Ø¤ÔÂ£ÛÒýÐ×  ó¡Îç·ßôÃ±¹Ä¯·´£ý
- 	    <a href="#escaping">¾Þµ©¸¥¡õÃóØÆÐ×ÊÖ¼°Ã«
- 	    Ð×»¯áßÆ¥¹´Ø¦ÆÍÐ×ÊÖ¼°»¥É§ññ½ñÄ¾ÔÂ£Û
- 	    ¹«Ä¾ÈßÄ¾¼°°À¼°µá·´¶¯Æ±£Û
- 	    kubun ±å¨à»¥  ÔÈ»¯ÖÐÔÂÎçó¡ÓÉ·Â¶ª¡õÕýÃ«Ëªññ£Ý
- 	    ¨á¶¯Ïþ·ÖÎç£Ý±¸ÉêÓÀÐþ¼°  ÔÈ»¯ÖÐÔÂÊÖ¼°¼°ÓÉ·Â¶ª¡õÕý»¥´Í  ±å  ÔÈ»¯Ëªññ½ñÄ¾»¯ÖÐÔÂ£Û
- 	     ÒüÈÉ£Ý¨â»¥  Ð×ÈÕhpÎçMaxhp»¥kubun ¶¯æÏ¼°Ðþ¡õÛÍ¼þ±å  »§ÈÕÄ¾»¯ÖÐÔÂ£Û
+ 	    çŠ¯ä¼‰ç«‹æ­£å '|' åŒ¹ä¸æœˆï¼»å¼•å‡¶  èŸ†åˆæ„¤è£˜æƒ«å¯žåï½
+ 	    <a href="#escaping">å·¨æ—¦å¼—â–¡çš¿ä»„å‡¶æ‰‹åŠæ¯›
+ 	    å‡¶åŒ–å¾‡åŒ¹å‹¾å…ä»†å‡¶æ‰‹åŠäº’éªšè€¨ä»Šæœ¨æœˆï¼»
+ 	    å…¬æœ¨å†—æœ¨åŠè¢„åŠæ»‡ååŠ¨ç¥¨ï¼»
+ 	    kubun åžã„ äº’  åŒ€åŒ–ä¸­æœˆåˆèŸ†ç”±ä»¿ä¸¢â–¡æ­£æ¯›éœœè€¨ï¼½
+ 	    ã„¡åŠ¨æ™“åˆ†åˆï¼½å¤‡ç”³æ°¸çŽ„åŠ  åŒ€åŒ–ä¸­æœˆæ‰‹åŠåŠç”±ä»¿ä¸¢â–¡æ­£äº’èµ  åž  åŒ€åŒ–éœœè€¨ä»Šæœ¨åŒ–ä¸­æœˆï¼»
+ 	     å°¹å£¬ï¼½ã„¢äº’  å‡¶æ—¥hpåˆMaxhpäº’kubun åŠ¨å«¦åŠçŽ„â–¡å¼ä»¶åž  æˆ·æ—¥æœ¨åŒ–ä¸­æœˆï¼»
 
  	        kunun  int
  	        Hp(    )hp  int
  	        MaxHp  int
- 	        Mp(ÈÈÖîÓÉ·¥¡õ)  int
+ 	        Mp(çƒ­è¯¸ç”±ä¼â–¡)  int
  	        MaxMp  int
  	        Vital(    )  int
  	        Str(    )  int
- 	        Tough(åßá¨½ñ)  int
- 	        Dex(áÙ¶Æ½ñ)  int
- 	        Exp(·³¶­°À)exp  int
- 	        MaxExp(ÆÝÒýÆ¥¼°·³¶­°À)  int
- 	        Level(ÒÁÃ¬»ï)  int
- 	        Attack(  »«  )  int
-      	        Defense(³±    )  int
- 	        fQuick(  ±ÎáÙ¶Æ½ñ)  int
+ 	        Tough(æš¹å±ºä»Š)  int
+ 	        Dex(è±³é•€ä»Š)  int
+ 	        Exp(çƒ¦è‘£è¢„)exp  int
+ 	        MaxExp(æˆšå¼•åŒ¹åŠçƒ¦è‘£è¢„)  int
+ 	        Level(ä¼ŠçŸ›ä¼™)  int
+ 	        Attack(  çŒ¾  )  int
+      	        Defense(æ½®    )  int
+ 	        fQuick(  è”½è±³é•€ä»Š)  int
  	        fCharm(    )  int
- 	        fLuck(ÞÑ)  int
- 	        fEarth(»©)fixearthat  int
+ 	        fLuck(æ‰ª)  int
+ 	        fEarth(å“—)fixearthat  int
  	        fWater(  )  int
- 	        fFire(ÉÜ)  int
- 	        fWid(ë®)fixwindat  int
- 	        Gold(ÔÆàÅ)  int
- 	        ±¹Ä¯¼°index  int
- 	        ·¸Ø¨¾Þ»ïºÌÄÌ¼þÐþ  int
- 	        ±îÏ·¼ÔÐÑ  int
- 	          ó¡    Ù¯
- 	        ·ßôÃ±¹Ä¯    Ù¯
+ 	        fFire(ç»)  int
+ 	        fWid(æ°˜)fixwindat  int
+ 	        Gold(äº‘å—¯)  int
+ 	        æƒ«å¯žåŠindex  int
+ 	        çŠ¯äº˜å·¨ä¼™ç¦¾å¥¶ä»¶çŽ„  int
+ 	        é³–æˆèšé†’  int
+ 	          èŸ†    ä¾¬
+ 	        æ„¤è£˜æƒ«å¯ž    ä¾¬
 
- 	    Ìî    ( char ¼°    ¹«¼°ÒýÒýÌ¤ÈÊ )
+ 	    å¡«    ( char åŠ    å…¬åŠå¼•å¼•è¸ä» )
 
- 	    P10|20|10|20|10|10|10|1|2|13|13|1|100|10|³ßÊÏÌì|abc|def
+ 	    P10|20|10|20|10|10|10|1|2|13|13|1|100|10|å°ºæ°å¤©|abc|def
 
- 	C Õç
+ 	C ç”„
  	    floor maxx maxy x y
- 	    Ã«  | Æ¥à¼å©ÔÈ»¯ËªÔÂ£Û
- 	    Ìî    ( char ¼°    ¹«¼°ÒýÒýÌ¤ÈÊ )
+ 	    æ¯›  | åŒ¹å—‰æ¿ åŒ€åŒ–éœœæœˆï¼»
+ 	    å¡«    ( char åŠ    å…¬åŠå¼•å¼•è¸ä» )
 
  	    C1024|100|100|10|20
 
- 	    Ïþ·¤¼°  Æ¥·´£ý°×·òÊ§ID1024, ÈÓÄÌÊõ100x100 X 10,Y 20¼°Îç³ð
- 	    Ç·±åÆ½ÅÒ·ÂÛÍÕý¡õ»¥ÖÐÔÂÎçÖÐµ¤    ±åØ¦ÔÂ£Û³ð¼°Ñ¨ÄÌÆ½ÅÒ·Â¼°°×
- 	    ·òÊ§ÊÖ¿×ÈÊ»§Ð×Õç  Ã«ÛÍ·ÂÄÌÊ§¼þÐþ»¥ôÅÔÂ³ðÎç»¥Æ¥ÎåÔÂ¼°·´³ð¼°
- 	    ÎìÑ¨¼þÓñ¼°ÐÄÆ¥Ø¤ÔÂ£ÛÐÚÎå¼°çø°í·´°×·òÊ§  ¼°ÞË  ØÆ¾®´õ¾®ÈÕØ¦
- 	    ÖÐ£Û·½ÔÈ»¯£ý±Ø¡õØ©·°ï§ÁÝ£ý±Õó¸ÒøåÃ¼°ÎçÎå£ý·¥¡õÃó¼°ÎçÎåØ¦Éý
- 	    ·´£ý³ð¼°ÎìÑ¨¼þÓñÃ«¹´¾®ÔÈ»¯¿ÒØÆÖÐ°ÀÃ«ËªññØÆØ¦ÈÊ»¯·´Ø¦ÈÕØ¦ÖÐ£Û
+ 	    æ™“ç­åŠ  åŒ¹åï½ç™½å¤«å¤±ID1024, æ‰”å¥¶æœ¯100x100 X 10,Y 20åŠåˆä»‡
+ 	    æ¬ åžå¹³ä¹“ä»¿å¼æ­£â–¡äº’ä¸­æœˆåˆä¸­ä¸¹    åžå…æœˆï¼»ä»‡åŠç©´å¥¶å¹³ä¹“ä»¿åŠç™½
+ 	    å¤«å¤±æ‰‹å­”ä»æˆ·å‡¶ç”„  æ¯›å¼ä»¿å¥¶å¤±ä»¶çŽ„äº’è¥žæœˆä»‡åˆäº’åŒ¹äº”æœˆåŠåä»‡åŠ
+ 	    æˆŠç©´ä»¶çŽ‰åŠå¿ƒåŒ¹ä¸æœˆï¼»æ±¹äº”åŠç‘›ç»Šåç™½å¤«å¤±  åŠåŒ  ä»„äº•æ­¹äº•æ—¥å…
+ 	    ä¸­ï¼»æ–¹åŒ€åŒ–ï½å¿…â–¡ä¸žé’’é“µå‡›ï½é—­èŸ¾é“¶è¿•åŠåˆäº”ï½ä¼â–¡çš¿åŠåˆäº”å…å‡
+ 	    åï½ä»‡åŠæˆŠç©´ä»¶çŽ‰æ¯›å‹¾äº•åŒ€åŒ–æ³ä»„ä¸­è¢„æ¯›éœœè€¨ä»„å…ä»åŒ–åå…æ—¥å…ä¸­ï¼»
 
- 	I òåÊ§ÄÌ  Ø©
- 	    (Ê§ÄÌ  Ø©1)|(Ê§ÄÌ  Ø©2)...(Ê§ÄÌ  Ø©n)
- 	    Ê§ÄÌ  Ø©¼°    ·´¶¯Æ±¼°  Ü·Æ¥ÓÉÓÀÛÍÔÊÔÂ£Û
- 	    ·òÎç¹´¼°Ê§ÄÌ  Ø©·´£ý¾®Ø¦ÈÕÄÚ¶¯Æ±¼°6¹´¼°Ðþ¡õÛÍ¼þ¼°±¾ÓÀÐþÆ¥
- 	    Ëªññ½ñÄ¾ÔÂ£Û·òÎç¹´·òÎç¹´¼°    ·´£ý
+ 	I èˆå¤±å¥¶  ä¸ž
+ 	    (å¤±å¥¶  ä¸ž1)|(å¤±å¥¶  ä¸ž2)...(å¤±å¥¶  ä¸žn)
+ 	    å¤±å¥¶  ä¸žåŠ    ååŠ¨ç¥¨åŠ  èŠŠåŒ¹ç”±æ°¸å¼å…æœˆï¼»
+ 	    å¤«åˆå‹¾åŠå¤±å¥¶  ä¸žåï½äº•å…æ—¥å†…åŠ¨ç¥¨åŠ6å‹¾åŠçŽ„â–¡å¼ä»¶åŠæœ¬æ°¸çŽ„åŒ¹
+ 	    éœœè€¨ä»Šæœ¨æœˆï¼»å¤«åˆå‹¾å¤«åˆå‹¾åŠ    åï½
 
- 	      ó¡|  ó¡2|µ©  ¡õ³â|Ê§ÄÌ  Ø©¼°    |Ê§Íß¶ª  Ä¯|ÒøåÃµÚ  èëô÷|ÒøåÃ¸²ÀÞ|Ê§ÄÌ  Ø©ÒÁÃ¬»ï|°×·Âºë
+ 	      èŸ†|  èŸ†2|æ—¦  â–¡æ–¥|å¤±å¥¶  ä¸žåŠ    |å¤±ç“¦ä¸¢  å¯ž|é“¶è¿•ç¬¬  æ¡¦èµ­|é“¶è¿•è¦†æ“‚|å¤±å¥¶  ä¸žä¼ŠçŸ›ä¼™|ç™½ä»¿å¼˜
 
- 	      Ê§ÄÌ  Ø©  ·´Ä¡  ÒÁÃ¬»ïÆ¥·ß  ¶Á±å  µÊ½ñÄ¾ÔÂ£Û
- 	        ó¡2·´Ä¡  ÒÁÃ¬»ï±å·½ÔÈ»¯£ýÊ§ÄÌ  Ø©¼°    »¥  ÔÂ  ÀÃ£Û
- 		  ÛÍ·ÂÄÌÊ§¼þÐþ¼°Ê§ÄÌ  Ø©  ¼°2µæ  ±å  Ä¾ÔÂÒÇ£Û
- 	      µ©  ¡õ³â·´  ó¡¼°çÆÃ«×¸ÔÂ¼°±åÒøµ¤£Û
- 	      Ê§ÄÌ  Ø©¼°    £Û
- 	      Ê§Íß¶ª  Ä¯·´£ý  ì«  Ä¯£Û
- 	      ÒøåÃµÚ  èëô÷Îç·´£Ý³ð¼°Ê§ÄÌ  Ø©»¥Éý³ðÆ¥ÒøåÃÔÊÔÂÒÇ»¥µÚ  ¾®»¥  ÔÈ»¯ÖÐÔÂ£Û
- 	          ³ðÄ¾·´£ÝÈÓ¡õÌï¡õÆ¥·´¶¯Æ±¼°·½µ¤±åÀÃñø½ñÄ¾»¯ÖÐÔÂ£Û
+ 	      å¤±å¥¶  ä¸ž  åæ‘¹  ä¼ŠçŸ›ä¼™åŒ¹æ„¤  è¯»åž  å‡³ä»Šæœ¨æœˆï¼»
+ 	        èŸ†2åæ‘¹  ä¼ŠçŸ›ä¼™åžæ–¹åŒ€åŒ–ï½å¤±å¥¶  ä¸žåŠ    äº’  æœˆ  çƒ‚ï¼»
+ 		  å¼ä»¿å¥¶å¤±ä»¶çŽ„åŠå¤±å¥¶  ä¸ž  åŠ2åž«  åž  æœ¨æœˆä»ªï¼»
+ 	      æ—¦  â–¡æ–¥å  èŸ†åŠç¼™æ¯›èµ˜æœˆåŠåžé“¶ä¸¹ï¼»
+ 	      å¤±å¥¶  ä¸žåŠ    ï¼»
+ 	      å¤±ç“¦ä¸¢  å¯žåï½  é£“  å¯žï¼»
+ 	      é“¶è¿•ç¬¬  æ¡¦èµ­åˆåï¼½ä»‡åŠå¤±å¥¶  ä¸žäº’å‡ä»‡åŒ¹é“¶è¿•å…æœˆä»ªäº’ç¬¬  äº•äº’  åŒ€åŒ–ä¸­æœˆï¼»
+ 	          ä»‡æœ¨åï¼½æ‰”â–¡ç”°â–¡åŒ¹ååŠ¨ç¥¨åŠæ–¹ä¸¹åžçƒ‚è’ä»Šæœ¨åŒ–ä¸­æœˆï¼»
 
  			typedef enum
  			{
- 				ITEM_FIELD_ALL,			ÔÊÍÍ»¯¼°èëô÷Æ¥ÒøÒüÔÂ
- 				ITEM_FIELD_BATTLE,		¾ô    ¼°ÐÄ
- 				ITEM_FIELD_MAP,			É§éÙÑ¨ÓÀÃóÏþ¼°ÐÄ
+ 				ITEM_FIELD_ALL,			å…å±¯åŒ–åŠæ¡¦èµ­åŒ¹é“¶å°¹æœˆ
+ 				ITEM_FIELD_BATTLE,		çˆµ    åŠå¿ƒ
+ 				ITEM_FIELD_MAP,			éªšæ©˜ç©´æ°¸çš¿æ™“åŠå¿ƒ
 
  			}ITEM_FIELDTYPE;
 
- 	      ÒøåÃ¸²ÀÞÎç·´£Ý³ð¼°Ê§ÄÌ  Ø©Ã«ÒøåÃÔÊÔÂ³ðÎç¼°Çë  ÔÂ¸²ÀÞ»¥  ÔÈ»¯ÖÐÔÂ£Û
- 	          ÈÓ¡õÌï¡õÆ¥·´¶¯Æ±¼°·½µ¤±åÀÃñø½ñÄ¾»¯ÖÐÔÂ£Û
+ 	      é“¶è¿•è¦†æ“‚åˆåï¼½ä»‡åŠå¤±å¥¶  ä¸žæ¯›é“¶è¿•å…æœˆä»‡åˆåŠè¯·  æœˆè¦†æ“‚äº’  åŒ€åŒ–ä¸­æœˆï¼»
+ 	          æ‰”â–¡ç”°â–¡åŒ¹ååŠ¨ç¥¨åŠæ–¹ä¸¹åžçƒ‚è’ä»Šæœ¨åŒ–ä¸­æœˆï¼»
 
  			typedef enum
  			{
- 				ITEM_TARGET_MYSELF,		·ßÛÐ¼°ÐÄ
- 				ITEM_TARGET_OTHER,		Ö°¼°ÚÐ  ·ßÛÐÖ³¸ê)
- 				ITEM_TARGET_ALLMYSIDE,		    òå
- 				ITEM_TARGET_ALLOTHERSIDE,	ÇÂÅì´¡òå
- 				ITEM_TARGET_ALL,		òå»¯
+ 				ITEM_TARGET_MYSELF,		æ„¤åŒåŠå¿ƒ
+ 				ITEM_TARGET_OTHER,		èŒåŠè°›  æ„¤åŒæ®–æˆˆ)
+ 				ITEM_TARGET_ALLMYSIDE,		    èˆ
+ 				ITEM_TARGET_ALLOTHERSIDE,	é”¹æ¾Žç¡€èˆ
+ 				ITEM_TARGET_ALL,		èˆåŒ–
  			}ITEM_TARGETTYPE;
 
-   	        <font size=+1>³ð¼°ÐÑÙ¯±å100Ã«óïÔÊÎç£ÝÉØÊÏÆ¥ÖÐÔÂ·®ÊÖ¸²ÀÞÎçØ¦ÔÂ£Û
- 	      Ê§ÄÌ  Ø©ÒÁÃ¬»ï£Û³ð¼°ÒÁÃ¬»ï¶¯Ïþ¼°·®Æ¥Ø¦ÖÐÎçÁ¥  Çë  Ø¦ÖÐ£Û
- 	      °×·Âºë  £ÛçÆÊÏØ¦°×·ÂºëÃ«ËªññÔÊÔÂ£Û±¸ÉêÓÀÐþ¼°¸²É±·´¶¯Æ±¼°É§Ô»£Û
+   	        <font size=+1>ä»‡åŠé†’ä¾¬åž100æ¯›ç®«å…åˆï¼½éŸ¶æ°åŒ¹ä¸­æœˆæ¨Šæ‰‹è¦†æ“‚åˆå…æœˆï¼»
+ 	      å¤±å¥¶  ä¸žä¼ŠçŸ›ä¼™ï¼»ä»‡åŠä¼ŠçŸ›ä¼™åŠ¨æ™“åŠæ¨ŠåŒ¹å…ä¸­åˆéš¶  è¯·  å…ä¸­ï¼»
+ 	      ç™½ä»¿å¼˜  ï¼»ç¼™æ°å…ç™½ä»¿å¼˜æ¯›éœœè€¨å…æœˆï¼»å¤‡ç”³æ°¸çŽ„åŠè¦†æ€ååŠ¨ç¥¨åŠéªšæ›°ï¼»
 
- 		      0bit    Ê¸ÓÀÐþ¶ª¡õ»ïÆ¥ËªññµÚ  Ø¦Ê§ÄÌ  Ø©¾®Éýµ¤¾®£ÛËªññµÚ  ·ÖÎç¨à£Û¨ß·ÖÎçËªññÆ¥ÎåØ¦ÖÐ£Û
- 		      1Bit    ³ð¼°Ê§ÄÌ  Ø©»¥ÄþÔÀÇë  ÔÂ¾®Éýµ¤¾®£Û
- 		      2Bit    ³ð¼°Ê§ÄÌ  Ø©»¥    ¾®Éýµ¤¾®£Û1·ÖÎç    Æ¥Ø¤ÔÂ£Û
+ 		      0bit    çŸ¢æ°¸çŽ„ä¸¢â–¡ä¼™åŒ¹éœœè€¨ç¬¬  å…å¤±å¥¶  ä¸žäº•å‡ä¸¹äº•ï¼»éœœè€¨ç¬¬  åˆ†åˆã„ ï¼»ã„Ÿåˆ†åˆéœœè€¨åŒ¹äº”å…ä¸­ï¼»
+ 		      1Bit    ä»‡åŠå¤±å¥¶  ä¸žäº’å®å²³è¯·  æœˆäº•å‡ä¸¹äº•ï¼»
+ 		      2Bit    ä»‡åŠå¤±å¥¶  ä¸žäº’    äº•å‡ä¸¹äº•ï¼»1åˆ†åˆ    åŒ¹ä¸æœˆï¼»
 
- 	    ³ð³ð¼°  Æ¥·´<a href="#escaping">¾Þµ©¸¥¡õÃóÔÊÔÂ£Û
- 	    Ìî    ( char ¼°    ¹«¼°ÒýÒýÌ¤ÈÊ )
+ 	    ä»‡ä»‡åŠ  åŒ¹å<a href="#escaping">å·¨æ—¦å¼—â–¡çš¿å…æœˆï¼»
+ 	    å¡«    ( char åŠ    å…¬åŠå¼•å¼•è¸ä» )
 
- 	    IØ¤»Ã Ø¦ ºÒ|str+2|1|Ø¤»Ã\|ÖÐÔª|10|2|0
+ 	    Iä¸å¹» å… é˜‚|str+2|1|ä¸å¹»\|ä¸­å…ƒ|10|2|0
 
- 	    µ©  ¡õ³â¼°°À¼°À²  ·´£ý°ïÐÑ°ÀÆ¥
+ 	    æ—¦  â–¡æ–¥åŠè¢„åŠå•¦  åï½å¸®é†’è¢„åŒ¹
 
- 	        1  µ©  ¡õ³âA
- 	        2  µ©  ¡õ³âB
- 	        3  µ©  ¡õ³âC
- 	        4  µ©  ¡õ³âD
+ 	        1  æ—¦  â–¡æ–¥A
+ 	        2  æ—¦  â–¡æ–¥B
+ 	        3  æ—¦  â–¡æ–¥C
+ 	        4  æ—¦  â–¡æ–¥D
 
- 	    ÎçÔÊÔÂ£ÛÒýÐ×£ýÊ§ÄÌ  Ø©  ¼°Îë¼°  ÛÐ±å¹´ÖÐ»¯·´£ý5òÛ¼°Ðþ¡õÛÍ¼þ»¥
- 	    ÎëÆ¥£ý¹´ÒýÔ»Ð×»¯áß»¥Ø¦ÈÕÊÏ·ÖÇÁÚØÆ¥Ëªññ½ñÄ¾»¯ÈÊÔÂ£Û
+ 	    åˆå…æœˆï¼»å¼•å‡¶ï½å¤±å¥¶  ä¸ž  åŠåžåŠ  åŒåžå‹¾ä¸­åŒ–åï½5èœŠåŠçŽ„â–¡å¼ä»¶äº’
+ 	    åžåŒ¹ï½å‹¾å¼•æ›°å‡¶åŒ–å¾‡äº’å…æ—¥æ°åˆ†æ©‡è°ªåŒ¹éœœè€¨ä»Šæœ¨åŒ–ä»æœˆï¼»
 
- 	S òåµ©Æ½»ï
- 	    (µ©Æ½»ï0)|(µ©Æ½»ï1)|(µ©Æ½»ï2) ... (µ©Æ½»ïn)
- 	    ±¹Ä¯Îç  ÔªÆ¥£ýÆ½ÅÒ·Â»¥ÊÖ»¯ÔÂ    µ©Æ½»ïÐÑÛÐÃ«ËªññÔÊÔÂ£Û¹´Òý
- 	    Ô»Ø¦ÖÐÊÖ¼°·´ ||| ÎçØ¦ÔÂ¼°Æ¥Ø¤ÔÂ£Û
- 	    ±¸¾Þ¼þÐþØø¼°    ·´£ý
- 	    µ©Æ½»ï¼°ÅË  Îì¡õÓñ|ÒÁÃ¬»ï
- 	    Æ¥Ø¤ÔÂ£Û
- 	    Ìî    ( char ¼°    ¹«¼°ÒýÒýÌ¤ÈÊ )
+ 	S èˆæ—¦å¹³ä¼™
+ 	    (æ—¦å¹³ä¼™0)|(æ—¦å¹³ä¼™1)|(æ—¦å¹³ä¼™2) ... (æ—¦å¹³ä¼™n)
+ 	    æƒ«å¯žåˆ  å…ƒåŒ¹ï½å¹³ä¹“ä»¿äº’æ‰‹åŒ–æœˆ    æ—¦å¹³ä¼™é†’åŒæ¯›éœœè€¨å…æœˆï¼»å‹¾å¼•
+ 	    æ›°å…ä¸­æ‰‹åŠå ||| åˆå…æœˆåŠåŒ¹ä¸æœˆï¼»
+ 	    å¤‡å·¨ä»¶çŽ„ä¼‰åŠ    åï½
+ 	    æ—¦å¹³ä¼™åŠæ½˜  æˆŠâ–¡çŽ‰|ä¼ŠçŸ›ä¼™
+ 	    åŒ¹ä¸æœˆï¼»
+ 	    å¡«    ( char åŠ    å…¬åŠå¼•å¼•è¸ä» )
 
  	    S10|2|20|2|||
 
- 	T ±¹Ä¯
- 	    (±¹Ä¯0)|(±¹Ä¯1)|(±¹Ä¯2) ... (±¹Ä¯n)
- 	    ±¹Ä¯¼°¾Þ¼þÐþØø»¥Îë¼°èëÄþ·´ '|' »¥  Á¸ÔÊÔÂ¼°Æ¥£ý  Á¸ØÆÐ×ÊÖ
- 	    ¼°Ã«    ØÆ»¯µ©Æ½ÅÒ¼þØÆ»¯·´Ø¦ÈÕØ¦ÖÐ£Û¾®Ø¦ÈÕÄÚ    òÛÐÑÛÐËªññ
- 	    ÔÊÔÂ£Û
- 	    ·òÎç¹´£ý·òÎç¹´¼°    ·´£ý
- 	      ó¡
- 	    ¼°ÐÄÆ¥Ø¤ÔÂ£Û
- 	    Ìî    ( ËªÈÕÄ¾»¯ÈÊÔÂ char ¼°    ¹«¼°ÒýÒýÆ¥Ø¤ÔÂ )
+ 	T æƒ«å¯ž
+ 	    (æƒ«å¯ž0)|(æƒ«å¯ž1)|(æƒ«å¯ž2) ... (æƒ«å¯žn)
+ 	    æƒ«å¯žåŠå·¨ä»¶çŽ„ä¼‰äº’åžåŠæ¡¦å®å '|' äº’  ç²®å…æœˆåŠåŒ¹ï½  ç²®ä»„å‡¶æ‰‹
+ 	    åŠæ¯›    ä»„åŒ–æ—¦å¹³ä¹“ä»¶ä»„åŒ–åå…æ—¥å…ä¸­ï¼»äº•å…æ—¥å†…    èœŠé†’åŒéœœè€¨
+ 	    å…æœˆï¼»
+ 	    å¤«åˆå‹¾ï½å¤«åˆå‹¾åŠ    åï½
+ 	      èŸ†
+ 	    åŠå¿ƒåŒ¹ä¸æœˆï¼»
+ 	    å¡«    ( éœœæ—¥æœ¨åŒ–ä»æœˆ char åŠ    å…¬åŠå¼•å¼•åŒ¹ä¸æœˆ )
 
- 	    TØ¤»Ã|·½ÔÈÌìÈÕÖÐ
+ 	    Tä¸å¹»|æ–¹åŒ€å¤©æ—¥ä¸­
 
- 	    ³ðÄ¾ÊÖ<a href="#escaping">¾Þµ©¸¥¡õÃóÔÊÔÂ£Û
+ 	    ä»‡æœ¨æ‰‹<a href="#escaping">å·¨æ—¦å¼—â–¡çš¿å…æœˆï¼»
 
- 	M   ÛÐÓÉ·Â¶ª¡õÕý
- 	    Æ½ÅÒ·ÂÛÍÕý¡õ¼°µ©  ¡õÕýµ©¼°µ¤ÇÐ£ý    ±å  µÊ½ñÄ¾ÔÂÊÖ¼°(òØ»þ
- 	    °À)Îç¹«µ¤Æ¥Ø¦ÖÐÊÖ¼°(    °ÀØ¦Éý)»¥Ø¤ÔÂ£ÛÉýÄ¾¾®¼°µ©  ¡õÕýµ©
- 	    »¥  µÊ½ñÄ¾ÔÂÐ×Ì«±å  ¼Ôòå  ¼°ÓÉ·Â¶ª¡õÕýÃ«ËªññÔÊÔÂ¼°·´ÉúÓÀÐþ
- 	    ·¥¡õÛÍÐþ·Â°×Å«ÓÀÛÍÃ«  òÍ±åÒøµ¤³ðÎç±åØ¦ÔÂ¼°Æ¥£ý  ±åHP ,
- 	    MP,EXP¼°°À·ÖØê±åØÆØ¥ÔÈÐ×ÓÉ·Â¶ª¡õÕýËªññÎìÑ¨¼þÓñÃ«åÃÀ²ÔÊÔÂ£Û
- 	    ¹«Ä¾»¥³ð¼°MÎìÑ¨¼þÓñÆ¥Ø¤ÔÂ£Û2  Ù¯  ¶¯æÏ¼°  ÓòÐþ¡õÛÍ¼þ·´HP¼°
- 	    òØ»þ°À ,     Ðþ¡õÛÍ¼þ·´MP£ý  ¸ÏÐþ¡õÛÍ¼þ·´EXPÆ¥Ø¤ÔÂ£Û
- 	    ¶¯Æ±±åÌî    Ã«ØÆ»§ÔÊ£Û
+ 	M   åŒç”±ä»¿ä¸¢â–¡æ­£
+ 	    å¹³ä¹“ä»¿å¼æ­£â–¡åŠæ—¦  â–¡æ­£æ—¦åŠä¸¹åˆ‡ï½    åž  å‡³ä»Šæœ¨æœˆæ‰‹åŠ(èœ‡ç®•
+ 	    è¢„)åˆå…¬ä¸¹åŒ¹å…ä¸­æ‰‹åŠ(    è¢„å…å‡)äº’ä¸æœˆï¼»å‡æœ¨äº•åŠæ—¦  â–¡æ­£æ—¦
+ 	    äº’  å‡³ä»Šæœ¨æœˆå‡¶å¤ªåž  èšèˆ  åŠç”±ä»¿ä¸¢â–¡æ­£æ¯›éœœè€¨å…æœˆåŠåç”Ÿæ°¸çŽ„
+ 	    ä¼â–¡å¼çŽ„ä»¿ç™½å¥´æ°¸å¼æ¯›  è›²åžé“¶ä¸¹ä»‡åˆåžå…æœˆåŠåŒ¹ï½  åžHP ,
+ 	    MP,EXPåŠè¢„åˆ†ä»ƒåžä»„å»¿åŒ€å‡¶ç”±ä»¿ä¸¢â–¡æ­£éœœè€¨æˆŠç©´ä»¶çŽ‰æ¯›è¿•å•¦å…æœˆï¼»
+ 	    å…¬æœ¨äº’ä»‡åŠMæˆŠç©´ä»¶çŽ‰åŒ¹ä¸æœˆï¼»2  ä¾¬  åŠ¨å«¦åŠ  åŸŸçŽ„â–¡å¼ä»¶åHPåŠ
+ 	    èœ‡ç®•è¢„ ,     çŽ„â–¡å¼ä»¶åMPï½  èµ¶çŽ„â–¡å¼ä»¶åEXPåŒ¹ä¸æœˆï¼»
+ 	    åŠ¨ç¥¨åžå¡«    æ¯›ä»„æˆ·å…ï¼»
 
  	    M54|210|8944909
 
- 	    ³ð¼°  Æ¥·´HP¼°òØ»þ°À»¥54£ýMP¼°òØ»þ°À»¥210£ý·³¶­°À»¥8944909
- 	    ±åØ¦ÔÈ»¯ÖÐÔÂ¼°·Ö£Û³ð¼°3ÅË  ·´  ±å  µÊ  Õº»¥æÎÖÐÎç  ´õÄ¾ÔÂ
- 	    Ð×»§    ØÆÐ×ÎìÑ¨¼þÓñ¼ÀØÆÐ×»¥£ýÊÖÇÐÇ·ÊÏ³ð¼°MÎìÑ¨¼þÓñ¼°¾®´õ
- 	    Ô»±åPÎìÑ¨¼þÓñÆ¥òåÓÉ·Â¶ª¡õÕýÃ«ËªññØÆ»¯ÊÖ·½ÖÐ£ÛÐ×·ÖØÆ£ý  ØÍ
- 	    ±åÉúÓÀÐþ·¥¡õÛÍÃ«Òøµ¤Ð×»§±å·´£ý³ð¼°ÎìÑ¨¼þÓñÃ«Òøµ¤³ðÎç»¥õåÙ±
- 	    ½ñÄ¾ÔÂ£Û
+ 	    ä»‡åŠ  åŒ¹åHPåŠèœ‡ç®•è¢„äº’54ï½MPåŠèœ‡ç®•è¢„äº’210ï½çƒ¦è‘£è¢„äº’8944909
+ 	    åžå…åŒ€åŒ–ä¸­æœˆåŠåˆ†ï¼»ä»‡åŠ3æ½˜  å  åž  å‡³  è˜¸äº’å«–ä¸­åˆ  æ­¹æœ¨æœˆ
+ 	    å‡¶æˆ·    ä»„å‡¶æˆŠç©´ä»¶çŽ‰ç¥­ä»„å‡¶äº’ï½æ‰‹åˆ‡æ¬ æ°ä»‡åŠMæˆŠç©´ä»¶çŽ‰åŠäº•æ­¹
+ 	    æ›°åžPæˆŠç©´ä»¶çŽ‰åŒ¹èˆç”±ä»¿ä¸¢â–¡æ­£æ¯›éœœè€¨ä»„åŒ–æ‰‹æ–¹ä¸­ï¼»å‡¶åˆ†ä»„ï½  èµ
+ 	    åžç”Ÿæ°¸çŽ„ä¼â–¡å¼æ¯›é“¶ä¸¹å‡¶æˆ·åžåï½ä»‡åŠæˆŠç©´ä»¶çŽ‰æ¯›é“¶ä¸¹ä»‡åˆäº’è¹‚ä¿¦
+ 	    ä»Šæœ¨æœˆï¼»
 
-         D Æ½ÅÒ·Â¼°ID
- 	    ·òºëÄÌ¼þÁÝ±å·ÖØêËªÔÂÆ½ÅÒ·Â¼°index£Ý¹«Ä¾ÎçÁÝÃÞÃ«ËªÔÂ£Û
- 	    D1000|912766409Îç¾®Æ¥ËªÈÕÄ¾ÔÂ£Û
+         D å¹³ä¹“ä»¿åŠID
+ 	    å¤«å¼˜å¥¶ä»¶å‡›åžåˆ†ä»ƒéœœæœˆå¹³ä¹“ä»¿åŠindexï¼½å…¬æœ¨åˆå‡›æ£‰æ¯›éœœæœˆï¼»
+ 	    D1000|912766409åˆäº•åŒ¹éœœæ—¥æœ¨æœˆï¼»
 
- 	E ¾Þ¼þÊÐËü¼þÐþ¸î    Æ±ò×)|(Ïþò×)
- 	    ¾Þ¼þÊÐËü¼þÐþ  Ã«ËªññÔÊÔÂ£Û¸î  ·´n/100
- 	    ÛÍ·ÂÄÌÊ§¼þÐþ·´£ÝÆ±ò×¼°°À¾®ÈÕµ©Õý¡õÐþØÆ»¯£Ý¨àÐÚÐÚÈÊ  ±å+1ØÆÐ×¸î  Æ¥¾Þ¼þÊÐËü¼þÐþÔÊÔÂ¾®Ã«  Ó¬ÔÊÔÂ£Û
- 	    Ð×·ÖØÆ£ÝÏþò×¼°°ÀÃ«ÐýÒüØ¦ÖÐ·½µ¤±åÔÊÔÂ£Û
- 	    ÆÝ¼Ô±å³ðÄ¾»¥ËªÈÕÄ¾»¯ÈÊÔÂÒýÆ¥³ð¼°¸î  Æ¥¾Þ¼þÊÐËü¼þÐþÃ«»ÍÒ£ÔÊÔÂÒÇ£Û
+ 	E å·¨ä»¶å¸‚å®ƒä»¶çŽ„å‰²    ç¥¨èœƒ)|(æ™“èœƒ)
+ 	    å·¨ä»¶å¸‚å®ƒä»¶çŽ„  æ¯›éœœè€¨å…æœˆï¼»å‰²  ån/100
+ 	    å¼ä»¿å¥¶å¤±ä»¶çŽ„åï¼½ç¥¨èœƒåŠè¢„äº•æ—¥æ—¦æ­£â–¡çŽ„ä»„åŒ–ï¼½ã„ æ±¹æ±¹ä»  åž+1ä»„å‡¶å‰²  åŒ¹å·¨ä»¶å¸‚å®ƒä»¶çŽ„å…æœˆäº•æ¯›  è‡å…æœˆï¼»
+ 	    å‡¶åˆ†ä»„ï¼½æ™“èœƒåŠè¢„æ¯›æ—‹å°¹å…ä¸­æ–¹ä¸¹åžå…æœˆï¼»
+ 	    æˆšèšåžä»‡æœ¨äº’éœœæ—¥æœ¨åŒ–ä»æœˆå¼•åŒ¹ä»‡åŠå‰²  åŒ¹å·¨ä»¶å¸‚å®ƒä»¶çŽ„æ¯›ç…Œé¥å…æœˆä»ªï¼»
 
- 	J0   J6 ÒøÒüÔÂÈÈÖî¼°
- 	    ÒøÒüÔÂÈÈÖî¼°    Ã«ËªññÔÊÔÂ£Û
- 	    0   6 ·´¹«Ä¾ÈßÄ¾Ê§ÄÌ  Ø©¼°Á¥  ×éô÷±å¸²É±ØÆ»¯ÖÐÔÂ£ÛÓò  ¼°Á¥  ×éô÷    £Ý  £ÝÅì£ÝÁ¥Ôè
- 	    ØÆ¾®Á¥  Çë  Ø¦ÖÐ  ÀÃ·Ö»¥£ÝÆá  ¿þ½¢¼°¿Ð±åòå»¯¼°Á¥  ×éô÷¼°Ê÷  Ã«ËªÔÂ
+ 	J0   J6 é“¶å°¹æœˆçƒ­è¯¸åŠ
+ 	    é“¶å°¹æœˆçƒ­è¯¸åŠ    æ¯›éœœè€¨å…æœˆï¼»
+ 	    0   6 åå…¬æœ¨å†—æœ¨å¤±å¥¶  ä¸žåŠéš¶  ç»„èµ­åžè¦†æ€ä»„åŒ–ä¸­æœˆï¼»åŸŸ  åŠéš¶  ç»„èµ­    ï¼½  ï¼½æ¾Žï¼½éš¶æ¾¡
+ 	    ä»„äº•éš¶  è¯·  å…ä¸­  çƒ‚åˆ†äº’ï¼½æ¼†  å‚€èˆ°åŠå•ƒåžèˆåŒ–åŠéš¶  ç»„èµ­åŠæ ‘  æ¯›éœœæœˆ
  	    J0|kubun|mp|field|target|name|comment
- 	    ÎçÖÐµ¤°×ÇÉ¡õÑ¨ÓÀÐþ±åØ¦ÔÈ»¯ÖÐÔÂ£Û
- 	    kubun ·´¹«¼°  »¥Ø¤ÔÂ¾®  ÖÐ¾®£Û¨ß·ÖÎç  ÖÐ£Û¹«Ä¾¶¯æÏ±åÐþ¡õÛÍ¼þÔÊÈÕØ¦ÖÐ£Û¨à·ÖÎçØ¤ÔÂ£Û
- 	    mp·´ÛÕ  ¿¢  Ã«  ÔÊ£Û
- 	    field·´Éý¼°èëô÷Æ¥ÒøÒüÔÂ¾®£ÛÈÓ¡õÌï¡õÆ¥·´¶¯Æ±¼°  ±åÀÃñø½ñÄ¾»¯ÖÐÔÂ£Û
+ 	    åˆä¸­ä¸¹ç™½å·§â–¡ç©´æ°¸çŽ„åžå…åŒ€åŒ–ä¸­æœˆï¼»
+ 	    kubun åå…¬åŠ  äº’ä¸æœˆäº•  ä¸­äº•ï¼»ã„Ÿåˆ†åˆ  ä¸­ï¼»å…¬æœ¨åŠ¨å«¦åžçŽ„â–¡å¼ä»¶å…æ—¥å…ä¸­ï¼»ã„ åˆ†åˆä¸æœˆï¼»
+ 	    mpåå£…  ç«£  æ¯›  å…ï¼»
+ 	    fieldåå‡åŠæ¡¦èµ­åŒ¹é“¶å°¹æœˆäº•ï¼»æ‰”â–¡ç”°â–¡åŒ¹ååŠ¨ç¥¨åŠ  åžçƒ‚è’ä»Šæœ¨åŒ–ä¸­æœˆï¼»
 
  		typedef enum
  		{
- 			MAGIC_FIELD_ALL,		ÔÊÍÍ»¯¼°èëô÷Æ¥ÒøÒüÔÂ
- 			MAGIC_FIELD_BATTLE,		¾ô    ¼°ÐÄ
- 			MAGIC_FIELD_MAP,		É§éÙÑ¨ÓÀÃóÏþ¼°ÐÄ
+ 			MAGIC_FIELD_ALL,		å…å±¯åŒ–åŠæ¡¦èµ­åŒ¹é“¶å°¹æœˆ
+ 			MAGIC_FIELD_BATTLE,		çˆµ    åŠå¿ƒ
+ 			MAGIC_FIELD_MAP,		éªšæ©˜ç©´æ°¸çš¿æ™“åŠå¿ƒ
 
  		}MAGIC_FIELDTYPE;
 
- 	    target·´ÉýÄ¾Ã«¸²ÀÞ±åÇë  ÔÂ¾®£ÛÈÓ¡õÌï¡õÆ¥·´¶¯Æ±¼°·½µ¤±åÀÃñø½ñÄ¾»¯ÖÐÔÂ£Û
+ 	    targetåå‡æœ¨æ¯›è¦†æ“‚åžè¯·  æœˆäº•ï¼»æ‰”â–¡ç”°â–¡åŒ¹ååŠ¨ç¥¨åŠæ–¹ä¸¹åžçƒ‚è’ä»Šæœ¨åŒ–ä¸­æœˆï¼»
 
  		typedef enum
  		{
- 			MAGIC_TARGET_MYSELF,		·ßÛÐ¼°ÐÄ
- 			MAGIC_TARGET_OTHER,		Ö°¼°ÚÐ  ·ßÛÐÖ³¸ê)
- 			MAGIC_TARGET_ALLMYSIDE,		    òå
- 			MAGIC_TARGET_ALLOTHERSIDE,	ÇÂÅì´¡òå
- 			MAGIC_TARGET_ALL,		òå»¯
- 			MAGIC_TARGET_NONE,		²¾ÊÖ¼»  Çë  Ø¦ÖÐ£Û  »¿Ö§Ð×»§¼°ÁÝ
- 			MAGIC_TARGET_OTHERWITHOUTMYSELF,Ö°¼°ÚÐ  ·ßÛÐÖ³ÒýØ¦ÖÐ)
- 			MAGIC_TARGET_WITHOUTMYSELFANDPET, ·ßÛÐÎçÊ¸ÓÀÐþ¶¯Â½
- 			MAGIC_TARGET_WHOLEOTHERSIDE,        ¼°ÈÓÄÌÓñòå
+ 			MAGIC_TARGET_MYSELF,		æ„¤åŒåŠå¿ƒ
+ 			MAGIC_TARGET_OTHER,		èŒåŠè°›  æ„¤åŒæ®–æˆˆ)
+ 			MAGIC_TARGET_ALLMYSIDE,		    èˆ
+ 			MAGIC_TARGET_ALLOTHERSIDE,	é”¹æ¾Žç¡€èˆ
+ 			MAGIC_TARGET_ALL,		èˆåŒ–
+ 			MAGIC_TARGET_NONE,		ç°¿æ‰‹è“Ÿ  è¯·  å…ä¸­ï¼»  è±¢æ”¯å‡¶æˆ·åŠå‡›
+ 			MAGIC_TARGET_OTHERWITHOUTMYSELF,èŒåŠè°›  æ„¤åŒæ®–å¼•å…ä¸­)
+ 			MAGIC_TARGET_WITHOUTMYSELFANDPET, æ„¤åŒåˆçŸ¢æ°¸çŽ„åŠ¨é™†
+ 			MAGIC_TARGET_WHOLEOTHERSIDE,        åŠæ‰”å¥¶çŽ‰èˆ
  		}MAGIC_TARGETTYPE;
 
- 	    <font size=+1>³ð¼°ÐÑÙ¯±å100Ã«óïÔÊÎç£ÝÉØÊÏÆ¥ÖÐÔÂ·®ÊÖ¸²ÀÞÎçØ¦ÔÂ£Û
+ 	    <font size=+1>ä»‡åŠé†’ä¾¬åž100æ¯›ç®«å…åˆï¼½éŸ¶æ°åŒ¹ä¸­æœˆæ¨Šæ‰‹è¦†æ“‚åˆå…æœˆï¼»
 
- 	    name·´ÈÈÖî  £Û
- 	    comment·´³ð¼°ÈÈÖî¼°    £Û
+ 	    nameåçƒ­è¯¸  ï¼»
+ 	    commentåä»‡åŠçƒ­è¯¸åŠ    ï¼»
 
- 	N0    N3 õ´ÃÞ¼°ÓÉ·Â¶ª¡õÕý
- 	    õ´ÃÞ±åØ¦ÔÈ»¯ÖÐÔÂÚÐ¼°Ê÷  Ã«ËªññÔÊÔÂ£Û
+ 	N0    N3 é†®æ£‰åŠç”±ä»¿ä¸¢â–¡æ­£
+ 	    é†®æ£‰åžå…åŒ€åŒ–ä¸­æœˆè°›åŠæ ‘  æ¯›éœœè€¨å…æœˆï¼»
  	    N0|kubun|level|charaindex|maxhp|hp|mp|name
 
- 	    kubun ·´¹«¼°  »¥Ø¤ÔÂ¾®  ÖÐ¾®£Û¨ß·ÖÎç  ÖÐ£Û¹«Ä¾¶¯æÏ±åÐþ¡õÛÍ¼þÔÊÈÕØ¦ÖÐ£Û¨àòåÓÉ·Â¶ª¡õÕý£Û
- 	    2¶¯Ïþ·ÖÎç£Ý±¸ÉêÓÀÐþ¼°  ÔÈ»¯ÖÐÔÂÊÖ¼°¼°ÓÉ·Â¶ª¡õÕý  1bit    level 2bit   charaindexØ¦Éý
- 	    »¥Ëªññ½ñÄ¾ÔÂ£Û
- 	    charaindex ·´õ´ÃÞ¼°charaindex
- 	    level·´¹«¼°ÚÐ¼°ÒÁÃ¬»ï£Û
- 	    maxhp·´¹«¼°ÚÐ¼°MAXHP
- 	    hp·´¹«¼°ÚÐ¼°òØ»þ¼°HP
- 	    mp·´¹«¼°ÚÐ¼°¿¢
- 	    name ·´¹«¼°ÚÐ¼°  ó¡£Û
+ 	    kubun åå…¬åŠ  äº’ä¸æœˆäº•  ä¸­äº•ï¼»ã„Ÿåˆ†åˆ  ä¸­ï¼»å…¬æœ¨åŠ¨å«¦åžçŽ„â–¡å¼ä»¶å…æ—¥å…ä¸­ï¼»ã„ èˆç”±ä»¿ä¸¢â–¡æ­£ï¼»
+ 	    2åŠ¨æ™“åˆ†åˆï¼½å¤‡ç”³æ°¸çŽ„åŠ  åŒ€åŒ–ä¸­æœˆæ‰‹åŠåŠç”±ä»¿ä¸¢â–¡æ­£  1bit    level 2bit   charaindexå…å‡
+ 	    äº’éœœè€¨ä»Šæœ¨æœˆï¼»
+ 	    charaindex åé†®æ£‰åŠcharaindex
+ 	    levelåå…¬åŠè°›åŠä¼ŠçŸ›ä¼™ï¼»
+ 	    maxhpåå…¬åŠè°›åŠMAXHP
+ 	    hpåå…¬åŠè°›åŠèœ‡ç®•åŠHP
+ 	    mpåå…¬åŠè°›åŠç«£
+ 	    name åå…¬åŠè°›åŠ  èŸ†ï¼»
 
- 	K0  K4 ö©  ÓÉ·Â¶ª¡õÕý
+ 	K0  K4 é›¯  ç”±ä»¿ä¸¢â–¡æ­£
  	    hp maxhp mp maxmp str tough exp
  	    level attackpower deffencepower
  	    fixdex fixcharm fixluck fixfireat fixwaterat fixearthat fixwindat
- 	      ó¡ status
- 	    K¼°  ±å0  4Ã«Ï¶ÀÃØÆ»¯£ýÉý¼°ö©  ¾®Ã«Ï¶ÀÃÔÊÔÂ³ðÎç£Û
- 	    ¹«¼°ÆÝ¼°Ðþ¡õÛÍ¼þ±å0»¥  Ð×ÈÕ¹«¼°Ê¸ÓÀÐþ  ·´  ÖÐÎçÍÉµ¤ÒÇ£Û
- 	    Ø¤ÔÂèëÄþ·´¨àÆ¥Ø¤ÔÂ£Û1·ÖÎçòåÓÉ·Â¶ª¡õÕý£Û
- 	    2¶¯Ïþ·ÖÎç£Ý±¸ÉêÓÀÐþ¼°  ÔÈ»¯ÖÐÔÂÊÖ¼°¼°ÓÉ·Â¶ª¡õÕý  1bit    hp  2bit   maxhpØ¦Éý
- 	    »¥Ëªññ½ñÄ¾ÔÂ£Û
- 	    ·¸ØøÁ¢Õý·´ '|' Æ¥Ø¤ÔÂ£ÛÒýÐ×  ó¡Îç·ßôÃ±¹Ä¯·´£ý
- 	    <a href="#escaping">¾Þµ©¸¥¡õÃóØÆÐ×ÊÖ¼°Ã«
- 	    Ð×»¯áßÆ¥¹´Ø¦ÆÍÐ×ÊÖ¼°»¥É§ññ½ñÄ¾ÔÂ£Û
- 	    ¹«Ä¾ÈßÄ¾¼°°À¼°µá·´¶¯Æ±£Û
+ 	      èŸ† status
+ 	    KåŠ  åž0  4æ¯›éš™çƒ‚ä»„åŒ–ï½å‡åŠé›¯  äº•æ¯›éš™çƒ‚å…æœˆä»‡åˆï¼»
+ 	    å…¬åŠæˆšåŠçŽ„â–¡å¼ä»¶åž0äº’  å‡¶æ—¥å…¬åŠçŸ¢æ°¸çŽ„  å  ä¸­åˆèœ•ä¸¹ä»ªï¼»
+ 	    ä¸æœˆæ¡¦å®åã„ åŒ¹ä¸æœˆï¼»1åˆ†åˆèˆç”±ä»¿ä¸¢â–¡æ­£ï¼»
+ 	    2åŠ¨æ™“åˆ†åˆï¼½å¤‡ç”³æ°¸çŽ„åŠ  åŒ€åŒ–ä¸­æœˆæ‰‹åŠåŠç”±ä»¿ä¸¢â–¡æ­£  1bit    hp  2bit   maxhpå…å‡
+ 	    äº’éœœè€¨ä»Šæœ¨æœˆï¼»
+ 	    çŠ¯ä¼‰ç«‹æ­£å '|' åŒ¹ä¸æœˆï¼»å¼•å‡¶  èŸ†åˆæ„¤è£˜æƒ«å¯žåï½
+ 	    <a href="#escaping">å·¨æ—¦å¼—â–¡çš¿ä»„å‡¶æ‰‹åŠæ¯›
+ 	    å‡¶åŒ–å¾‡åŒ¹å‹¾å…ä»†å‡¶æ‰‹åŠäº’éªšè€¨ä»Šæœ¨æœˆï¼»
+ 	    å…¬æœ¨å†—æœ¨åŠè¢„åŠæ»‡ååŠ¨ç¥¨ï¼»
 
- 	        No.(  Ä¯)  int
- 	        islive(Ï·ÉØ)  int
- 	        GRA(  ì«  Ä¯)  int
- 	        Hp(êîÝ¼  )  int
- 	        MaxHp(    êîÝ¼  )  int
+ 	        No.(  å¯ž)  int
+ 	        islive(æˆéŸ¶)  int
+ 	        GRA(  é£“  å¯ž)  int
+ 	        Hp(è§è  )  int
+ 	        MaxHp(    è§è  )  int
  	        Mp  int
  	        MapMp  int
- 	        Exp(·³¶­°À)  int
- 	        MaxExp(ÆÝÒýÆ¥¼°·³¶­°À)  int
- 	        Level(ÒÁÃ¬»ï)  int
- 	        Attack(  »«  )  int
- 	        Defense(³±    )  int
- 	        Quick(áÙ¶Æ½ñ)  int
- 	        Ai(ïá²ÁÕº)  int
- 	        fEarth(»©)  int
+ 	        Exp(çƒ¦è‘£è¢„)  int
+ 	        MaxExp(æˆšå¼•åŒ¹åŠçƒ¦è‘£è¢„)  int
+ 	        Level(ä¼ŠçŸ›ä¼™)  int
+ 	        Attack(  çŒ¾  )  int
+ 	        Defense(æ½®    )  int
+ 	        Quick(è±³é•€ä»Š)  int
+ 	        Ai(é•æ“¦è˜¸)  int
+ 	        fEarth(å“—)  int
  	        fWater(  )  int
- 	        fFire(ÉÜ)  int
- 	        fWid(ë®)  int
- 	        Slot(    éÞ  ÐÑ)  int
- 	          ó¡  µÊ¸¤µÚ°×·Âºë  int
- 	          ó¡    Ù¯
- 	        ½»¡õ°Ç¡õÊ¸ÓÀÐþ      Ù¯
+ 	        fFire(ç»)  int
+ 	        fWid(æ°˜)  int
+ 	        Slot(    æª—  é†’)  int
+ 	          èŸ†  å‡³è¢±ç¬¬ç™½ä»¿å¼˜  int
+ 	          èŸ†    ä¾¬
+ 	        äº¤â–¡æ‰’â–¡çŸ¢æ°¸çŽ„      ä¾¬
 
- 	      ó¡  µÊ¸¤µÚ°×·ÂºëÎç·´£Ý³ð¼°Ê¸ÓÀÐþ¼°  ó¡Ã«  µÊØÆ»¯·½ÖÐ¾®Éýµ¤¾®¼°°×·ÂºëÆ¥£Ý
- 	    1 ·ÖÎç  µÊ    £Ý¨ß·ÖÎç  µÊæØµÚÎçØ¦ÔÂ£Û
+ 	      èŸ†  å‡³è¢±ç¬¬ç™½ä»¿å¼˜åˆåï¼½ä»‡åŠçŸ¢æ°¸çŽ„åŠ  èŸ†æ¯›  å‡³ä»„åŒ–æ–¹ä¸­äº•å‡ä¸¹äº•åŠç™½ä»¿å¼˜åŒ¹ï¼½
+ 	    1 åˆ†åˆ  å‡³    ï¼½ã„Ÿåˆ†åˆ  å‡³å°•ç¬¬åˆå…æœˆï¼»
 
- 	    Ìî    ( char ¼°    ¹«¼°ÒýÒýÌ¤ÈÊ )
+ 	    å¡«    ( char åŠ    å…¬åŠå¼•å¼•è¸ä» )
 
- 	    P10|20|10|20|10|10|10|1|2|13|13|1|100|10|³ßÊÏÌì|PC
+ 	    P10|20|10|20|10|10|10|1|2|13|13|1|100|10|å°ºæ°å¤©|PC
 
- 	W0  W4 Ê¸ÓÀÐþ¼°  ·¸¡õÕý
+ 	W0  W4 çŸ¢æ°¸çŽ„åŠ  çŠ¯â–¡æ­£
  	  W0|skillid|field|target|name|comment| x 7
- 	  W0    W4 ·´¹«Ä¾ÈßÄ¾¼°Ê¸ÓÀÐþ±å¸²É±ØÆ»¯ÖÐÔÂ£Û
- 	  petskillid ·´£ÝÊ¸ÓÀÐþ¼°  ¼°  Ä¯£Ûpet_skillinfo.h±åÀÃñø½ñÄ¾»¯ÖÐÔÂ£Û
- 	  field ·´¹«¼°  »¥Éý³ðÆ¥ÒøåÃÆ¥ÎåÔÂ¾®£ÛÈÓ¡õÌï¡õÆ¥·´¶¯Æ±¼°·½µ¤±åÀÃñø½ñÄ¾»¯ÖÐÔÂ£Û
+ 	  W0    W4 åå…¬æœ¨å†—æœ¨åŠçŸ¢æ°¸çŽ„åžè¦†æ€ä»„åŒ–ä¸­æœˆï¼»
+ 	  petskillid åï¼½çŸ¢æ°¸çŽ„åŠ  åŠ  å¯žï¼»pet_skillinfo.håžçƒ‚è’ä»Šæœ¨åŒ–ä¸­æœˆï¼»
+ 	  field åå…¬åŠ  äº’å‡ä»‡åŒ¹é“¶è¿•åŒ¹äº”æœˆäº•ï¼»æ‰”â–¡ç”°â–¡åŒ¹ååŠ¨ç¥¨åŠæ–¹ä¸¹åžçƒ‚è’ä»Šæœ¨åŒ–ä¸­æœˆï¼»
 
  		typedef enum
  		{
- 			PETSKILL_FIELD_ALL,		ÔÊÍÍ»¯¼°èëô÷Æ¥ÒøÒüÔÂ
- 			PETSKILL_FIELD_BATTLE,		¾ô    ¼°ÐÄ
- 			PETSKILL_FIELD_MAP,		É§éÙÑ¨ÓÀÃóÏþ¼°ÐÄ
+ 			PETSKILL_FIELD_ALL,		å…å±¯åŒ–åŠæ¡¦èµ­åŒ¹é“¶å°¹æœˆ
+ 			PETSKILL_FIELD_BATTLE,		çˆµ    åŠå¿ƒ
+ 			PETSKILL_FIELD_MAP,		éªšæ©˜ç©´æ°¸çš¿æ™“åŠå¿ƒ
 
  		}PETSKILL_FIELDTYPE;
 
- 	  target ·´¹«¼°  ¼°¸²ÀÞ»¥Éýµ¤ÖÐµ¤ÊÖ¼°¾®£ÛÈÓ¡õÌï¡õÆ¥·´ÆÝ¼°·½µ¤±åÀÃñø½ñÄ¾»¯ÖÐÔÂ£Û
+ 	  target åå…¬åŠ  åŠè¦†æ“‚äº’å‡ä¸¹ä¸­ä¸¹æ‰‹åŠäº•ï¼»æ‰”â–¡ç”°â–¡åŒ¹åæˆšåŠæ–¹ä¸¹åžçƒ‚è’ä»Šæœ¨åŒ–ä¸­æœˆï¼»
 
  		typedef enum
  		{
- 			PETSKILL_TARGET_MYSELF,		·ßÛÐ¼°ÐÄ
- 			PETSKILL_TARGET_OTHER,		Ö°¼°ÚÐ  ·ßÛÐÖ³¸ê)
- 			PETSKILL_TARGET_ALLMYSIDE,	    òå
- 			PETSKILL_TARGET_ALLOTHERSIDE,	ÇÂÅì´¡òå
- 			PETSKILL_TARGET_ALL,		òå»¯
- 			PETSKILL_TARGET_NONE,		²¾ÊÖ¼»  Çë  Ø¦ÖÐ£Û  »¿Ö§Ð×»§¼°ÁÝ
- 			PETSKILL_TARGET_OTHERWITHOUTMYSELF,Ö°¼°ÚÐ  ·ßÛÐÖ³ÒýØ¦ÖÐ)
- 			PETSKILL_TARGET_WITHOUTMYSELFANDPET, ·ßÛÐÎçÊ¸ÓÀÐþ¶¯Â½
+ 			PETSKILL_TARGET_MYSELF,		æ„¤åŒåŠå¿ƒ
+ 			PETSKILL_TARGET_OTHER,		èŒåŠè°›  æ„¤åŒæ®–æˆˆ)
+ 			PETSKILL_TARGET_ALLMYSIDE,	    èˆ
+ 			PETSKILL_TARGET_ALLOTHERSIDE,	é”¹æ¾Žç¡€èˆ
+ 			PETSKILL_TARGET_ALL,		èˆåŒ–
+ 			PETSKILL_TARGET_NONE,		ç°¿æ‰‹è“Ÿ  è¯·  å…ä¸­ï¼»  è±¢æ”¯å‡¶æˆ·åŠå‡›
+ 			PETSKILL_TARGET_OTHERWITHOUTMYSELF,èŒåŠè°›  æ„¤åŒæ®–å¼•å…ä¸­)
+ 			PETSKILL_TARGET_WITHOUTMYSELFANDPET, æ„¤åŒåˆçŸ¢æ°¸çŽ„åŠ¨é™†
  		}PETSKILL_TARGETTYPE;
 
- 	  name ·´  ¼°  ó¡£Û
- 	  comment·´¹«¼°  ±å¸²ÔÊÔÂ    £Û
- 	  target|name|comment| ·´  ¼°ÐÑ¼°ÛÐ¨àµæÆ¥ËªÈÕÄ¾»¯ÈÊÔÂ£Û
- 	    ·´ÓòÉ±¨æ¹´ÒýÆ¥£Û    Æ¥  »¥  Øê»¯ÖÐÔÂ  "|"¼°ÐÄ»¥Á¸ÈÊ  èëÄþ
- 	  ·´ÛÍ·ÂÄÌÊ§¼þÐþÆ¥ëé»§»¯  Ô÷ÔÊÔÂÒÇ£Û
+ 	  name å  åŠ  èŸ†ï¼»
+ 	  commentåå…¬åŠ  åžè¦†å…æœˆ    ï¼»
+ 	  target|name|comment| å  åŠé†’åŠåŒã„ åž«åŒ¹éœœæ—¥æœ¨åŒ–ä»æœˆï¼»
+ 	    ååŸŸæ€ã„¦å‹¾å¼•åŒ¹ï¼»    åŒ¹  äº’  ä»ƒåŒ–ä¸­æœˆ  "|"åŠå¿ƒäº’ç²®ä»  æ¡¦å®
+ 	  åå¼ä»¿å¥¶å¤±ä»¶çŽ„åŒ¹è…´æˆ·åŒ–  æ†Žå…æœˆä»ªï¼»
 */
 void lssproto_S_send(int fd,char* data)
 {
@@ -2141,28 +2141,28 @@ void lssproto_S_send(int fd,char* data)
 /*
    servertoclient D( int category , int dx , int dy , string data );
        (Display)
-           ±åÖÏ¾®  Ô÷ÔÊÔÂÏ¶  £Û
+           åžçª’äº•  æ†Žå…æœˆéš™  ï¼»
 
 
  	int category
- 	ÖÏÃ«  Ô÷ÔÊÔÂ¾®£Û
+ 	çª’æ¯›  æ†Žå…æœˆäº•ï¼»
 
- 	        °À
- 	        1  ·ßÛÐ¶¯Â½±åÜ¸ÒüÐ×Ä¸¶ª¡õ³â£Ûdata·´  Ù¯
- 		    ±åØ¦ÔÈÐ×°À£Û
- 		    2  ·ßÛÐ»¥µ¤ØêÐ×Ä¸¶ª¡õ³â£Ûdata·´  Ù¯  ±å
- 		      Ø¦ÔÈÐ×°À
+ 	        è¢„
+ 	        1  æ„¤åŒåŠ¨é™†åžèŠ¨å°¹å‡¶æ¯ä¸¢â–¡æ–¥ï¼»dataå  ä¾¬
+ 		    åžå…åŒ€å‡¶è¢„ï¼»
+ 		    2  æ„¤åŒäº’ä¸¹ä»ƒå‡¶æ¯ä¸¢â–¡æ–¥ï¼»dataå  ä¾¬  åž
+ 		      å…åŒ€å‡¶è¢„
 
  	int dx
- 	Ñ¨ÄÌÆ½ÅÒ·Â¾®ÈÕ¼°ºëØøÓÀÓñÇÂ¸²ÞË  X£ÛÓò  ¶Á±å·´ÄÌÃ¬¼þÐþ»¥  Ï·
- 	    ØÆÐ×ÞË  £ÛÛÍ·ÂÄÌÊ§¼þÐþ·´³ð¼°°À¾®ÈÕØÍ¸øØÍå©Ø¦ÞË  Ã«»ÍÒ£ØÆ»¯
- 	        ÔÊÔÂ£Û
+ 	ç©´å¥¶å¹³ä¹“ä»¿äº•æ—¥åŠå¼˜ä¼‰æ°¸çŽ‰é”¹è¦†åŒ  Xï¼»åŸŸ  è¯»åžåå¥¶çŸ›ä»¶çŽ„äº’  æˆ
+ 	    ä»„å‡¶åŒ  ï¼»å¼ä»¿å¥¶å¤±ä»¶çŽ„åä»‡åŠè¢„äº•æ—¥èµç»™èµæ¿ å…åŒ  æ¯›ç…Œé¥ä»„åŒ–
+ 	        å…æœˆï¼»
  	int dy
- 	ÇÂ¸²ÞË  Y
+ 	é”¹è¦†åŒ  Y
  	string data
- 	  Ô÷ÔÊÔÂ    £Û    ·´category±å·½ÔÈ»¯è£ÒýÔÂ£Û
- 	    ³ð¼°  Ù¯  ·´<a href="#escaping">¾Þµ©¸¥¡õÃó½ñÄ¾Ø¦ØêÄ¾ÈÉ
- 	    Ø¦ÈÕØ¦ÖÐ£Û
+ 	  æ†Žå…æœˆ    ï¼»    åcategoryåžæ–¹åŒ€åŒ–ç‘å¼•æœˆï¼»
+ 	    ä»‡åŠ  ä¾¬  å<a href="#escaping">å·¨æ—¦å¼—â–¡çš¿ä»Šæœ¨å…ä»ƒæœ¨å£¬
+ 	    å…æ—¥å…ä¸­ï¼»
 */
 void lssproto_D_send(int fd,int category,int dx,int dy,char* data)
 {
@@ -2184,14 +2184,14 @@ void lssproto_D_send(int fd,int category,int dx,int dy,char* data)
 
 /*
    servertoclient FS( int flg);
-       (FlgSet)PS¼°¼°É±²Ï£ÛÒýÐ×·´·òºëÄÌ¼þÁÝØ¦Éý±å·ßÛÐ¼°ÇÁÚØÎçØÆ»¯ËªÈÕÄ¾»¯ÈÊÔÂ£Û
+       (FlgSet)PSåŠåŠæ€èš•ï¼»å¼•å‡¶åå¤«å¼˜å¥¶ä»¶å‡›å…å‡åžæ„¤åŒåŠæ©‡è°ªåˆä»„åŒ–éœœæ—¥æœ¨åŒ–ä»æœˆï¼»
 
          int flg
-          0 bit  0: õ´ÃÞOff                  1: õ´ÃÞOn
-                òØ»þ  ÒøåÃ  1 bit  0: ¾ô      ¸¨µÑoff          1: ¾ô      ¸¨µÑOn
+          0 bit  0: é†®æ£‰Off                  1: é†®æ£‰On
+                èœ‡ç®•  é“¶è¿•  1 bit  0: çˆµ      è¾…ç¬›off          1: çˆµ      è¾…ç¬›On
               2 bit  0: DUEL off                 1: DUEL On
-              3 bit  0:   É§¼°ÃñÅÒÓÀÐþÆ¹¡õÓñ     1: ÓÉ¡õ  Å«±åØÆ¾®ÃñÅÒÓÀÐþ»¥  ÈÉØ¦ÖÐÆ¹¡õÓñ
-              4 bit  0:   Í­¸ú¾§OK               1:   Í­¸ú¾§òÐ
+              3 bit  0:   éªšåŠæ°‘ä¹“æ°¸çŽ„ä¹’â–¡çŽ‰     1: ç”±â–¡  å¥´åžä»„äº•æ°‘ä¹“æ°¸çŽ„äº’  å£¬å…ä¸­ä¹’â–¡çŽ‰
+              4 bit  0:   é“œè·Ÿæ™¶OK               1:   é“œè·Ÿæ™¶è›
 */
 void lssproto_FS_send(int fd,int flg)
 {
@@ -2210,10 +2210,10 @@ void lssproto_FS_send(int fd,int flg)
 
 /*
    servertoclient HL( int flg);
-       (HeLp)HL¼°¼°É±²Ï£ÛÒýÐ×·´ÓÉ¡õ  Å«¼°õ´ÃÞ»¥¾ô  ¼°ÔÆ¾áØêÆ¹¡õÓñÃ«  µÊØÆÐ×èëÄþ±åËªÈÕÄ¾»¯ÈÊÔÂ£Û
+       (HeLp)HLåŠåŠæ€èš•ï¼»å¼•å‡¶åç”±â–¡  å¥´åŠé†®æ£‰äº’çˆµ  åŠäº‘è¸žä»ƒä¹’â–¡çŽ‰æ¯›  å‡³ä»„å‡¶æ¡¦å®åžéœœæ—¥æœ¨åŒ–ä»æœˆï¼»
 
          int flg
-          0: ÔÆ¾áØêÆ¹¡õÓñOff                  1: ÔÆ¾áØêÆ¹¡õÓñOn
+          0: äº‘è¸žä»ƒä¹’â–¡çŽ‰Off                  1: äº‘è¸žä»ƒä¹’â–¡çŽ‰On
 */
 void lssproto_HL_send(int fd,int flg)
 {
@@ -2232,13 +2232,13 @@ void lssproto_HL_send(int fd,int flg)
 
 /*
    servertoclient PR( int request, int result);
-       (PartyRequest)õ´ÃÞÛ¢·Æ¼°É±²Ï£ÛPRÃ«ÛÍ·ÂÄÌÊ§¼þÐþ»¥ËªÔÈ»¯ÖÐØ¦ÈÊ»¯ÊÖ³ðÄ¾Ã«°¾ØêäúÔÂÁÝ»¥Ø¤ÔÂ£Û
-        ÓÉ¡õ  Å«»¥  ÂÝÝ©À±  ÍÊ»¥  ØêÐ×  Ø¦Éý¼°ÁÝ£Û
+       (PartyRequest)é†®æ£‰é‚°è²åŠæ€èš•ï¼»PRæ¯›å¼ä»¿å¥¶å¤±ä»¶çŽ„äº’éœœåŒ€åŒ–ä¸­å…ä»åŒ–æ‰‹ä»‡æœ¨æ¯›ç†¬ä»ƒæ½¸æœˆå‡›äº’ä¸æœˆï¼»
+        ç”±â–¡  å¥´äº’  èžºè¸è¾£  è¤ªäº’  ä»ƒå‡¶  å…å‡åŠå‡›ï¼»
 
        	int request
-       	0: ÂÖåÇ 1:  åÇ
+       	0: è½®è¿© 1:  è¿©
          int result
-         0: ÁÃ   1: ÔÀ
+         0: æ’©   1: å²³
 */
 void lssproto_PR_send(int fd,int request,int result)
 {
@@ -2308,23 +2308,23 @@ void lssproto_SPET_send(int fd, int standbypet, int result)
 
 /*
    servertoclient PS( int result, int havepetindex, int havepetskill, int toindex);
-       (PetSkill use result)Ê¸ÓÀÐþ¼°  Ã«ÒøÔÈÐ×çø°íÛÍ·ÂÄÌÊ§¼þÐþ¼°PS±å¸²É±ØÆ»¯ËªÈÕÄ¾»¯ÈÊÔÂ£Û
-       result ¶¯Â½·´ÛÍ·ÂÄÌÊ§¼þÐþ¼°PS±å¸²É±ØÆ»¯ÖÐÔÂ£Û°×Å«¡õ»ïÓñÏþ¾®ÈÕØÆ¾®ôÄÈÉÄ¾Ø¦ÖÐ£Û
+       (PetSkill use result)çŸ¢æ°¸çŽ„åŠ  æ¯›é“¶åŒ€å‡¶ç‘›ç»Šå¼ä»¿å¥¶å¤±ä»¶çŽ„åŠPSåžè¦†æ€ä»„åŒ–éœœæ—¥æœ¨åŒ–ä»æœˆï¼»
+       result åŠ¨é™†åå¼ä»¿å¥¶å¤±ä»¶çŽ„åŠPSåžè¦†æ€ä»„åŒ–ä¸­æœˆï¼»ç™½å¥´â–¡ä¼™çŽ‰æ™“äº•æ—¥ä»„äº•è£Ÿå£¬æœ¨å…ä¸­ï¼»
 
  	int result
- 	çø°í£Û0: ÁÃ   1:ÔÀ
+ 	ç‘›ç»Šï¼»0: æ’©   1:å²³
          int havepetindex
-         ÖÏ    ¼°Ê¸ÓÀÐþ»¥ÒøåÃØÆÐ×¾®£Û
+         çª’    åŠçŸ¢æ°¸çŽ„äº’é“¶è¿•ä»„å‡¶äº•ï¼»
          int havepetskill
-         ÖÏ    ¼°  Ã«ÒøåÃØÆÐ×¾®£Û
+         çª’    åŠ  æ¯›é“¶è¿•ä»„å‡¶äº•ï¼»
  	int toindex
- 	 ²¾±å  Ü·Ã«ÒøåÃØÆÐ×¾®£Û³ðÄ¾·´×óÆ¤³âÄáÛÍÐþÖ§Æ½ÅÒ·Â¼°indexÆ¥·´Ø¦ÖÐ£Û¶¯Æ±¼°  ±åØ¦ÔÈ»¯ÖÐÔÂ£Û
+ 	 ç°¿åž  èŠŠæ¯›é“¶è¿•ä»„å‡¶äº•ï¼»ä»‡æœ¨åå·¦çš®æ–¥å°¼å¼çŽ„æ”¯å¹³ä¹“ä»¿åŠindexåŒ¹åå…ä¸­ï¼»åŠ¨ç¥¨åŠ  åžå…åŒ€åŒ–ä¸­æœˆï¼»
 
- 	  ·ßÛÐ    = 0
- 	  Ê¸ÓÀÐþ  = 1   5
- 	  õ´ÃÞ    = 6   10   S N ¼°0  4±å¸²É±£Û·ßÛÐ·ßÈìÊÖÖ³ÒýÄ¾»¯ÖÐÔÂ
+ 	  æ„¤åŒ    = 0
+ 	  çŸ¢æ°¸çŽ„  = 1   5
+ 	  é†®æ£‰    = 6   10   S N åŠ0  4åžè¦†æ€ï¼»æ„¤åŒæ„¤è¤¥æ‰‹æ®–å¼•æœ¨åŒ–ä¸­æœˆ
 
- 	¸²ÀÞ»¥òå¹»£ÝÎç¾®ÛÐ¾®ÈÕØ¦ÖÐ£ÝÎç¾®¼°èëÄþ·´-1Æ¥ËªññÔÊÔÂ£Û
+ 	è¦†æ“‚äº’èˆå¤Ÿï¼½åˆäº•åŒäº•æ—¥å…ä¸­ï¼½åˆäº•åŠæ¡¦å®å-1åŒ¹éœœè€¨å…æœˆï¼»
 */
 void lssproto_PS_send(int fd,int result,int havepetindex,int havepetskill,int toindex)
 {
@@ -2347,7 +2347,7 @@ void lssproto_PS_send(int fd,int result,int havepetindex,int havepetskill,int to
 /*
    servertoclient SKUP( int point );
        (SKillUP)
-       µ©Æ½»ïÊ§ÓÀÃó»¥Æ¥ÎåÔÂÒÇÃ«ÈÓ¡õÌï»¥É§ôÅÔÊÔÂ£ÛÖÐÈÊ¹´ÏþÆÍÈÕÄ¾ÔÂ¾®Ã«Ï¶ÀÃÔÊÔÂ£Û
+       æ—¦å¹³ä¼™å¤±æ°¸çš¿äº’åŒ¹äº”æœˆä»ªæ¯›æ‰”â–¡ç”°äº’éªšè¥žå…æœˆï¼»ä¸­ä»å‹¾æ™“ä»†æ—¥æœ¨æœˆäº•æ¯›éš™çƒ‚å…æœˆï¼»
 */
 void lssproto_SKUP_send(int fd,int point)
 {
@@ -2367,32 +2367,32 @@ void lssproto_SKUP_send(int fd,int point)
 /*
    servertoclient WN( int windowtype, int buttontype, int seqno, int objindex, string data );
        (Window)
-       ËüÅ«¼þÓñËüÃ«  Ô÷Áù·½ÎçÈÓ¡õÌï¡õ»¥ÛÍ·ÂÄÌÊ§¼þÐþ±åÉ§ôÅÔÊÔÂ£Û
+       å®ƒå¥´ä»¶çŽ‰å®ƒæ¯›  æ†Žå…­æ–¹åˆæ‰”â–¡ç”°â–¡äº’å¼ä»¿å¥¶å¤±ä»¶çŽ„åžéªšè¥žå…æœˆï¼»
 
          int windowtype
-         ËüÅ«¼þÓñËüÕýÄÌÃó£ÛÉý¼°·½µ¤Ø¦äßÖ¿¼°ËüÅ«¼þÓñËüÃ«  Ô÷ÔÊÔÂ¾®£Û³ðÄ¾Îçbuttontype ¼°×¬ÐÄÄþ´õÁùÆ¥
-             ËüÅ«¼þÓñËü»¥è£ÀÃÔÊÔÂ£Û
-             ÈÓ¡õÌï¡õÆ¥·´¶¯Æ±¼°  ±åÉ¬ÀÃ½ñÄ¾»¯ÖÐÔÂ£Û
+         å®ƒå¥´ä»¶çŽ‰å®ƒæ­£å¥¶çš¿ï¼»å‡åŠæ–¹ä¸¹å…æº¥æŒšåŠå®ƒå¥´ä»¶çŽ‰å®ƒæ¯›  æ†Žå…æœˆäº•ï¼»ä»‡æœ¨åˆbuttontype åŠèµšå¿ƒå®æ­¹å…­åŒ¹
+             å®ƒå¥´ä»¶çŽ‰å®ƒäº’ç‘çƒ‚å…æœˆï¼»
+             æ‰”â–¡ç”°â–¡åŒ¹ååŠ¨ç¥¨åŠ  åžæ¶©çƒ‚ä»Šæœ¨åŒ–ä¸­æœˆï¼»
 
  		typedef enum
  		{
- 			WINDOW_MESSAGETYPE_MESSAGE,			¶ªÓÀ±¾¡õ³â¼°ÐÄ
- 			WINDOW_MESSAGETYPE_MESSAGEANDLINEINPUT,		¶ªÓÀ±¾¡õ³âÎçÓòµæ
- 			WINDOW_MESSAGETYPE_SELECT,			¼»  ËüÅ«¼þÓñËü
- 			WINDOW_MESSAGETYPE_PETSELECT,			Ê¸ÓÀÐþ¼»  ËüÅ«¼þÓñËü
- 			WINDOW_MESSAGETYPE_PARTYSELECT,			õ´ÃÞ¼»  ËüÅ«¼þÓñËü
- 			WINDOW_MESSAGETYPE_PETANDPARTYSELECT,		Ê¸ÓÀÐþ£Ýõ´ÃÞ¼»  ËüÅ«¼þÓñËü
- 			WINDOW_MESSAGETYPE_ITEMSHOPMENU,		ÔÆ÷Ò¼°¶ªÍßØ¨¡õËüÄÌ¼þÓñËü
- 			WINDOW_MWSSAGETYPE_ITEMSHOPYMAIN,		ÔÆ÷Ò¼°¶ªÄÌ¼þËüÄÌ¼þÓñËü
- 			WINDOW_MESSAGETYPE_LIMITITEMSHOPMAIN,		  ÖÐäúÔ»»Ù  Ê§ÄÌ  Ø©ºÐ¼°¶ªÄÌ¼þËüÄÌ¼þÓñËü
- 			WINDOW_MESSAGETYPE_PETSKILLSHOP,		Ê¸ÓÀÐþ¼°  ºÐ½ñÊÏËüÄÌ¼þÓñËü
- 			WINDOW_MESSAGETYPE_WIDEMESSAGE,			¶ªÓÀ±¾¡õ³â¼°ÐÄ    ÎåÖÐ
- 			WINDOW_MESSAGETYPE_WIDEMESSAGEANDLINEINPUT,	¶ªÓÀ±¾¡õ³âÎçÓòµæ        ÎåÖÐ
+ 			WINDOW_MESSAGETYPE_MESSAGE,			ä¸¢æ°¸æœ¬â–¡æ–¥åŠå¿ƒ
+ 			WINDOW_MESSAGETYPE_MESSAGEANDLINEINPUT,		ä¸¢æ°¸æœ¬â–¡æ–¥åˆåŸŸåž«
+ 			WINDOW_MESSAGETYPE_SELECT,			è“Ÿ  å®ƒå¥´ä»¶çŽ‰å®ƒ
+ 			WINDOW_MESSAGETYPE_PETSELECT,			çŸ¢æ°¸çŽ„è“Ÿ  å®ƒå¥´ä»¶çŽ‰å®ƒ
+ 			WINDOW_MESSAGETYPE_PARTYSELECT,			é†®æ£‰è“Ÿ  å®ƒå¥´ä»¶çŽ‰å®ƒ
+ 			WINDOW_MESSAGETYPE_PETANDPARTYSELECT,		çŸ¢æ°¸çŽ„ï¼½é†®æ£‰è“Ÿ  å®ƒå¥´ä»¶çŽ‰å®ƒ
+ 			WINDOW_MESSAGETYPE_ITEMSHOPMENU,		äº‘é¥•åŠä¸¢ç“¦äº˜â–¡å®ƒå¥¶ä»¶çŽ‰å®ƒ
+ 			WINDOW_MWSSAGETYPE_ITEMSHOPYMAIN,		äº‘é¥•åŠä¸¢å¥¶ä»¶å®ƒå¥¶ä»¶çŽ‰å®ƒ
+ 			WINDOW_MESSAGETYPE_LIMITITEMSHOPMAIN,		  ä¸­æ½¸æ›°æ¯  å¤±å¥¶  ä¸žç›’åŠä¸¢å¥¶ä»¶å®ƒå¥¶ä»¶çŽ‰å®ƒ
+ 			WINDOW_MESSAGETYPE_PETSKILLSHOP,		çŸ¢æ°¸çŽ„åŠ  ç›’ä»Šæ°å®ƒå¥¶ä»¶çŽ‰å®ƒ
+ 			WINDOW_MESSAGETYPE_WIDEMESSAGE,			ä¸¢æ°¸æœ¬â–¡æ–¥åŠå¿ƒ    äº”ä¸­
+ 			WINDOW_MESSAGETYPE_WIDEMESSAGEANDLINEINPUT,	ä¸¢æ°¸æœ¬â–¡æ–¥åˆåŸŸåž«        äº”ä¸­
 
  		}WINDOW_MESSAGETYPE;
 
          int buttontype
-         Ê¾Õý¼þ¼°äßÖ¿Ã«Ï¶ÀÃÔÊÔÂ£ÛÈÓ¡õÌï¡õÆ¥·´¶¯Æ±¼°åÃ±åÀÃñø½ñÄ¾»¯ÖÐÔÂ£Û
+         ç¤ºæ­£ä»¶åŠæº¥æŒšæ¯›éš™çƒ‚å…æœˆï¼»æ‰”â–¡ç”°â–¡åŒ¹ååŠ¨ç¥¨åŠè¿•åžçƒ‚è’ä»Šæœ¨åŒ–ä¸­æœˆï¼»
 
  		#define		WINDOW_BUTTONTYPE_NONE		(0)
  		#define		WINDOW_BUTTONTYPE_OK		(1 << 0)
@@ -2402,76 +2402,76 @@ void lssproto_SKUP_send(int fd,int point)
  		#define		WINDOW_BUTTONTYPE_PREV		(1 << 4)
  		#define		WINDOW_BUTTONTYPE_NEXT		(1 << 5)
 
-             ³ðÄ¾ÈÕ¼°×¬ÐÄÄþ´õÁùÆ¥ËªññÔÊÔÂ£Û  ÒüÈÉ£ÝYESÊ¾Õý¼þÎçNOÊ¾Õý¼þ»¥  ØÆÖÐÁÝ·´
+             ä»‡æœ¨æ—¥åŠèµšå¿ƒå®æ­¹å…­åŒ¹éœœè€¨å…æœˆï¼»  å°¹å£¬ï¼½YESç¤ºæ­£ä»¶åˆNOç¤ºæ­£ä»¶äº’  ä»„ä¸­å‡›å
              WINDOW_BUTTONTYPE_YES | WINDOW_BUTTONTYPE_NO   (=12)
-             Æ¥ËªÔÂ£Û
+             åŒ¹éœœæœˆï¼»
 
          int seqno
-         ³ð¼°ËüÅ«¼þÓñËü¼°  Ä¯Ã«Ô÷ÔÊ£ÛÈÓ¡õÌï¡õ»¥¶°  ÔÊÔÂ£Û
-             ÛÍ·ÂÄÌÊ§¼þÐþ·´WN±å»¯³ð¼°ËüÅ«¼þÓñËü¼°³ó×Ûçø°íÃ«ß¯ÔÊ¼°±å£Ý³ð¼°  Ä¯Ã«½¾Òü»¯ß¯²ÏÔÊÔÂ£Û
-             ³ðÄ¾±å·½ÔÈ»¯ÈÓ¡õÌï¡õ·´Éý¼°NPC¼°Éý¼°èë  Æ¥¼°ËüÅ«¼þÓñËü¾®Ã«  Ó¬Çë  ÔÂ·½µ¤±åÔÊÔÂ£Û
+         ä»‡åŠå®ƒå¥´ä»¶çŽ‰å®ƒåŠ  å¯žæ¯›æ†Žå…ï¼»æ‰”â–¡ç”°â–¡äº’æ ‹  å…æœˆï¼»
+             å¼ä»¿å¥¶å¤±ä»¶çŽ„åWNåžåŒ–ä»‡åŠå®ƒå¥´ä»¶çŽ‰å®ƒåŠä¸‘ç»¼ç‘›ç»Šæ¯›å¿’å…åŠåžï¼½ä»‡åŠ  å¯žæ¯›éª„å°¹åŒ–å¿’èš•å…æœˆï¼»
+             ä»‡æœ¨åžæ–¹åŒ€åŒ–æ‰”â–¡ç”°â–¡åå‡åŠNPCåŠå‡åŠæ¡¦  åŒ¹åŠå®ƒå¥´ä»¶çŽ‰å®ƒäº•æ¯›  è‡è¯·  æœˆæ–¹ä¸¹åžå…æœˆï¼»
          int objindex
-         ³ð¼°ËüÅ«¼þÓñËüÃ«ÇëÁùÎçÍÉÔÈÐ×NPCØ¦Éý¼°index»¥É¡  ½ñÄ¾»¯ÖÐÔÂ£Û
-             ÆËµ©  Ø©»¥ÇëÁùÎçÍÉÔÈÐ×èëÄþ·´-1Ø¦Éý»¥  ÔÈ»¯ÖÐÔÂ£Û
-             ÛÍ·ÂÄÌÊ§¼þÐþ·´£ÝËüÅ«¼þÓñËü      ¼°WNÃó·òÐþÎì»ïÆ¥³ð¼°ÐÑ°ÀÃ«¹«¼°ÒýÒýß¯ÁùÈÉ  ÖÐ£Û
+         ä»‡åŠå®ƒå¥´ä»¶çŽ‰å®ƒæ¯›è¯·å…­åˆèœ•åŒ€å‡¶NPCå…å‡åŠindexäº’ä¼ž  ä»Šæœ¨åŒ–ä¸­æœˆï¼»
+             æ‰‘æ—¦  ä¸žäº’è¯·å…­åˆèœ•åŒ€å‡¶æ¡¦å®å-1å…å‡äº’  åŒ€åŒ–ä¸­æœˆï¼»
+             å¼ä»¿å¥¶å¤±ä»¶çŽ„åï¼½å®ƒå¥´ä»¶çŽ‰å®ƒ      åŠWNçš¿å¤«çŽ„æˆŠä¼™åŒ¹ä»‡åŠé†’è¢„æ¯›å…¬åŠå¼•å¼•å¿’å…­å£¬  ä¸­ï¼»
          string data
-         ¶ªÓÀ±¾¡õ³â    Ã«Ô÷ÔÊ£Û    ·´¾Þµ©¸¥¡õÃóÔÊÔÂ£Û"\n"Æ¥à¼å©ÔÂÎçÝ±µæÎçÖÐµ¤À²  ÎçÔÊÔÂ£Û
-             ÒýÐ×£ÝÛÍ·ÂÄÌÊ§¼þÐþ¼°ËüÅ«¼þÓñËüÆ¥  Ô÷Çë  ÔÂ²úãàÃ«ÐýÒüÐ×¶Ë·´·ß  ¶Á±åÝ±µæ½ñÄ¾ÔÂ£Û
-             ¼»  âÃ¼°Ø¤ÔÂËüÅ«¼þÓñËüÆ¥·´£Ý"\n"Æ¥à¼å©ÈÕÄ¾Ð×  âÙ¼°Ðþ¡õÛÍ¼þ»¥¶ªÓÀ±¾¡õ³â¼°µæÐÑ
-             ÎçØ¦Ô»£ÝÆÝ±å¶ªÓÀ±¾¡õ³â¼°Ðþ¡õÛÍ¼þ»¥  âÙ¼°Ðþ¡õÛÍ¼þÆ¥Ï¶ÀÃ½ñÄ¾Ð×òÛÐÑÁ¸Îå£Ý
-             ¹«¼°Ø¤Îç¼°Ðþ¡õÛÍ¼þ  »¥¨à¹´ÄÚ¹´¼°¼»  âÃÎçØ¦ÔÂ£ÛÒýÐ×ó¡¾®ÈÕ´Í±å 1 ¾®ÈÕ
-               Ä¯Ã«à«Ô»ñ²»¯£Ý¼»  ØÆÐ×èëÄþ¼°WNÆ¥¼°ß¯²Ï¼°ÁÝ±åß¯ÔÊ£Û
-         string data(ÔÆ÷ÒåÃ
-         ¶ªÓÀ±¾¡õ³â    Ã«Ô÷ÔÊ£Û    ·´¾Þµ©¸¥¡õÃóÔÊÔÂ£Û"\n"Æ¥à¼å©ÔÂÎçÝ±µæÎçÖÐµ¤À²  ÎçÔÊÔÂ£Û
-             ÒýÐ×£ÝÛÍ·ÂÄÌÊ§¼þÐþ¼°ËüÅ«¼þÓñËüÆ¥  Ô÷Çë  ÔÂ²úãàÃ«ÐýÒüÐ×¶Ë·´·ß  ¶Á±åÝ±µæ½ñÄ¾ÔÂ£Û
-             ·¸¡õÕý  ·´ÄÛ    ±å"  "Æ¥à¼å©ÈÕÄ¾»¯ÖÐÒýÔÊ£Û
-    £Õ  µ¤£Ö
-  	  ÖÐ  ÔÂ°×·Âºë    µ¤¨ß¡°  ÔÂ¨à    ó¡¼°·¸¡õÕýÒøµ¤¾®°×·Âºë  Òøµ¤¨ß¡°Òø´õØ¦ÖÐ¡°1
- 		÷Ò¼°  ó¡  ¶ªÓÀ±¾¡õ³â  ÷Ò¶ªÓÀ±¾¡õ³â  òÛÐÑ¼»  ¶ªÓÀ±¾¡õ³â  ÒÁÃ¬»ïóïÔ»Ø¦ÖÐ¶ªÓÀ±¾¡õ³â  ¸î  ¶ªÓÀ±¾¡õ³â
- 		Ê§ÄÌ  Ø©»¥ÖÐÔÈÌìÖÐ¶ªÓÀ±¾¡õ³â  Ê§ÄÌ  Ø©      ÒüÔÂ  ÒüØ¦ÖÐ°×·Âºë    ÒüÔÂ¡°¨ß  ÒüØ¦ÖÐ¡°¨à    Ê§ÄÌ  Ø©ÒÁÃ¬»ï
- 		°Àó¸    ì«  Ä¯        Ê§ÄÌ  Ø©      ÒüÔÂ  ÒüØ¦ÖÐ°×·Âºë  Ê§ÄÌ  Ø©ÒÁÃ¬»ï  °Àó¸    ì«  Ä¯
+         ä¸¢æ°¸æœ¬â–¡æ–¥    æ¯›æ†Žå…ï¼»    åå·¨æ—¦å¼—â–¡çš¿å…æœˆï¼»"\n"åŒ¹å—‰æ¿ æœˆåˆè¼åž«åˆä¸­ä¸¹å•¦  åˆå…æœˆï¼»
+             å¼•å‡¶ï¼½å¼ä»¿å¥¶å¤±ä»¶çŽ„åŠå®ƒå¥´ä»¶çŽ‰å®ƒåŒ¹  æ†Žè¯·  æœˆäº§æ±”æ¯›æ—‹å°¹å‡¶ç«¯åæ„¤  è¯»åžè¼åž«ä»Šæœ¨æœˆï¼»
+             è“Ÿ  é¥·åŠä¸æœˆå®ƒå¥´ä»¶çŽ‰å®ƒåŒ¹åï¼½"\n"åŒ¹å—‰æ¿ æ—¥æœ¨å‡¶  èµ“åŠçŽ„â–¡å¼ä»¶äº’ä¸¢æ°¸æœ¬â–¡æ–¥åŠåž«é†’
+             åˆå…æ›°ï¼½æˆšåžä¸¢æ°¸æœ¬â–¡æ–¥åŠçŽ„â–¡å¼ä»¶äº’  èµ“åŠçŽ„â–¡å¼ä»¶åŒ¹éš™çƒ‚ä»Šæœ¨å‡¶èœŠé†’ç²®äº”ï¼½
+             å…¬åŠä¸åˆåŠçŽ„â–¡å¼ä»¶  äº’ã„ å‹¾å†…å‹¾åŠè“Ÿ  é¥·åˆå…æœˆï¼»å¼•å‡¶èŸ†äº•æ—¥èµåž 1 äº•æ—¥
+               å¯žæ¯›å–ƒæ›°ç™«åŒ–ï¼½è“Ÿ  ä»„å‡¶æ¡¦å®åŠWNåŒ¹åŠå¿’èš•åŠå‡›åžå¿’å…ï¼»
+         string data(äº‘é¥•è¿•
+         ä¸¢æ°¸æœ¬â–¡æ–¥    æ¯›æ†Žå…ï¼»    åå·¨æ—¦å¼—â–¡çš¿å…æœˆï¼»"\n"åŒ¹å—‰æ¿ æœˆåˆè¼åž«åˆä¸­ä¸¹å•¦  åˆå…æœˆï¼»
+             å¼•å‡¶ï¼½å¼ä»¿å¥¶å¤±ä»¶çŽ„åŠå®ƒå¥´ä»¶çŽ‰å®ƒåŒ¹  æ†Žè¯·  æœˆäº§æ±”æ¯›æ—‹å°¹å‡¶ç«¯åæ„¤  è¯»åžè¼åž«ä»Šæœ¨æœˆï¼»
+             çŠ¯â–¡æ­£  åå«©    åž"  "åŒ¹å—‰æ¿ æ—¥æœ¨åŒ–ä¸­å¼•å…ï¼»
+    ï¼µ  ä¸¹ï¼¶
+  	  ä¸­  æœˆç™½ä»¿å¼˜    ä¸¹ã„Ÿâ€œ  æœˆã„     èŸ†åŠçŠ¯â–¡æ­£é“¶ä¸¹äº•ç™½ä»¿å¼˜  é“¶ä¸¹ã„Ÿâ€œé“¶æ­¹å…ä¸­â€œ1
+ 		é¥•åŠ  èŸ†  ä¸¢æ°¸æœ¬â–¡æ–¥  é¥•ä¸¢æ°¸æœ¬â–¡æ–¥  èœŠé†’è“Ÿ  ä¸¢æ°¸æœ¬â–¡æ–¥  ä¼ŠçŸ›ä¼™ç®«æ›°å…ä¸­ä¸¢æ°¸æœ¬â–¡æ–¥  å‰²  ä¸¢æ°¸æœ¬â–¡æ–¥
+ 		å¤±å¥¶  ä¸žäº’ä¸­åŒ€å¤©ä¸­ä¸¢æ°¸æœ¬â–¡æ–¥  å¤±å¥¶  ä¸ž      å°¹æœˆ  å°¹å…ä¸­ç™½ä»¿å¼˜    å°¹æœˆâ€œã„Ÿ  å°¹å…ä¸­â€œã„     å¤±å¥¶  ä¸žä¼ŠçŸ›ä¼™
+ 		è¢„èŸ¾    é£“  å¯ž        å¤±å¥¶  ä¸ž      å°¹æœˆ  å°¹å…ä¸­ç™½ä»¿å¼˜  å¤±å¥¶  ä¸žä¼ŠçŸ›ä¼™  è¢„èŸ¾    é£“  å¯ž
 
-       		0|1|ÈÓØ©Ó×»ï¼°  Õ¿ºÐ|ÖÐÈÕÔÈØÆÔúÖÐ£ýÖÏ¼°·½µ¤·ÖÖÐ|ÖÐÈÕÔÈØÆÔúÖÐÉýÄ¾±åÔÊÔÂ|ÖÏòÛ  Û¢·ÖÖÐ|¹«Ä¾Ã«Á¥  ÔÊÔÂ±å·´ÒÁÃ¬»ï»¥
-       		óïÔ»Ø¦ÖÐØêÉýÖÐÖÐ¼°¾®ÖÐ|  ñ²±åÖÐÖÐÊÏ·ÖÓÑ|ÔÆÖÐÔÆÖÐÊ§ÄÌ  Ø©»¥ÖÐÔÈÌìÖÐÔªÔúÓÑÒü¾®¡å  Æ¤¡õ¶ª·Â¼þ|
-       		¨ß|¨à¨ß¨ß|¨à¨å¨ß¨ß¨ß|²úÓò  ±å  »«\n¶ã°í  Ðª|ãïã×|¨ß|¨ä¨ß|¨à¨å¨ß¨ß¨á|    ¨á¨ß¼Ôãâ\n  Ý«±å·´¹´Îå  \n¶µÖÐ
+       		0|1|æ‰”ä¸žå¹¼ä¼™åŠ  æ¹›ç›’|ä¸­æ—¥åŒ€ä»„æ‰Žä¸­ï½çª’åŠæ–¹ä¸¹åˆ†ä¸­|ä¸­æ—¥åŒ€ä»„æ‰Žä¸­å‡æœ¨åžå…æœˆ|çª’èœŠ  é‚°åˆ†ä¸­|å…¬æœ¨æ¯›éš¶  å…æœˆåžåä¼ŠçŸ›ä¼™äº’
+       		ç®«æ›°å…ä¸­ä»ƒå‡ä¸­ä¸­åŠäº•ä¸­|  ç™«åžä¸­ä¸­æ°åˆ†å‹|äº‘ä¸­äº‘ä¸­å¤±å¥¶  ä¸žäº’ä¸­åŒ€å¤©ä¸­å…ƒæ‰Žå‹å°¹äº•â€³  çš®â–¡ä¸¢ä»¿ä»¶|
+       		ã„Ÿ|ã„ ã„Ÿã„Ÿ|ã„ ã„¥ã„Ÿã„Ÿã„Ÿ|äº§åŸŸ  åž  çŒ¾\nèº²ç»Š  æ­‡|æ³”é˜•|ã„Ÿ|ã„¤ã„Ÿ|ã„ ã„¥ã„Ÿã„Ÿã„¡|    ã„¡ã„Ÿèšæ±Š\n  èŽ´åžåå‹¾äº”  \nå…œä¸­
 
-         £Õ  ÔÂ£Ö
- 		  ÖÐ  ÔÂ°×·Âºë    µ¤¨ß¡°  ÔÂ¨à    ó¡¼°·¸¡õÕýÒøµ¤¾®°×·Âºë  Òøµ¤¨ß¡°Òø´õØ¦ÖÐ¡°1
- 		÷Ò¼°  ó¡  ¶ªÓÀ±¾¡õ³â  ÷Ò¶ªÓÀ±¾¡õ³â  ÔÆàÅ»¥ÖÐÔÈÌìÖÐ±åØ¦ÔÈÇÐÔúµ¤¶ªÓÀ±¾¡õ³â|¸î  ¶ªÓÀ±¾¡õ³â
- 		Ê§ÄÌ  Ø©      Ä¾ÔÂ  Ä¾Ø¦ÖÐ°×·Âºë  °Àó¸    ì«  Ä¯        Ê§ÄÌ  Ø©      Ä¾ÔÂ  Ä¾Ø¦ÖÐ°×·Âºë
- 		°Àó¸    ì«  Ä¯
+         ï¼µ  æœˆï¼¶
+ 		  ä¸­  æœˆç™½ä»¿å¼˜    ä¸¹ã„Ÿâ€œ  æœˆã„     èŸ†åŠçŠ¯â–¡æ­£é“¶ä¸¹äº•ç™½ä»¿å¼˜  é“¶ä¸¹ã„Ÿâ€œé“¶æ­¹å…ä¸­â€œ1
+ 		é¥•åŠ  èŸ†  ä¸¢æ°¸æœ¬â–¡æ–¥  é¥•ä¸¢æ°¸æœ¬â–¡æ–¥  äº‘å—¯äº’ä¸­åŒ€å¤©ä¸­åžå…åŒ€åˆ‡æ‰Žä¸¹ä¸¢æ°¸æœ¬â–¡æ–¥|å‰²  ä¸¢æ°¸æœ¬â–¡æ–¥
+ 		å¤±å¥¶  ä¸ž      æœ¨æœˆ  æœ¨å…ä¸­ç™½ä»¿å¼˜  è¢„èŸ¾    é£“  å¯ž        å¤±å¥¶  ä¸ž      æœ¨æœˆ  æœ¨å…ä¸­ç™½ä»¿å¼˜
+ 		è¢„èŸ¾    é£“  å¯ž
 
-       		¨à|1|ÈÓØ©Ó×»ï¼°  ÌîºÐ|ÖÐÈÕÔÈØÆÔúÖÐ£ýÉýÔÂÔÊÔÂ£¢  ÖÐÈÕÔÈØÆÔúÖÐÉýÄ¾Ã«  ÔÈ»¯ÈÊÄ¾ÔÂ£Û|  ñ²±åÖÐÖÐÊÏ·ÖÓÑ|
-       		¹«Ä¾·ÖÎç£ýÔÆàÅ»¥×ó¡õÌï¡õØÆÇÐÔúµ¤ÓÑ  Æ¤¡õ¶ª·Â¼þ|¨ß|¨á¨ß|¨à¨å¨ß¨ß¨ß|
-       		²úÓò  ±å  »«\n¶ã°í  Ðª|ãïã×|¨ß|¨à¨ß|¨à¨å¨ß¨ß¨á|    ¨á¨ß¼Ôãâ\n  Ý«±å·´¹´Îå  \n¶µÖÐ
-         £ÕÊ§ÄÌ  Ø©  ØêÔÂ£Ö
- 		°×·Âºë    ÔÂ=¨ß    Ø¤ÎçÖÏòÛ  ØêÈÕÄ¾ÔÂ¾®
- 		÷Ò¼°  ó¡
- 		  ØêÔÂ¶ªÓÀ±¾¡õ³â  ³ðÄ¾¶¯Ïþ  ØêÈÕÄ¾Ø¦ÖÐ¶ªÓÀ±¾¡õ³â  ¸î  ¶ªÓÀ±¾¡õ³â
- 		  ó¡    ØêÈÕÄ¾ÔÂ¾®°×·Âºë  µÚ  £¾¨ß£ÝæØµÚ£¾¨à    °Àó¸    ì«  Ä¯  ÓòµæÄÌ¼þ°×ÇÉ  Ê§ÄÌ  Ø©    Ä¯  ¨à¾®ÈÕ
- 		  ó¡    ØêÈÕÄ¾ÔÂ¾®°×·Âºë  µÚ  £¾¨ß£ÝæØµÚ£¾¨à    °Àó¸    ì«  Ä¯  ÓòµæÄÌ¼þ°×ÇÉ  Ê§ÄÌ  Ø©    Ä¯  ¨à¾®ÈÕ
-         £ÕÊ§ÄÌ  Ø©Â¦ÎåäúÔÂ£Ö
- 		°×·Âºë  Â¦ÎåäúÔÂ=¨à
- 		÷Ò¼°  ó¡  Â¦ÎåÇëÔÊ¶ªÓÀ±¾¡õ³â  Ê§ÄÌ  Ø©»¥Óò  ¼°ÁÝ¼°¶ªÓÀ±¾¡õ³â|¸î  ¶ªÓÀ±¾¡õ³â
- 		  ó¡  Â¦ÎåÇëÁùÔÂ¾®Éýµ¤¾®°×·Âºë  µÚ  £¾¨ß£ÝæØµÚ£¾¨à    Ê§ÄÌ  Ø©ÒÁÃ¬»ï  °Àó¸    ì«  Ä¯  ÓòµæÄÌ¼þ°×ÇÉ
- 		  ó¡  Â¦ÎåÇëÁùÔÂ¾®Éýµ¤¾®°×·Âºë  µÚ  £¾¨ß£ÝæØµÚ£¾¨à    Ê§ÄÌ  Ø©ÒÁÃ¬»ï  °Àó¸    ì«  Ä¯  ÓòµæÄÌ¼þ°×ÇÉ
+       		ã„ |1|æ‰”ä¸žå¹¼ä¼™åŠ  å¡«ç›’|ä¸­æ—¥åŒ€ä»„æ‰Žä¸­ï½å‡æœˆå…æœˆï¼‚  ä¸­æ—¥åŒ€ä»„æ‰Žä¸­å‡æœ¨æ¯›  åŒ€åŒ–ä»æœ¨æœˆï¼»|  ç™«åžä¸­ä¸­æ°åˆ†å‹|
+       		å…¬æœ¨åˆ†åˆï½äº‘å—¯äº’å·¦â–¡ç”°â–¡ä»„åˆ‡æ‰Žä¸¹å‹  çš®â–¡ä¸¢ä»¿ä»¶|ã„Ÿ|ã„¡ã„Ÿ|ã„ ã„¥ã„Ÿã„Ÿã„Ÿ|
+       		äº§åŸŸ  åž  çŒ¾\nèº²ç»Š  æ­‡|æ³”é˜•|ã„Ÿ|ã„ ã„Ÿ|ã„ ã„¥ã„Ÿã„Ÿã„¡|    ã„¡ã„Ÿèšæ±Š\n  èŽ´åžåå‹¾äº”  \nå…œä¸­
+         ï¼µå¤±å¥¶  ä¸ž  ä»ƒæœˆï¼¶
+ 		ç™½ä»¿å¼˜    æœˆ=ã„Ÿ    ä¸åˆçª’èœŠ  ä»ƒæ—¥æœ¨æœˆäº•
+ 		é¥•åŠ  èŸ†
+ 		  ä»ƒæœˆä¸¢æ°¸æœ¬â–¡æ–¥  ä»‡æœ¨åŠ¨æ™“  ä»ƒæ—¥æœ¨å…ä¸­ä¸¢æ°¸æœ¬â–¡æ–¥  å‰²  ä¸¢æ°¸æœ¬â–¡æ–¥
+ 		  èŸ†    ä»ƒæ—¥æœ¨æœˆäº•ç™½ä»¿å¼˜  ç¬¬  ï¼žã„Ÿï¼½å°•ç¬¬ï¼žã„     è¢„èŸ¾    é£“  å¯ž  åŸŸåž«å¥¶ä»¶ç™½å·§  å¤±å¥¶  ä¸ž    å¯ž  ã„ äº•æ—¥
+ 		  èŸ†    ä»ƒæ—¥æœ¨æœˆäº•ç™½ä»¿å¼˜  ç¬¬  ï¼žã„Ÿï¼½å°•ç¬¬ï¼žã„     è¢„èŸ¾    é£“  å¯ž  åŸŸåž«å¥¶ä»¶ç™½å·§  å¤±å¥¶  ä¸ž    å¯ž  ã„ äº•æ—¥
+         ï¼µå¤±å¥¶  ä¸žå¨„äº”æ½¸æœˆï¼¶
+ 		ç™½ä»¿å¼˜  å¨„äº”æ½¸æœˆ=ã„ 
+ 		é¥•åŠ  èŸ†  å¨„äº”è¯·å…ä¸¢æ°¸æœ¬â–¡æ–¥  å¤±å¥¶  ä¸žäº’åŸŸ  åŠå‡›åŠä¸¢æ°¸æœ¬â–¡æ–¥|å‰²  ä¸¢æ°¸æœ¬â–¡æ–¥
+ 		  èŸ†  å¨„äº”è¯·å…­æœˆäº•å‡ä¸¹äº•ç™½ä»¿å¼˜  ç¬¬  ï¼žã„Ÿï¼½å°•ç¬¬ï¼žã„     å¤±å¥¶  ä¸žä¼ŠçŸ›ä¼™  è¢„èŸ¾    é£“  å¯ž  åŸŸåž«å¥¶ä»¶ç™½å·§
+ 		  èŸ†  å¨„äº”è¯·å…­æœˆäº•å‡ä¸¹äº•ç™½ä»¿å¼˜  ç¬¬  ï¼žã„Ÿï¼½å°•ç¬¬ï¼žã„     å¤±å¥¶  ä¸žä¼ŠçŸ›ä¼™  è¢„èŸ¾    é£“  å¯ž  åŸŸåž«å¥¶ä»¶ç™½å·§
 
-         £Õ¹«¼°Ö°£Ö
- 		÷Ò¼°  ó¡  ¶ªÓÀ±¾¡õ³â
+         ï¼µå…¬åŠèŒï¼¶
+ 		é¥•åŠ  èŸ†  ä¸¢æ°¸æœ¬â–¡æ–¥
 
-       		ÈÓØ©Ó×»ï¼°  ÌîºÐ|ÖÐÈÕÔÈØÆÔúÖÐ£ýÉýÔÂÔÊÔÂ£¢
+       		æ‰”ä¸žå¹¼ä¼™åŠ  å¡«ç›’|ä¸­æ—¥åŒ€ä»„æ‰Žä¸­ï½å‡æœˆå…æœˆï¼‚
 
-         string data(Ê¸ÓÀÐþ¼°  ºÐ½ñÊÏåÃ
-         ¶ªÓÀ±¾¡õ³â    Ã«Ô÷ÔÊ£Û    ·´¾Þµ©¸¥¡õÃóÔÊÔÂ£Û"\n"Æ¥à¼å©ÔÂÎçÝ±µæÎçÖÐµ¤À²  ÎçÔÊÔÂ£Û
-             ÒýÐ×£ÝÛÍ·ÂÄÌÊ§¼þÐþ¼°ËüÅ«¼þÓñËüÆ¥  Ô÷Çë  ÔÂ²úãàÃ«ÐýÒüÐ×¶Ë·´·ß  ¶Á±åÝ±µæ½ñÄ¾ÔÂ£Û
-             ·¸¡õÕý  ·´ÄÛ    ±å"  "Æ¥à¼å©ÈÕÄ¾»¯ÖÐÒýÔÊ£Û
- 	   £ÕÊ¸ÓÀÐþ¼°  äú  £Ö
- 		ó¡¼°Ê÷  Òøµ¤¾®Éýµ¤¾®£¢  Òøµ¤¡°0£ûÒø´õØ¦ÖÐ¡°1    ÷Ò¼°  ó¡  ¶ªÄÌ¼þ¶ªÓÀ±¾¡õ³â
- 		      °Àó¸                °Àó¸
+         string data(çŸ¢æ°¸çŽ„åŠ  ç›’ä»Šæ°è¿•
+         ä¸¢æ°¸æœ¬â–¡æ–¥    æ¯›æ†Žå…ï¼»    åå·¨æ—¦å¼—â–¡çš¿å…æœˆï¼»"\n"åŒ¹å—‰æ¿ æœˆåˆè¼åž«åˆä¸­ä¸¹å•¦  åˆå…æœˆï¼»
+             å¼•å‡¶ï¼½å¼ä»¿å¥¶å¤±ä»¶çŽ„åŠå®ƒå¥´ä»¶çŽ‰å®ƒåŒ¹  æ†Žè¯·  æœˆäº§æ±”æ¯›æ—‹å°¹å‡¶ç«¯åæ„¤  è¯»åžè¼åž«ä»Šæœ¨æœˆï¼»
+             çŠ¯â–¡æ­£  åå«©    åž"  "åŒ¹å—‰æ¿ æ—¥æœ¨åŒ–ä¸­å¼•å…ï¼»
+ 	   ï¼µçŸ¢æ°¸çŽ„åŠ  æ½¸  ï¼¶
+ 		èŸ†åŠæ ‘  é“¶ä¸¹äº•å‡ä¸¹äº•ï¼‚  é“¶ä¸¹â€œ0ï½›é“¶æ­¹å…ä¸­â€œ1    é¥•åŠ  èŸ†  ä¸¢å¥¶ä»¶ä¸¢æ°¸æœ¬â–¡æ–¥
+ 		      è¢„èŸ¾                è¢„èŸ¾
 
- 		1  ÈÓØ©Ó×»ï¼°  Õ¿ºÐ  ÖÐÈÕÔÈØÆÔúÖÐÒýÔÈÁù£ÛÔÊÈÉÈÕØÆÖÐ  ÈÉÔÈ¾®Æ¥ÔÊ·½
- 		    ¼°·í¹«¼°µü  500    »«  ¨â¨ß¡Ñ    £û  »¿  ¨â¨ß¡Ñ
- 		»©ÌÑÓò´Ð  1000  Þ¥ØÆÖÐ  Î­»¥Ø¤ÔÂ¾®ÊÖ  ØÍñ²
+ 		1  æ‰”ä¸žå¹¼ä¼™åŠ  æ¹›ç›’  ä¸­æ—¥åŒ€ä»„æ‰Žä¸­å¼•åŒ€å…­ï¼»å…å£¬æ—¥ä»„ä¸­  å£¬åŒ€äº•åŒ¹å…æ–¹
+ 		    åŠè®½å…¬åŠè¿­  500    çŒ¾  ã„¢ã„ŸâŠ™    ï½›  è±¢  ã„¢ã„ŸâŠ™
+ 		å“—è„åŸŸè‘±  1000  è•™ä»„ä¸­  è‹‡äº’ä¸æœˆäº•æ‰‹  èµç™«
 */
 void lssproto_WN_send(int fd,int windowtype,int buttontype,int seqno,int objindex,char* data)
 {
@@ -2505,23 +2505,23 @@ void lssproto_WN_send(int fd,int windowtype,int buttontype,int seqno,int objinde
 /*
    servertoclient EF( int effect, int level, string option );
        (EFfect)
-       ÊªÖ§ã±Ã«æÏÈÕØÆÐ×Ô»£ÛÛÍ·ÂÄÌÊ§¼þÐþ±åòå  ¶ÁØ¦¶ã°í  òØÁù·½ÎçËªÔÂ£Û
+       æ¹¿æ”¯æƒšæ¯›å«¦æ—¥ä»„å‡¶æ›°ï¼»å¼ä»¿å¥¶å¤±ä»¶çŽ„åžèˆ  è¯»å…èº²ç»Š  èœ‡å…­æ–¹åˆéœœæœˆï¼»
 
          int effect
-         ¶ã°í  Ä¯£Û¹«Ä¾ÈßÄ¾Ã«óïØÆÒ£ÔÊÔÂÎç£Ý    ÎçÊÖ¼°¶ã°í»¥  ÈÕÄ¾ÒýÔÊ£Û¨â±åÔÊÔÂÎçã±ÎçÊª»¥æÏÔÈÐ×Ô»Îç¾®ØÆÒýÔÊ£Û
+         èº²ç»Š  å¯žï¼»å…¬æœ¨å†—æœ¨æ¯›ç®«ä»„é¥å…æœˆåˆï¼½    åˆæ‰‹åŠèº²ç»Šäº’  æ—¥æœ¨å¼•å…ï¼»ã„¢åžå…æœˆåˆæƒšåˆæ¹¿äº’å«¦åŒ€å‡¶æ›°åˆäº•ä»„å¼•å…ï¼»
 
-             1:ã±
-             2:Êª
-             4:±ýÌãÊª    ÀÃ
+             1:æƒš
+             2:æ¹¿
+             4:é¥¼è¹„æ¹¿    çƒ‚
 
          int level
-         ¶ã°í¼°ÐÛ½ñ£Û¨ß·´ÛÕÔÊ£Û¨à  ¨ä·´  òØ¼°ÐÛ½ñÃ«  ÔÊ£Û
+         èº²ç»ŠåŠé›„ä»Šï¼»ã„Ÿåå£…å…ï¼»ã„   ã„¤å  èœ‡åŠé›„ä»Šæ¯›  å…ï¼»
          string option
-         Æá  ¿þ½¢åÃ
+         æ¼†  å‚€èˆ°è¿•
 */
 /* Arminius
-  ÐÂÔö¸ø¶ª÷»×ÓµÄ¶¯»­
-  int effect = 10   ¶ª÷»×Ó
+  æ–°å¢žç»™ä¸¢éª°å­çš„åŠ¨ç”»
+  int effect = 10   ä¸¢éª°å­
       level dont care
       option = "pet1x|pet1y|dice1|pet2x|pet2y|dice2" (no makeEscapeString)
 */
@@ -2545,17 +2545,17 @@ void lssproto_EF_send(int fd,int effect,int level,char* option)
 /*
    servertoclient SE( int x, int y, int senumber, int sw );
        (SoundEffect)
- 	ÛÍ·ÂÄÌÊ§¼þÐþ±åSEÃ«  ÈÕÔÊ·½µ¤±åÏ¶Ô÷ÔÊÔÂ£Û
+ 	å¼ä»¿å¥¶å¤±ä»¶çŽ„åžSEæ¯›  æ—¥å…æ–¹ä¸¹åžéš™æ†Žå…æœˆï¼»
 
          int x,y
-         SEÃ«  ññÝç¼°Õç  £Û
+         SEæ¯›  è€¨è‘­åŠç”„  ï¼»
          int senumber
-             ¼°  Ä¯
+             åŠ  å¯ž
          int sw
-             Ã«  ÈÕÔÊ¾®÷±»§ÔÂ¾®£Û
+             æ¯›  æ—¥å…äº•éž…æˆ·æœˆäº•ï¼»
 
-             0:÷±»§ÔÂ
-             1:  ÈÕÔÊ
+             0:éž…æˆ·æœˆ
+             1:  æ—¥å…
 */
 void lssproto_SE_send(int fd,int x,int y,int senumber,int sw)
 {
@@ -2577,10 +2577,10 @@ void lssproto_SE_send(int fd,int x,int y,int senumber,int sw)
 
 /*
    servertoclient ClientLogin(string result);
-       ClientLogin¼°ß¯²Ï£Û
+       ClientLoginåŠå¿’èš•ï¼»
 
  	string result
- 	"ok" ÎçÖÐµ¤  Ù¯  £Û³ð¼°  Ù¯  ·´¾Þµ©¸¥¡õÃó½ñÄ¾Ø¦ÖÐ£Û
+ 	"ok" åˆä¸­ä¸¹  ä¾¬  ï¼»ä»‡åŠ  ä¾¬  åå·¨æ—¦å¼—â–¡çš¿ä»Šæœ¨å…ä¸­ï¼»
 */
 void lssproto_ClientLogin_send(int fd,char* result)
 {
@@ -2599,21 +2599,21 @@ void lssproto_ClientLogin_send(int fd,char* result)
 
 /*
    servertoclient CreateNewChar(string result,string data);
-       CreateNewChar¼°ß¯²Ï£Û
+       CreateNewCharåŠå¿’èš•ï¼»
 
  	string result
- 	"successful" ¾® "failed" ¼°ÖÐÄÚÄ¾¾®£Û³ð¼°  Ù¯  ·´¾Þµ©¸¥¡õ
- 	    ÃóØÆØ¦ÖÐ£Û
+ 	"successful" äº• "failed" åŠä¸­å†…æœ¨äº•ï¼»ä»‡åŠ  ä¾¬  åå·¨æ—¦å¼—â–¡
+ 	    çš¿ä»„å…ä¸­ï¼»
  	string data
- 	"failed" ¼°ÁÝ·´    Ã«Ô÷ÔÊÚÐÃÞ¼°Î­»¯ÛÐÔÂ  Ù¯
- 	      Æ¥Ø¤ÔÂ£ÛÊ§ÊÐËü¼þÐþÈÓ¡õÌï¾®ÈÕ¼°ß¯²Ï¹«¼°ÒýÒýÆ¥Ø¤ÔÂ£Û
- 	    ¶¯Æ±¼°  Ù¯
+ 	"failed" åŠå‡›å    æ¯›æ†Žå…è°›æ£‰åŠè‹‡åŒ–åŒæœˆ  ä¾¬
+ 	      åŒ¹ä¸æœˆï¼»å¤±å¸‚å®ƒä»¶çŽ„æ‰”â–¡ç”°äº•æ—¥åŠå¿’èš•å…¬åŠå¼•å¼•åŒ¹ä¸æœˆï¼»
+ 	    åŠ¨ç¥¨åŠ  ä¾¬
 
  	    "failed bad parameter"
 
- 	    ¼°èëÄþ·´£ýÆ½ÅÒ·Â×ÛÔÀ¼°ÎçÎå±å½îÀÃ¼°ÓÉ·Â¶ª¡õÕý¼°  ÇøÃ«ÐýÒü»¯
- 	    ÖÐÔÂÎçÖÐµ¤ÎçÃ«À²  ÔÊÔÂ£Û³ðÄ¾·´±Ø¡õØ©ÈÓ¡õÌï¡õ»¥Çë  ÔÊÔÂ¶ªÓÀ
- 	    ±¾¡õ³âÆ¥Ø¤ÔÂ£Û³ð¼°  Ù¯  ·´¾Þµ©¸¥¡õÃóØÆØ¦ÖÐ£Û
+ 	    åŠæ¡¦å®åï½å¹³ä¹“ä»¿ç»¼å²³åŠåˆäº”åžç­‹çƒ‚åŠç”±ä»¿ä¸¢â–¡æ­£åŠ  åŒºæ¯›æ—‹å°¹åŒ–
+ 	    ä¸­æœˆåˆä¸­ä¸¹åˆæ¯›å•¦  å…æœˆï¼»ä»‡æœ¨åå¿…â–¡ä¸žæ‰”â–¡ç”°â–¡äº’è¯·  å…æœˆä¸¢æ°¸
+ 	    æœ¬â–¡æ–¥åŒ¹ä¸æœˆï¼»ä»‡åŠ  ä¾¬  åå·¨æ—¦å¼—â–¡çš¿ä»„å…ä¸­ï¼»
 */
 void lssproto_CreateNewChar_send(int fd,char* result,char* data)
 {
@@ -2633,14 +2633,14 @@ void lssproto_CreateNewChar_send(int fd,char* result,char* data)
 
 /*
    servertoclient CharDelete(string result,string data);
-       CharDelete ¼°ß¯²Ï£Û
+       CharDelete åŠå¿’èš•ï¼»
 
  	string result
- 	"successful" ¾® "failed" ¼°ÖÐÄÚÄ¾¾®£Û¾Þµ©¸¥¡õÃóØÆØ¦ÖÐ£Û
+ 	"successful" äº• "failed" åŠä¸­å†…æœ¨äº•ï¼»å·¨æ—¦å¼—â–¡çš¿ä»„å…ä¸­ï¼»
  	string data
- 	"failed" ¼°ÁÝ·´    Ã«Ô÷ÔÊÚÐÃÞ¼°Î­»¯ÛÐÔÂ  Ù¯
- 	      Æ¥Ø¤ÔÂ£ÛÊ§ÊÐËü¼þÐþÈÓ¡õÌï¾®ÈÕ¼°ß¯²Ï¹«¼°ÒýÒýÆ¥Ø¤ÔÂ£Û
- 	    ·¸ØøÁ¢ÕýÃ«¿×ÈÊÒýØ¦ÖÐ¼°Æ¥£ý¾Þµ©¸¥¡õÃóØÆØ¦ÖÐ£Û
+ 	"failed" åŠå‡›å    æ¯›æ†Žå…è°›æ£‰åŠè‹‡åŒ–åŒæœˆ  ä¾¬
+ 	      åŒ¹ä¸æœˆï¼»å¤±å¸‚å®ƒä»¶çŽ„æ‰”â–¡ç”°äº•æ—¥åŠå¿’èš•å…¬åŠå¼•å¼•åŒ¹ä¸æœˆï¼»
+ 	    çŠ¯ä¼‰ç«‹æ­£æ¯›å­”ä»å¼•å…ä¸­åŠåŒ¹ï½å·¨æ—¦å¼—â–¡çš¿ä»„å…ä¸­ï¼»
 */
 void lssproto_CharDelete_send(int fd,char* result,char* data)
 {
@@ -2660,12 +2660,12 @@ void lssproto_CharDelete_send(int fd,char* result,char* data)
 
 /*
    servertoclient CharLogin(string result,string data);
-       CharaLogin¼°ß¯²Ï£Û
+       CharaLoginåŠå¿’èš•ï¼»
 
  	string result
- 	"successful" ¾® "failed" ¼°ÖÐÄÚÄ¾¾®£Û¾Þµ©¸¥¡õÃóØÆØ¦ÖÐ£Û
+ 	"successful" äº• "failed" åŠä¸­å†…æœ¨äº•ï¼»å·¨æ—¦å¼—â–¡çš¿ä»„å…ä¸­ï¼»
  	string data
- 	"failed" ¼°ÁÝ·´ ¹«¼°    ¼°  Ù¯  £Û¾Þµ©¸¥¡õÃóØÆØ¦ÖÐ£Û
+ 	"failed" åŠå‡›å å…¬åŠ    åŠ  ä¾¬  ï¼»å·¨æ—¦å¼—â–¡çš¿ä»„å…ä¸­ï¼»
 */
 void lssproto_CharLogin_send(int fd,char* result,char* data)
 {
@@ -2680,63 +2680,63 @@ void lssproto_CharLogin_send(int fd,char* result,char* data)
 	checksum += util_mkstring(buffer, result);
 	checksum += util_mkstring(buffer, data);
 	util_mkint(buffer, checksum);
-	//Íæ¼ÒTCP¶ÁÈ¡»º³åÇø´óÐ¡
+	//çŽ©å®¶TCPè¯»å–ç¼“å†²åŒºå¤§å°
 	flag = getsorecvbuf();
 	result1 = setsockopt( fd, SOL_SOCKET, SO_RCVBUF,(char*)&flag, sizeof(int));
 
 	if( result1 < 0 )
-		print("ÉèÖÃ¶ÁÈ¡»º³åÇø´íÎó fd:%d ´íÎóÐÅÏ¢:%s\n",fd,strerror( errno ));
+		print("è®¾ç½®è¯»å–ç¼“å†²åŒºé”™è¯¯ fd:%d é”™è¯¯ä¿¡æ¯:%s\n",fd,strerror( errno ));
 
-	//Íæ¼Ò¶ÁÈ¡ÏÂÏÞ
+	//çŽ©å®¶è¯»å–ä¸‹é™
 	flag = getsorecvlowat();
 	result1 = setsockopt( fd, SOL_SOCKET, SO_RCVLOWAT,(char*)&flag, sizeof(int));
 
 	if( result1 < 0 )
-		print("ÉèÖÃ¶ÁÈ¡ÏÂÏÞ´íÎó fd:%d ´íÎóÐÅÏ¢:%s\n",fd,strerror( errno ));
+		print("è®¾ç½®è¯»å–ä¸‹é™é”™è¯¯ fd:%d é”™è¯¯ä¿¡æ¯:%s\n",fd,strerror( errno ));
 
-	//Íæ¼Ò·¢ËÍÏÂÏÞ
+	//çŽ©å®¶å‘é€ä¸‹é™
 	flag = getsosendlowat();
 	result1 = setsockopt( fd, SOL_SOCKET, SO_SNDLOWAT,(char*)&flag, sizeof(int));
 
 	if( result1 < 0 )
-		print("ÉèÖÃ·¢ËÍÏÂÏÞ´íÎó fd:%d ´íÎóÐÅÏ¢:%s\n",fd,strerror( errno ));
+		print("è®¾ç½®å‘é€ä¸‹é™é”™è¯¯ fd:%d é”™è¯¯ä¿¡æ¯:%s\n",fd,strerror( errno ));
 	util_SendMesg(fd, LSSPROTO_CHARLOGIN_SEND, buffer);
 }
 
 /*
    servertoclient CharList(string result,string data);
-       CharList¼°ß¯²Ï£Û
+       CharListåŠå¿’èš•ï¼»
 
  	string result
- 	"successful" ¾® "failed" ¼°ÖÐÄÚÄ¾¾®£Û¾Þµ©¸¥¡õÃóØÆØ¦ÖÐ
+ 	"successful" äº• "failed" åŠä¸­å†…æœ¨äº•ï¼»å·¨æ—¦å¼—â–¡çš¿ä»„å…ä¸­
  	string data
- 	result»¥"successful"¼°ÁÝ·´£ýÊ§ÊÐËü¼þÐþÈÓ¡õÌï¡õ±åâçÐå½ñÄ¾»¯
- 	    ÖÐÔÂÔÊÍÍ»¯¼°Æ½ÅÒ·Â¼°  ó¡£ý×óÃóÆËÒà¼þÃ«Ã«µ©Ê¸¡õµ©Æ¥à¼å©ÔÈÐ×
- 	    ÓòòÛ¼°  Ù¯  £Û³ð¼°  Ù¯  Ã«×ÛÔÈ»¯ÖÐÔÂ¼°·´£ýÊ§ÊÐËü¼þÐþÈÓ¡õÌï£Û
- 	    result »¥ "failed" ¼°ÁÝ·´    Ã«Ô÷ÔÊÚÐÃÞ¼°Î­»¯ÛÐÔÂ  Ù¯  Æ¥
- 	    Ø¤ÔÂ£ÛÔÀ  ¼°ÁÝ¼°×óÃóÆËÒà¼þ¼°  Èì·´¶¯Æ±¼°ÎçÔÆÔ»Æ¥Ø¤ÔÂ£Û
+ 	resultäº’"successful"åŠå‡›åï½å¤±å¸‚å®ƒä»¶çŽ„æ‰”â–¡ç”°â–¡åžå¿¡ç»£ä»Šæœ¨åŒ–
+ 	    ä¸­æœˆå…å±¯åŒ–åŠå¹³ä¹“ä»¿åŠ  èŸ†ï½å·¦çš¿æ‰‘äº¦ä»¶æ¯›æ¯›æ—¦çŸ¢â–¡æ—¦åŒ¹å—‰æ¿ åŒ€å‡¶
+ 	    åŸŸèœŠåŠ  ä¾¬  ï¼»ä»‡åŠ  ä¾¬  æ¯›ç»¼åŒ€åŒ–ä¸­æœˆåŠåï½å¤±å¸‚å®ƒä»¶çŽ„æ‰”â–¡ç”°ï¼»
+ 	    result äº’ "failed" åŠå‡›å    æ¯›æ†Žå…è°›æ£‰åŠè‹‡åŒ–åŒæœˆ  ä¾¬  åŒ¹
+ 	    ä¸æœˆï¼»å²³  åŠå‡›åŠå·¦çš¿æ‰‘äº¦ä»¶åŠ  è¤¥ååŠ¨ç¥¨åŠåˆäº‘æ›°åŒ¹ä¸æœˆï¼»
  	    dataplace|faceimage|level|maxhp|atk|def|quick|charm|earth|water|fire|wind|logincount|name|place
 
  	      dataplace
- 	      ±¾¡õÆ¤·¸¡õÕý¼°ÖÏ    ¾®£Û³ðÄ¾Æ¥Æ½ÅÒ·ÂÛÍÕý¡õØøµ©Ðþ¼°ÖÏ    ¾®Ã«è£ÀÃÔÊÔÂ£Û
+ 	      æœ¬â–¡çš®çŠ¯â–¡æ­£åŠçª’    äº•ï¼»ä»‡æœ¨åŒ¹å¹³ä¹“ä»¿å¼æ­£â–¡ä¼‰æ—¦çŽ„åŠçª’    äº•æ¯›ç‘çƒ‚å…æœˆï¼»
  	      faceimage
- 	      Ó¿¼°  ì«  Ä¯
+ 	      æ¶ŒåŠ  é£“  å¯ž
  	      level
- 	      Æ½ÅÒ·Â¼°ÒÁÃ¬»ï
+ 	      å¹³ä¹“ä»¿åŠä¼ŠçŸ›ä¼™
  	      maxhp,atk,def,quick,charm
- 	      ±¸ÓÉ·Â¶ª¡õÕý£Û
+ 	      å¤‡ç”±ä»¿ä¸¢â–¡æ­£ï¼»
  	      earth.water,fire,wind
- 	      ±¸óìÁë°À
+ 	      å¤‡ç®ªå²­è¢„
  	      logincount
- 	      ·òºëÄÌ¼þÊÐËü¼þÐþ
+ 	      å¤«å¼˜å¥¶ä»¶å¸‚å®ƒä»¶çŽ„
  	      name
- 	      Æ½ÅÒ·Â¼°  ó¡
+ 	      å¹³ä¹“ä»¿åŠ  èŸ†
  	      place
- 	      Æ½ÅÒ·Â¼°ÖÐÔÂèëô÷
+ 	      å¹³ä¹“ä»¿åŠä¸­æœˆæ¡¦èµ­
 
- 	    "|" Æ¥à¼å©ÈÕÄ¾»¯ÖÐÔÂ£Û ¹«Ä¾ÈßÄ¾¼°ÄÛ  ·´£ý<a
- 	    href="#escaping">¾Þµ©¸¥¡õÃó½ñÄ¾»¯ÖÐÔÂ£Û¹«¼°Ø¤ÎçÐ×»¯áß
- 	    Æ¥¹´Ø¦ÆÍÔÂ£Û
+ 	    "|" åŒ¹å—‰æ¿ æ—¥æœ¨åŒ–ä¸­æœˆï¼» å…¬æœ¨å†—æœ¨åŠå«©  åï½<a
+ 	    href="#escaping">å·¨æ—¦å¼—â–¡çš¿ä»Šæœ¨åŒ–ä¸­æœˆï¼»å…¬åŠä¸åˆå‡¶åŒ–å¾‡
+ 	    åŒ¹å‹¾å…ä»†æœˆï¼»
 */
 void lssproto_CharList_send(int fd,char* result,char* data)
 {
@@ -2756,13 +2756,13 @@ void lssproto_CharList_send(int fd,char* result,char* data)
 
 /*
    servertoclient CharLogout(string result , string data);
-       Logout±å¸²ÔÊÔÂß¯²Ï£Û
+       Logoutåžè¦†å…æœˆå¿’èš•ï¼»
 
  	string result
- 	"successful" ¾® "failed" ¼°ÖÐÄÚÄ¾¾®£Û¾Þµ©¸¥¡õÃóØÆØ¦ÖÐ£Û
+ 	"successful" äº• "failed" åŠä¸­å†…æœ¨äº•ï¼»å·¨æ—¦å¼—â–¡çš¿ä»„å…ä¸­ï¼»
  	string data
- 	"failed" ¼°ÁÝ±å¼°ÐÄÀ²  »¥Ø¤Ô»£ýÁÃ  ¼°    (ÇÁÚØ)Ã«Ô÷ÔÊÚÐÃÞ
- 	    ¼°Î­»¯ÛÐÔÂ  Ù¯  Æ¥Ø¤ÔÂ£Û¾Þµ©¸¥¡õÃóØÆØ¦ÖÐ£Û
+ 	"failed" åŠå‡›åžåŠå¿ƒå•¦  äº’ä¸æ›°ï½æ’©  åŠ    (æ©‡è°ª)æ¯›æ†Žå…è°›æ£‰
+ 	    åŠè‹‡åŒ–åŒæœˆ  ä¾¬  åŒ¹ä¸æœˆï¼»å·¨æ—¦å¼—â–¡çš¿ä»„å…ä¸­ï¼»
 */
 void lssproto_CharLogout_send(int fd,char* result,char* data)
 {
@@ -2782,10 +2782,10 @@ void lssproto_CharLogout_send(int fd,char* result,char* data)
 
 /*
    servertoclient ProcGet( string data);
- 	ProcGet¼°ß¯²Ï£Û
+ 	ProcGetåŠå¿’èš•ï¼»
 
  	string data
- 	¾Þµ©¸¥¡õÃóÔÊÔÂ£Û±Ø¡õØ©ÈÓ¡õÌï¡õ¼°    Ê÷  Ã«ËªññÔÊÔÂ£Û    ·´log/proc°×ÑëÄÌ»ï±åÌ¤¾®Ä¾ÔÂ    Îç  Ôª£Û
+ 	å·¨æ—¦å¼—â–¡çš¿å…æœˆï¼»å¿…â–¡ä¸žæ‰”â–¡ç”°â–¡åŠ    æ ‘  æ¯›éœœè€¨å…æœˆï¼»    ålog/procç™½å¤®å¥¶ä¼™åžè¸äº•æœ¨æœˆ    åˆ  å…ƒï¼»
 */
 void lssproto_ProcGet_send(int fd,char* data)
 {
@@ -2805,7 +2805,7 @@ void lssproto_ProcGet_send(int fd,char* data)
 
 /*
    servertoclient PlayerNumGet( int logincount, int player);
- 	PlayerNumGet¼°ß¯²Ï£Û
+ 	PlayerNumGetåŠå¿’èš•ï¼»
 
  	int logincount,player
 */
@@ -2827,10 +2827,10 @@ void lssproto_PlayerNumGet_send(int fd,int logincount,int player)
 
 /*
    servertoclient Echo( string test );
-       Echo±å¸²ÔÊÔÂß¯²Ï£Û
+       Echoåžè¦†å…æœˆå¿’èš•ï¼»
 
 	string test
-	½ñÎå»ÃÉý    ½ñÄ¾Ð×  Ù¯  £Û¾Þµ©¸¥¡õÃóØÆØ¦ÖÐ£Û
+	ä»Šäº”å¹»å‡    ä»Šæœ¨å‡¶  ä¾¬  ï¼»å·¨æ—¦å¼—â–¡çš¿ä»„å…ä¸­ï¼»
 */
 void lssproto_Echo_send(int fd,char* test)
 {
@@ -2863,7 +2863,7 @@ void lssproto_TD_send(int fd, int index, char* message)
 	util_mkint(buffer, checksum);
 	util_SendMesg(fd, LSSPROTO_TD_SEND, buffer);
 }
-#ifdef _CHATROOMPROTOCOL			// (²»¿É¿ª) Syu ADD ÁÄÌìÊÒÆµµÀ
+#ifdef _CHATROOMPROTOCOL			// (ä¸å¯å¼€) Syu ADD èŠå¤©å®¤é¢‘é“
 void lssproto_CHATROOM_send ( int fd , char* message )
 {
 	char buffer[65500];
@@ -2879,7 +2879,7 @@ void lssproto_CHATROOM_send ( int fd , char* message )
 	util_SendMesg(fd, LSSPROTO_CHATROOM_SEND, buffer);
 }
 #endif
-#ifdef _NEWREQUESTPROTOCOL			// (²»¿É¿ª) Syu ADD ÐÂÔöProtocolÒªÇóÏ¸Ïî
+#ifdef _NEWREQUESTPROTOCOL			// (ä¸å¯å¼€) Syu ADD æ–°å¢žProtocolè¦æ±‚ç»†é¡¹
 void lssproto_RESIST_send ( int fd , char* message )
 {
 	char buffer[65500];
@@ -2895,7 +2895,7 @@ void lssproto_RESIST_send ( int fd , char* message )
 	util_SendMesg(fd, LSSPROTO_RESIST_SEND, buffer);
 }
 #endif
-#ifdef _OUTOFBATTLESKILL			// (²»¿É¿ª) Syu ADD ·ÇÕ½¶·Ê±¼¼ÄÜProtocol
+#ifdef _OUTOFBATTLESKILL			// (ä¸å¯å¼€) Syu ADD éžæˆ˜æ–—æ—¶æŠ€èƒ½Protocol
 void lssproto_BATTLESKILL_send ( int fd , char* message )
 {
 	char buffer[65500];
@@ -2974,7 +2974,7 @@ void lssproto_IC_send(int fd, int x, int y)
 	util_SendMesg(fd, LSSPROTO_IC_SEND, buffer);
 }
 #endif
-#ifdef _MAGIC_NOCAST             // ¾«Áé:³ÁÄ¬
+#ifdef _MAGIC_NOCAST             // ç²¾çµ:æ²‰é»˜
 void lssproto_NC_send(int fd,int flg)
 {
 	char buffer[65500];

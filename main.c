@@ -25,14 +25,14 @@
 #include "npcserver.h"
 #endif
 
-#ifdef _RECAL_SEND_COUNT		// WON ´«ËÍGS×ÊÑ¶
+#ifdef _RECAL_SEND_COUNT		// WON ä¼ é€GSèµ„è®¯
 #include "mclient.h"
 #endif
 
 #ifdef _DEATH_CONTEND
 #include "deathcontend.h"
 #endif
-#ifdef _CHATROOMPROTOCOL			// (²»¿É¿ª) Syu ADD ÁÄÌìÊÒÆµµÀ
+#ifdef _CHATROOMPROTOCOL			// (ä¸å¯å¼€) Syu ADD èŠå¤©å®¤é¢‘é“
 #include "chatroom.h"
 #endif
 
@@ -50,7 +50,7 @@ extern int InitOccChannel(void);
 #endif
 
 #ifdef _ANGEL_SUMMON
-#define ANGELTIMELIMIT	3*24*60*60 // Íê³ÉÈÎÎñÊ±ÏŞ(Ãë)
+#define ANGELTIMELIMIT	3*24*60*60 // å®Œæˆä»»åŠ¡æ—¶é™(ç§’)
 int AngelReady =0;
 int AngelTimelimit = ANGELTIMELIMIT;
 time_t AngelNextTime;
@@ -63,7 +63,7 @@ void warplog_proc();
 
 int main( int argc , char** argv, char** env )
 {
-    /*  ÎçÔ»Ø¤ÒüÄÚÁİÃŞÃ«É¬ÀÃØÆ»¯ÔÆÈÊ    */
+    /*  åˆæ›°ä¸å°¹å†…å‡›æ£‰æ¯›æ¶©çƒ‚ä»„åŒ–äº‘ä»    */
     setNewTime();
 
     /*if ( argc > 1 && 0==strcmp(argv[1],"-v"))
@@ -77,7 +77,7 @@ int main( int argc , char** argv, char** env )
 
     LoadAnnounce();	// Arminius 7.12 loginannounce
 
-	/* âÙÓåÉ¬ÀÃ */
+	/* èµ“æ¸æ¶©çƒ‚ */
 	memcpy( &tmOld, localtime( (time_t *)&NowTime.tv_sec), sizeof( tmNow ) );
 
     EXITWITHEXITCODEIFFALSE( init(argc , argv ,env ) , 1);
@@ -100,13 +100,13 @@ int main( int argc , char** argv, char** env )
 #endif
 
 #if USE_MTIO
-    /* Ñ¨»ïÃñµ©ÒÁÓÀÓñ¼°ÎçÎå·´³ğ³ğÆ¥ÛĞêÄ */
+    /* ç©´ä¼™æ°‘æ—¦ä¼Šæ°¸ç‰åŠåˆäº”åä»‡ä»‡åŒ¹åŒæ˜´ */
     if( MTIO_setup() < 0 ){
         print( "cannot setup MT environment\n" );
         return 1;
     }
 
-    /* ³ğ³ğÆ¥ join ØÆ»¯±Î   */
+    /* ä»‡ä»‡åŒ¹ join ä»„åŒ–è”½   */
     MTIO_join();
 #else
     mainloop();
@@ -135,19 +135,19 @@ void mainloop( void )
 	check_battle_com_init();
 #endif
 
-#ifdef _CHATROOMPROTOCOL			// (²»¿É¿ª) Syu ADD ÁÄÌìÊÒÆµµÀ
+#ifdef _CHATROOMPROTOCOL			// (ä¸å¯å¼€) Syu ADD èŠå¤©å®¤é¢‘é“
 	InitChatRoom();
 #endif
 
 #ifdef _CHANNEL_MODIFY
-	if(!InitOccChannel()) return;			// ³õÊ¼»¯Ö°ÒµÆµµÀ
+	if(!InitOccChannel()) return;			// åˆå§‹åŒ–èŒä¸šé¢‘é“
 #endif
 
-#ifdef _GM_BROADCAST					// WON ADD ¿Í·ş¹«¸æÏµÍ³
+#ifdef _GM_BROADCAST					// WON ADD å®¢æœå…¬å‘Šç³»ç»Ÿ
 	Init_GM_BROADCAST( 0, 0, 0, "" );
 #endif
 
-#ifdef _DEATH_FAMILY_STRUCT		// WON ADD ¼Ò×åÕ½´æ·ÅÊ¤¸º×ÊÁÏ
+#ifdef _DEATH_FAMILY_STRUCT		// WON ADD å®¶æ—æˆ˜å­˜æ”¾èƒœè´Ÿèµ„æ–™
 	Init_FM_PK_STRUCT();
 #endif
 
@@ -170,7 +170,7 @@ void mainloop( void )
 			backupAllLogFile( &tmOld );
 		}
         setNewTime();
-#ifdef _ASSESS_SYSEFFICACY_SUB //ÏÔÊ¾LOOPÊ±¼ä
+#ifdef _ASSESS_SYSEFFICACY_SUB //æ˜¾ç¤ºLOOPæ—¶é—´
 Assess_SysEfficacy_sub( 0, 1);
         netloop_faster();
 Assess_SysEfficacy_sub( 1, 1);
@@ -198,13 +198,13 @@ Assess_SysEfficacy_sub( 1, 4);
 //Assess_SysEfficacy_sub( 0, 7);
         chardatasavecheck();
 //Assess_SysEfficacy_sub( 1, 7);
-#ifdef _GM_BROADCAST					// WON ADD ¿Í·ş¹«¸æÏµÍ³
+#ifdef _GM_BROADCAST					// WON ADD å®¢æœå…¬å‘Šç³»ç»Ÿ
 //Assess_SysEfficacy_sub( 0, 8);
 		GM_BROADCAST();
 //Assess_SysEfficacy_sub( 1, 8);
 #endif
 
-#else	//²»ÏÔÊ¾LOOPÊ±¼ä
+#else	//ä¸æ˜¾ç¤ºLOOPæ—¶é—´
         netloop_faster();
         NPC_generateLoop( 0 );
         BATTLE_Loop();
@@ -212,7 +212,7 @@ Assess_SysEfficacy_sub( 1, 4);
         PETMAIL_proc();
         family_proc();
         chardatasavecheck();
-#ifdef _GM_BROADCAST					// WON ADD ¿Í·ş¹«¸æÏµÍ³
+#ifdef _GM_BROADCAST					// WON ADD å®¢æœå…¬å‘Šç³»ç»Ÿ
 		GM_BROADCAST();
 #endif
 #endif
@@ -251,8 +251,8 @@ static void sendmsg_toall( char *msg )
 }
 static void ShutdownProc( void)
 {
-#define		SYSINFO_SHUTDOWN_MSG		"ÔÙ¹ı %d ·ÖÖÓáá£¬¼´¿ªÊ¼½øĞĞserverÏµÍ³Î¬»¤¡£ÇëÌáÇ°ÏÂÏß±ÜÃâ»Øµµ¡£"
-#define		SYSINFO_SHUTDOWN_MSG_COMP	"serverÒÑ¹Ø±Õ¡£"
+#define		SYSINFO_SHUTDOWN_MSG		"å†è¿‡ %d åˆ†é’Ÿå¾Œï¼Œå³å¼€å§‹è¿›è¡Œserverç³»ç»Ÿç»´æŠ¤ã€‚è¯·æå‰ä¸‹çº¿é¿å…å›æ¡£ã€‚"
+#define		SYSINFO_SHUTDOWN_MSG_COMP	"serverå·²å…³é—­ã€‚"
 	int diff,hun;
 
 	diff = NowTime.tv_sec - SERVSTATE_getShutdown();
@@ -277,8 +277,8 @@ static void ShutdownProc( void)
 		SERVSTATE_setShutdown(0);
 		SERVSTATE_setDsptime(0);
 		SERVSTATE_setLimittime(0);
-#ifdef _KILL_12_STOP_GMSV      // WON ADD ÏÂsigusr2áá¹Ø±ÕGMSV
-		//andy_reEdit 2003/04/28²»×¼¿ª...
+#ifdef _KILL_12_STOP_GMSV      // WON ADD ä¸‹sigusr2å¾Œå…³é—­GMSV
+		//andy_reEdit 2003/04/28ä¸å‡†å¼€...
 //		system("./stop.sh");
 #endif
 	}
@@ -291,17 +291,17 @@ void family_proc()
 	static  unsigned long checktime = 0;
 	static  unsigned long proctime = 0;
 
-#ifdef _CK_ONLINE_PLAYER_COUNT    // WON ADD ¼ÆËãÏßÉÏÈËÊı
+#ifdef _CK_ONLINE_PLAYER_COUNT    // WON ADD è®¡ç®—çº¿ä¸Šäººæ•°
 	static	unsigned long player_count_time = 0;
-    int PLAYER_COUNT_TIME = 60*5;	  // 30Ãë´«Ò»´ÎÈËÊıÖÁ AC
+    int PLAYER_COUNT_TIME = 60*5;	  // 30ç§’ä¼ ä¸€æ¬¡äººæ•°è‡³ AC
 #endif
 
-#ifdef _RECAL_SEND_COUNT		// WON ´«ËÍGS×ÊÑ¶
+#ifdef _RECAL_SEND_COUNT		// WON ä¼ é€GSèµ„è®¯
 	static	unsigned long recal_count_time = 0;
     int RECAL_COUNT_TIME = 60;
 	if( (unsigned long)NowTime.tv_sec > recal_count_time  ){
 		recal_get_count();
-#ifdef _GSERVER_RUNTIME //´«ËÍGSERVERÖ´ĞĞ¶àÉÙÊ±¼ä¸øMSERVER
+#ifdef _GSERVER_RUNTIME //ä¼ é€GSERVERæ‰§è¡Œå¤šå°‘æ—¶é—´ç»™MSERVER
 	    gserver_runtime();
 #endif
 		recal_count_time = (unsigned long)NowTime.tv_sec + RECAL_COUNT_TIME;
@@ -322,7 +322,7 @@ void family_proc()
 		checktime = (unsigned long)NowTime.tv_sec + 60*30;
 	}
 
-#ifdef _CK_ONLINE_PLAYER_COUNT    // WON ADD ¼ÆËãÏßÉÏÈËÊı
+#ifdef _CK_ONLINE_PLAYER_COUNT    // WON ADD è®¡ç®—çº¿ä¸Šäººæ•°
 	if( (unsigned long)NowTime.tv_sec > player_count_time  ){
 		GS_SEND_PLAYER_COUNT();
 		player_count_time = (unsigned long)NowTime.tv_sec + PLAYER_COUNT_TIME;
@@ -359,7 +359,7 @@ void AngelReadyProc()
 
 	if( player_online <= 10 )
 	{
-		//print(" ANGEL:ÏßÉÏÈËÊı²»×ã=%d ", player_online);
+		//print(" ANGEL:çº¿ä¸Šäººæ•°ä¸è¶³=%d ", player_online);
 		return;
 	}
 
@@ -368,7 +368,7 @@ void AngelReadyProc()
 	AngelNextTime = min( (int)(5000/player_online), 100)*60 + (unsigned long)nowTime;
 
 	temptime = localtime( &AngelNextTime );
-	sprintf( msg, " ANGEL:²úÉúÒ»Î»È±¶î  ÏÂ´Î²úÉúÊ±¼ä=(%d/%d %d:%d) Ä¿Ç°ÈËÊı=%d ",
+	sprintf( msg, " ANGEL:äº§ç”Ÿä¸€ä½ç¼ºé¢  ä¸‹æ¬¡äº§ç”Ÿæ—¶é—´=(%d/%d %d:%d) ç›®å‰äººæ•°=%d ",
 		temptime->tm_mon+1, temptime->tm_mday, temptime->tm_hour, temptime->tm_min, player_online );
 	print( msg);
 	//LogAngel( msg);

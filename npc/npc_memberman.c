@@ -14,7 +14,7 @@
 #include "handletime.h"
 #include "npc_eventaction.h"
 
-//�صش����ø�н�ڽ�����"����ʦ"
+//特地从天堂高薪挖角来的"传送师"
 #ifdef _TRANSER_MAN
 enum {
 	WINDOW_START=2,
@@ -87,7 +87,7 @@ void NPC_MemberManWindowTalked( int meindex, int talkerindex, int seqno,
 		NPC_MemberMan_selectWindow( meindex, talkerindex, WINDOW_SELECT, atoi( data));
 		break;
 	case CHAR_WINDOWTYPE_MEMBER_NEXT:
-		if( select == WINDOW_BUTTONTYPE_NEXT ){						//��һҳ
+		if( select == WINDOW_BUTTONTYPE_NEXT ){						//下一页
 			NPC_MemberMan_selectWindow( meindex, talkerindex, WINDOW_NEXT, atoi( data));
 			return;
 		}else if ( select == WINDOW_BUTTONTYPE_CANCEL ){	//CANCEL
@@ -96,10 +96,10 @@ void NPC_MemberManWindowTalked( int meindex, int talkerindex, int seqno,
 		NPC_MemberMan_selectWindow( meindex, talkerindex, WINDOW_WARP, atoi( data));
 		break;
 	case CHAR_WINDOWTYPE_MEMBER_NEXT1:
-		if( select == WINDOW_BUTTONTYPE_NEXT ){						//��һҳ
+		if( select == WINDOW_BUTTONTYPE_NEXT ){						//下一页
 			NPC_MemberMan_selectWindow( meindex, talkerindex, WINDOW_NEXT1, atoi( data));
 			return;
-		}else if ( select == WINDOW_BUTTONTYPE_PREV ){		//��һҳ
+		}else if ( select == WINDOW_BUTTONTYPE_PREV ){		//上一页
 			NPC_MemberMan_selectWindow( meindex, talkerindex, WINDOW_SELECT, atoi( data));
 			return;
 		}else if ( select == WINDOW_BUTTONTYPE_CANCEL ){	//CANCEL
@@ -108,10 +108,10 @@ void NPC_MemberManWindowTalked( int meindex, int talkerindex, int seqno,
 		NPC_MemberMan_selectWindow( meindex, talkerindex, WINDOW_WARP, atoi( data)+7);
 		break;
 	case CHAR_WINDOWTYPE_MEMBER_NEXT2:
-		if( select == WINDOW_BUTTONTYPE_NEXT ){						//��һҳ
+		if( select == WINDOW_BUTTONTYPE_NEXT ){						//下一页
 			NPC_MemberMan_selectWindow( meindex, talkerindex, WINDOW_NEXT2, atoi( data));
 			return;
-		}else if ( select == WINDOW_BUTTONTYPE_PREV ){		//��һҳ
+		}else if ( select == WINDOW_BUTTONTYPE_PREV ){		//上一页
 			NPC_MemberMan_selectWindow( meindex, talkerindex, WINDOW_NEXT, atoi( data));
 			return;
 		}else if ( select == WINDOW_BUTTONTYPE_CANCEL ){	//CANCEL
@@ -120,10 +120,10 @@ void NPC_MemberManWindowTalked( int meindex, int talkerindex, int seqno,
 		NPC_MemberMan_selectWindow( meindex, talkerindex, WINDOW_WARP, atoi( data)+14);
 		break;
 	case CHAR_WINDOWTYPE_MEMBER_NEXT3:
-		if( select == WINDOW_BUTTONTYPE_NEXT ){						//��һҳ
+		if( select == WINDOW_BUTTONTYPE_NEXT ){						//下一页
 			NPC_MemberMan_selectWindow( meindex, talkerindex, WINDOW_NEXT3, atoi( data));
 			return;
-		}else if ( select == WINDOW_BUTTONTYPE_PREV ){		//��һҳ
+		}else if ( select == WINDOW_BUTTONTYPE_PREV ){		//上一页
 			NPC_MemberMan_selectWindow( meindex, talkerindex, WINDOW_NEXT1, atoi( data));
 			return;
 		}else if ( select == WINDOW_BUTTONTYPE_CANCEL ){	//CANCEL
@@ -132,10 +132,10 @@ void NPC_MemberManWindowTalked( int meindex, int talkerindex, int seqno,
 		NPC_MemberMan_selectWindow( meindex, talkerindex, WINDOW_WARP, atoi( data)+21);
 		break;
 	case CHAR_WINDOWTYPE_MEMBER_NEXT4:
-		if( select == WINDOW_BUTTONTYPE_NEXT ){						//��һҳ
+		if( select == WINDOW_BUTTONTYPE_NEXT ){						//下一页
 			NPC_MemberMan_selectWindow( meindex, talkerindex, WINDOW_NEXT4, atoi( data));
 			return;
-		}else if ( select == WINDOW_BUTTONTYPE_PREV ){		//��һҳ
+		}else if ( select == WINDOW_BUTTONTYPE_PREV ){		//上一页
 			NPC_MemberMan_selectWindow( meindex, talkerindex, WINDOW_NEXT2, atoi( data));
 			return;
 		}else if ( select == WINDOW_BUTTONTYPE_CANCEL ){	//CANCEL
@@ -144,10 +144,10 @@ void NPC_MemberManWindowTalked( int meindex, int talkerindex, int seqno,
 		NPC_MemberMan_selectWindow( meindex, talkerindex, WINDOW_WARP, atoi( data)+28);
 		break;
 	case CHAR_WINDOWTYPE_MEMBER_NEXT5:
-		if( select == WINDOW_BUTTONTYPE_NEXT ){						//��һҳ
+		if( select == WINDOW_BUTTONTYPE_NEXT ){						//下一页
 			NPC_MemberMan_selectWindow( meindex, talkerindex, WINDOW_NEXT5, atoi( data));
 			return;
-		}else if ( select == WINDOW_BUTTONTYPE_PREV ){		//��һҳ
+		}else if ( select == WINDOW_BUTTONTYPE_PREV ){		//上一页
 			NPC_MemberMan_selectWindow( meindex, talkerindex, WINDOW_NEXT3, atoi( data));
 			return;
 		}else if ( select == WINDOW_BUTTONTYPE_CANCEL ){	//CANCEL
@@ -156,7 +156,7 @@ void NPC_MemberManWindowTalked( int meindex, int talkerindex, int seqno,
 		NPC_MemberMan_selectWindow( meindex, talkerindex, WINDOW_WARP, atoi( data)+35);
 		break;
 	case NPC_TRANSERMAN_WARP:
-		if ( select == WINDOW_BUTTONTYPE_PREV ){		//��һҳ
+		if ( select == WINDOW_BUTTONTYPE_PREV ){		//上一页
 			NPC_MemberMan_selectWindow( meindex, talkerindex, WINDOW_NEXT4, atoi( data));
 			return;
 		}else if ( select == WINDOW_BUTTONTYPE_CANCEL ){	//CANCEL

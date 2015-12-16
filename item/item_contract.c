@@ -177,14 +177,14 @@ void ITEM_contractSign( int fd, int itemindex, int signindex)
 	strcpy( contractSign[signindex].fmname, CHAR_getChar( charaindex, CHAR_FMNAME) );
 	contractSign[signindex].used = TRUE;
 
-	// ¼ì²éÊÇ·ñÍê³ÉÆõÔ¼
+	// æ£€æŸ¥æ˜¯å¦å®Œæˆå¥‘çº¦
 	for( i =0; i<4; i++) {
 		if( contractSign[i].used == TRUE)
 			complete++;
 	}
 	if( complete >= ITEM_contractTbl[conIndex].argnum ) {
 		if( CHAR_findEmptyItemBoxNo( charaindex ) < ITEM_contractTbl[conIndex].argnum -1 ) {
-			sprintf( buf, "ÒªÍê³ÉÕâ¸öÆõÔ¼£¬ÇëÏÈ×¼±¸%d¸ö¿ÕµÀ¾ßÀ¸Î»¡£", ITEM_contractTbl[conIndex].argnum -1);
+			sprintf( buf, "è¦å®Œæˆè¿™ä¸ªå¥‘çº¦ï¼Œè¯·å…ˆå‡†å¤‡%dä¸ªç©ºé“å…·æ ä½ã€‚", ITEM_contractTbl[conIndex].argnum -1);
 			CHAR_talkToCli( charaindex, -1, buf, CHAR_COLORYELLOW);
 			return;
 		}
@@ -199,22 +199,22 @@ void ITEM_contractSign( int fd, int itemindex, int signindex)
 	}
 	ITEM_setChar( itemindex, ITEM_CONTRACTARG, contractSignData);
 
-	CHAR_talkToCli( charaindex, -1, "Íê³ÉÆõÔ¼Ç©Ãû¡£", CHAR_COLORYELLOW);
+	CHAR_talkToCli( charaindex, -1, "å®Œæˆå¥‘çº¦ç­¾åã€‚", CHAR_COLORYELLOW);
 
 
-	// Íê³ÉÆõÔ¼
+	// å®Œæˆå¥‘çº¦
 	if( complete >= ITEM_contractTbl[conIndex].argnum ) {
 		struct tm *nowtime;
 		char timebuf[512];
 
-		// ¼ÍÂ¼ÈÕÆÚ
+		// çºªå½•æ—¥æœŸ
 		nowtime = localtime( (time_t *)&NowTime.tv_sec );
-		sprintf( timebuf, "%04dÄê%02dÔÂ%02dÈÕ",
+		sprintf( timebuf, "%04då¹´%02dæœˆ%02dæ—¥",
 			nowtime->tm_year +1900, nowtime->tm_mon+1, nowtime->tm_mday);
 		ITEM_setChar( itemindex, ITEM_CONTRACTTIME, timebuf);
 
-		CHAR_talkToCli( charaindex, -1, "Íê³ÉËùÓĞÇ©Ãû£¬ÆõÔ¼³ÉÁ¢£¡", CHAR_COLORYELLOW);
-		// ¸´ÖÆÆõÔ¼
+		CHAR_talkToCli( charaindex, -1, "å®Œæˆæ‰€æœ‰ç­¾åï¼Œå¥‘çº¦æˆç«‹ï¼", CHAR_COLORYELLOW);
+		// å¤åˆ¶å¥‘çº¦
 		item_id = ITEM_getInt( itemindex, ITEM_ID);
 		int	emptyindex;
 		int newitemindex;
@@ -223,7 +223,7 @@ void ITEM_contractSign( int fd, int itemindex, int signindex)
 			emptyindex = CHAR_findEmptyItemBox( charaindex );
 
 			if( emptyindex < 0 ){
-				CHAR_talkToCli( charaindex, -1, "¿Õ¼äÀ¸Î»²»×ã¡£", CHAR_COLORYELLOW);
+				CHAR_talkToCli( charaindex, -1, "ç©ºé—´æ ä½ä¸è¶³ã€‚", CHAR_COLORYELLOW);
 				break;
 			}
 
@@ -238,7 +238,7 @@ void ITEM_contractSign( int fd, int itemindex, int signindex)
 				ITEM_setChar( newitemindex, ITEM_CONTRACTTIME, timebuf);
 			}
 
-			CHAR_talkToCli( charaindex, -1, "¸´ÖÆÆõÔ¼Êé¡£", CHAR_COLORYELLOW);
+			CHAR_talkToCli( charaindex, -1, "å¤åˆ¶å¥‘çº¦ä¹¦ã€‚", CHAR_COLORYELLOW);
 		}
 	}
 }

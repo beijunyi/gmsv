@@ -27,7 +27,7 @@
 
 #define CHAR_MAXNAME 20
 #define CHAR_MAXID 20
-#define MINFMLEVLEFORPOINT	3	// 3 ÉêÇë×¯Ô°×îµÍµÈ¼¶
+#define MINFMLEVLEFORPOINT	3	// 3 ç”³è¯·åº„å›­æœ€ä½ç­‰çº§
 #ifdef _FAMILY_MANORNUM_CHANGE
 #else
 #define	MANORNUM		4
@@ -64,7 +64,7 @@ extern	tagRidePetTable ridePetTable[146];
 void LeaveMemberIndex( int charaindex, int fmindexi);
 
 
-// Arminius: È¡µÃ¼Ò×å pk dp Ôö¼Ó/ËğÊ§Öµ
+// Arminius: å–å¾—å®¶æ— pk dp å¢åŠ /æŸå¤±å€¼
 // getFMdpAward
 // arg: windp=winner's fmdp	losedp=loser's fmdp
 // ret: dp award
@@ -99,7 +99,7 @@ int fmdplevelexp[]={0,			// 0
 // Arminius end
 
 // shan begin
-int getFmLv(int playerindex)	// ºÏ³ÉÊ±×¨ÓÃ
+int getFmLv(int playerindex)	// åˆæˆæ—¶ä¸“ç”¨
 {
     int i, dp;
     dp = CHAR_getWorkInt(playerindex, CHAR_WORKFMDP);
@@ -116,7 +116,7 @@ int getFmLv(int playerindex)	// ºÏ³ÉÊ±×¨ÓÃ
     return i;
 }
 
-#ifdef _MERGE_NEW_8 // ²éÑ¯¸öÈËÉùÍûµÈ¼¶
+#ifdef _MERGE_NEW_8 // æŸ¥è¯¢ä¸ªäººå£°æœ›ç­‰çº§
 int famelevelexp[]={0,			// 0
 					1500,		// 1
 					3000,		// 2
@@ -130,7 +130,7 @@ int famelevelexp[]={0,			// 0
 					39000		//10
 					};
 
-int getFameLv(int playerindex)	// ºÏ³ÉÊ±×¨ÓÃ
+int getFameLv(int playerindex)	// åˆæˆæ—¶ä¸“ç”¨
 {
     int i, dp;
     dp = CHAR_getWorkInt(playerindex, CHAR_FAME);
@@ -163,7 +163,7 @@ struct FM_PKFLOOR    fmpkflnum[FAMILY_FMPKFLOOR]=
 	{2032},
 	{3032},
 	{4032},
-#ifdef _FAMILY_MANORNUM_CHANGE	// CoolFish ÓÃÀ´ĞŞ¸Ä×°Ô°ÊıÁ¿
+#ifdef _FAMILY_MANORNUM_CHANGE	// CoolFish ç”¨æ¥ä¿®æ”¹è£…å›­æ•°é‡
 	{5032},
 	{6032},
 	{7032},
@@ -175,7 +175,7 @@ struct FM_PKFLOOR    fmpkflnum[FAMILY_FMPKFLOOR]=
 #endif
 };
 int leaderdengonindex = 0;
-// shan end ĞÂÔöÍ¼²ãĞèµ½ family.h Ôö¼Ó FAMILY_FMPKFLOOR ÊıÁ¿
+// shan end æ–°å¢å›¾å±‚éœ€åˆ° family.h å¢åŠ  FAMILY_FMPKFLOOR æ•°é‡
 
 void SetFMPetVarInit(int meindex)
 {
@@ -197,7 +197,7 @@ void SetFMPetVarInit(int meindex)
 
 void SetFMVarInit(int meindex)
 {
-	SetFMPetVarInit(meindex); // Çå³ıÊØ»¤ÊŞ Flag
+	SetFMPetVarInit(meindex); // æ¸…é™¤å®ˆæŠ¤å…½ Flag
    	CHAR_setInt(meindex, CHAR_FMINDEX, -1);
    	CHAR_setChar(meindex, CHAR_FMNAME, "");
    	CHAR_setInt(meindex, CHAR_FMSPRITE, -1);
@@ -263,58 +263,58 @@ void CHAR_Family(int fd, int index, char *message)
       switch(tolower(firstToken[0]))
       {
 			case 'a':
-				// ³ÉÁ¢¼Ò×å
+				// æˆç«‹å®¶æ—
 				FAMILY_Add(fd, index, message);
 				break;
 			case 'j':
-				// ¼ÓÈë¼Ò×å
+				// åŠ å…¥å®¶æ—
 				FAMILY_Join(fd, index, message);
 				break;
 			case 'e':
-				// Àë¿ª¡¢ÍË³ö¼Ò×å
+				// ç¦»å¼€ã€é€€å‡ºå®¶æ—
 				FAMILY_Leave(fd, index, message);
 				break;
 			case 'm':
-				// ×å³¤ÉóºË
+				// æ—é•¿å®¡æ ¸
 				FAMILY_CheckMember(fd, index, message);
 				break;
 			case 's':
-				// È¡µÃ¼Ò×åÏà¹Ø×ÊÁÏ
+				// å–å¾—å®¶æ—ç›¸å…³èµ„æ–™
 				FAMILY_Detail(fd, index, message);
 				break;
 			case 'c':
-				// ¼Ò×åÆµµÀ
+				// å®¶æ—é¢‘é“
 				FAMILY_Channel(fd, index, message);
 				break;
 			case 'b':
-				// ¼Ò×åÒøĞĞ
+				// å®¶æ—é“¶è¡Œ
 				FAMILY_Bank(fd, index, message);
 				break;
 			case 'p':
 #ifdef _UN_FMPOINT
 #else
-				// ÉêÇë¼Ò×å¾İµã
+				// ç”³è¯·å®¶æ—æ®ç‚¹
 				FAMILY_SetPoint(fd, index, message);
 #endif
 				break;
 			case 't':
-				// ÊÇ·ñ¼ÌĞøÕĞÄ¼³ÉÔ±
+				// æ˜¯å¦ç»§ç»­æ‹›å‹Ÿæˆå‘˜
 				FAMILY_SetAcceptFlag(fd, index, message);
 				break;
 			case 'x':
-				// ĞŞ¸Ä¼Ò×åÖ÷Ö¼
+				// ä¿®æ”¹å®¶æ—ä¸»æ—¨
 				FAMILY_FixRule( fd, index, message );
 				break;
 			case 'r':
-				// Æï³Ë³èÎï
+				// éª‘ä¹˜å® ç‰©
 				FAMILY_RidePet( fd, index, message );
 				break;
 			case 'l':
-				// ×å³¤¹¦ÄÜ
+				// æ—é•¿åŠŸèƒ½
 				FAMILY_LeaderFunc( fd, index, message );
 				break;
 #ifdef _FM_MODIFY
-				// ¼Ò×å²¼¸æÀ¸¹¦ÄÜ
+				// å®¶æ—å¸ƒå‘Šæ åŠŸèƒ½
 			case 'd':
 #ifdef _UN_FMMEMO
 #else
@@ -380,7 +380,7 @@ void FAMILY_Add(int fd, int meindex, char* message)
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\nÄãÒÑ¾­¼ÓÈë¼Ò×åÂŞ¡«ÎŞ·¨ÔÙ³ÉÁ¢¼Ò×å£¡", buf, sizeof(buf)));
+			makeEscapeString( "\nä½ å·²ç»åŠ å…¥å®¶æ—ç½—ï½æ— æ³•å†æˆç«‹å®¶æ—ï¼", buf, sizeof(buf)));
    	return;
 	}
 	tmpflag = CheckLeaderQ(meindex);
@@ -389,7 +389,7 @@ void FAMILY_Add(int fd, int meindex, char* message)
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\nºÜ±§Ç¸à¸£¡ÄãµÄµÈ¼¶²»×ã£¡", buf, sizeof(buf)));
+			makeEscapeString( "\nå¾ˆæŠ±æ­‰å–”ï¼ä½ çš„ç­‰çº§ä¸è¶³ï¼", buf, sizeof(buf)));
    	return;
 	}
 
@@ -398,7 +398,7 @@ void FAMILY_Add(int fd, int meindex, char* message)
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\nºÜ±§Ç¸à¸£¡Äã±ØĞëÏÈÍê³É³ÉÈËÀñ²ÅĞĞ£¡", buf, sizeof(buf)));
+			makeEscapeString( "\nå¾ˆæŠ±æ­‰å–”ï¼ä½ å¿…é¡»å…ˆå®Œæˆæˆäººç¤¼æ‰è¡Œï¼", buf, sizeof(buf)));
    	return;
 	}
 
@@ -408,7 +408,7 @@ void FAMILY_Add(int fd, int meindex, char* message)
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\nºÜ±§Ç¸à¸£¡³ÉÁ¢¼Ò×åĞèÒªÒ»ÍòÔªÊ¯±ÒµÄÊÖĞø·Ñ£¡", buf, sizeof(buf)));
+			makeEscapeString( "\nå¾ˆæŠ±æ­‰å–”ï¼æˆç«‹å®¶æ—éœ€è¦ä¸€ä¸‡å…ƒçŸ³å¸çš„æ‰‹ç»­è´¹ï¼", buf, sizeof(buf)));
    	return;
 	}
 	else {
@@ -419,12 +419,12 @@ void FAMILY_Add(int fd, int meindex, char* message)
 	if (getStringFromIndexWithDelim(message, "|", 2, token,
    	sizeof(token)) == FALSE)	return;
 	sprintf(fmname, "%s", token);
-	if ((strstr(fmname, " ")) || (strcmp(fmname, "") == 0) || (strstr(fmname, "¡¡")))
+	if ((strstr(fmname, " ")) || (strcmp(fmname, "") == 0) || (strstr(fmname, "ã€€")))
 	{
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\n¼Ò×åµÄÃû³ÆÇëÎğÊäÈë¿Õ¸ñ£¡", buf, sizeof(buf)));
+			makeEscapeString( "\nå®¶æ—çš„åç§°è¯·å‹¿è¾“å…¥ç©ºæ ¼ï¼", buf, sizeof(buf)));
    	return;
 	}
 	if (getStringFromIndexWithDelim(message, "|", 3, token,
@@ -436,7 +436,7 @@ void FAMILY_Add(int fd, int meindex, char* message)
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\nÇëÑ¡ÔñÒ»Ö»³èÎï×÷Îª¼Ò×åÊØ»¤ÊŞ£¡", buf, sizeof(buf)));
+			makeEscapeString( "\nè¯·é€‰æ‹©ä¸€åªå® ç‰©ä½œä¸ºå®¶æ—å®ˆæŠ¤å…½ï¼", buf, sizeof(buf)));
    	return;
 	}
 	if (getStringFromIndexWithDelim(message, "|", 4, token,
@@ -445,7 +445,7 @@ void FAMILY_Add(int fd, int meindex, char* message)
 	if (getStringFromIndexWithDelim(message, "|", 5, token,
    	sizeof(token)) == FALSE)	return;
 	if (strcmp(token, "") == 0)
-   	sprintf(fmrule, "ÎŞ");
+   	sprintf(fmrule, "æ— ");
 	else
    	sprintf(fmrule, "%s", token);
 	sprintf(charname, "%s", CHAR_getChar(meindex, CHAR_NAME));
@@ -483,19 +483,19 @@ void FAMILY_Add(int fd, int meindex, char* message)
    	petname, petattr, fmrule, fmsprite, chargrano, CONNECT_getFdid(fd));
 #endif
 
-	// ÒªÇó×îĞÂ¼Ò×åÁĞ±í
+	// è¦æ±‚æœ€æ–°å®¶æ—åˆ—è¡¨
 	//saacproto_ACShowFMList_send( acfd );
 
 }
 
 /*
-    ©´©°
-  ©¼©¸©¼©¸
-©¸©´£®£®©°©¼©¤
-  ©Ø©¤©¤©È¡ï~~©À
-©¦£ï¡¡£ï©¦¡¡¡¡©¦¡ñ ¡¡
-  ©Ğ©¤©¤  ¡¡¡¡©¦ ~~~~~~~~~ßè
-¡ø¡÷¡ø¡÷¡ø¡÷¡ø¡÷¡ø¡÷¡ø¡÷¡ø¡÷¡ø¡÷
+    â”â”Œ
+  â”˜â””â”˜â””
+â””â”ï¼ï¼â”Œâ”˜â”€
+  â”´â”€â”€â”¤â˜…~~â”œ
+â”‚ï½ã€€ï½â”‚ã€€ã€€â”‚â— ã€€
+  â”¬â”€â”€  ã€€ã€€â”‚ ~~~~~~~~~å“
+â–²â–³â–²â–³â–²â–³â–²â–³â–²â–³â–²â–³â–²â–³â–²â–³
 
 */
 
@@ -522,16 +522,16 @@ void ACAddFM(int fd, int result, int fmindex, int index)
 		CHAR_setWorkInt(meindex, CHAR_WORKFMSETUPFLAG, 0);
 #ifdef _NEW_MANOR_LAW
 		CHAR_setInt(meindex,CHAR_MOMENTUM,0);
-//		CHAR_talkToCli(meindex,-1,"³ÉÁ¢¼Ò×å¸öÈËÆøÊÆ¹éÁã",CHAR_COLORYELLOW);
+//		CHAR_talkToCli(meindex,-1,"æˆç«‹å®¶æ—ä¸ªäººæ°”åŠ¿å½’é›¶",CHAR_COLORYELLOW);
 #endif
 		 lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			 WINDOW_BUTTONTYPE_OK,
 			 -1, -1,
-			 makeEscapeString( "\n¹§Ï²Äã³ÉÁ¢ÁËĞÂµÄ¼Ò×å£¡µ«ÇëÔÚ£·ÌìÖ®ÄÚÕÙ¼¯µ½£±£°Ãû×åÈË¼ÓÈë£¬²»È»»áÈ¡Ïû¼Ò×å×Ê¸ñà¸¡£", buf, sizeof(buf)));
+			 makeEscapeString( "\næ­å–œä½ æˆç«‹äº†æ–°çš„å®¶æ—ï¼ä½†è¯·åœ¨ï¼—å¤©ä¹‹å†…å¬é›†åˆ°ï¼‘ï¼åæ—äººåŠ å…¥ï¼Œä¸ç„¶ä¼šå–æ¶ˆå®¶æ—èµ„æ ¼å–”ã€‚", buf, sizeof(buf)));
 		 JoinMemberIndex( meindex, index);
 		 CHAR_charSaveFromConnect(fd, FALSE);
 
-		 // ÒªÇó×îĞÂ¼Ò×å×ÊÁÏ
+		 // è¦æ±‚æœ€æ–°å®¶æ—èµ„æ–™
 		 saacproto_ACShowFMList_send( acfd );
 		 saacproto_ACShowMemberList_send( acfd, index );
 		 saacproto_ACShowTopFMList_send(acfd, FM_TOP_INTEGRATE);
@@ -541,7 +541,7 @@ void ACAddFM(int fd, int result, int fmindex, int index)
 			 CHAR_getInt( meindex, CHAR_FMINDEX),
 			 CHAR_getChar( meindex, CHAR_NAME),
 			 CHAR_getChar( meindex, CHAR_CDKEY),
-			 "ADDFAMILY(³ÉÁ¢¼Ò×å)",
+			 "ADDFAMILY(æˆç«‹å®¶æ—)",
 			 ""
 			 );
    }
@@ -561,9 +561,9 @@ void ACAddFM(int fd, int result, int fmindex, int index)
    	   CHAR_setInt(petindex, CHAR_PETFAMILY, -1);
    	}
    	if (fmindex == -2)
-   		sprintf(tmpbuf, "\nÒÑ¾­ÓĞÏàÍ¬Ãû×ÖµÄ¼Ò×å³ÉÁ¢ÁË£¡");
+   		sprintf(tmpbuf, "\nå·²ç»æœ‰ç›¸åŒåå­—çš„å®¶æ—æˆç«‹äº†ï¼");
    	else
-   		sprintf(tmpbuf, "\nÉêÇë³ÉÁ¢¼Ò×åÊ§°Ü£¡");
+   		sprintf(tmpbuf, "\nç”³è¯·æˆç«‹å®¶æ—å¤±è´¥ï¼");
 	lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 		WINDOW_BUTTONTYPE_OK,
 		-1, -1,
@@ -587,7 +587,7 @@ void FAMILY_Join(int fd, int meindex, char *message)
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\nÄãÒÑ¾­¼ÓÈëÆäËû¼Ò×åÁËà¸£¡", buf, sizeof(buf)));
+			makeEscapeString( "\nä½ å·²ç»åŠ å…¥å…¶ä»–å®¶æ—äº†å–”ï¼", buf, sizeof(buf)));
 		return;
    }
 
@@ -619,7 +619,7 @@ void FAMILY_Join(int fd, int meindex, char *message)
 
 //   print("JoinFM index:%d fmindex:%d fmname:%s charname:%s charid:%s charlv:%d sprite:%d\n",
 //   	index, fmindex, fmname, charname, charid, charlv, fmsprite);
-#ifdef _PERSONAL_FAME	// Arminius: ¼Ò×å¸öÈËÉùÍû
+#ifdef _PERSONAL_FAME	// Arminius: å®¶æ—ä¸ªäººå£°æœ›
 //   print("fame:%d charfdid:%d\n", CHAR_getInt(meindex, CHAR_FAME),
 //   	CONNECT_getFdid(fd));
    saacproto_ACJoinFM_send(acfd, fmname, fmindex, charname, charid, charlv,
@@ -646,12 +646,12 @@ void ACJoinFM(int fd, int result, int recv)
 		 lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\nĞ»Ğ»ÄãµÄ¼ÓÈëÉêÇë£¡ÇëÏÈµÈ×å³¤¶ÔÄãµÄÉóºËÍ¨¹ıÖ®áá£¬²ÅËãÕıÊ½¼ÓÈë¡£", buf, sizeof(buf)));
+			makeEscapeString( "\nè°¢è°¢ä½ çš„åŠ å…¥ç”³è¯·ï¼è¯·å…ˆç­‰æ—é•¿å¯¹ä½ çš„å®¡æ ¸é€šè¿‡ä¹‹å¾Œï¼Œæ‰ç®—æ­£å¼åŠ å…¥ã€‚", buf, sizeof(buf)));
 
 		  JoinMemberIndex( meindex, CHAR_getWorkInt(meindex, CHAR_WORKFMINDEXI) );
 #ifdef _NEW_MANOR_LAW
 			CHAR_setInt(meindex,CHAR_MOMENTUM,0);
-//			CHAR_talkToCli(meindex,-1,"¼ÓÈë¼Ò×å¸öÈËÆøÊÆ¹éÁã",CHAR_COLORYELLOW);
+//			CHAR_talkToCli(meindex,-1,"åŠ å…¥å®¶æ—ä¸ªäººæ°”åŠ¿å½’é›¶",CHAR_COLORYELLOW);
 #endif
 
 		sprintf(buf,"fame:%d",CHAR_getInt(meindex,CHAR_FAME));
@@ -661,7 +661,7 @@ void ACJoinFM(int fd, int result, int recv)
 			 CHAR_getInt( meindex, CHAR_FMINDEX),
 			 CHAR_getChar( meindex, CHAR_NAME),
 			 CHAR_getChar( meindex, CHAR_CDKEY),
-			 "JOINFAMILY(ÉêÇë¼ÓÈë¼Ò×å)",
+			 "JOINFAMILY(ç”³è¯·åŠ å…¥å®¶æ—)",
 			 buf
 			 );
 
@@ -674,20 +674,20 @@ void ACJoinFM(int fd, int result, int recv)
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\n´Ë¼Ò×åÄ¿Ç°²»Ô¸ÒâÕĞÊÕ³ÉÔ±£¡", buf, sizeof(buf)));
+			makeEscapeString( "\næ­¤å®¶æ—ç›®å‰ä¸æ„¿æ„æ‹›æ”¶æˆå‘˜ï¼", buf, sizeof(buf)));
 	}
 	else if (recv == -3)
 	{
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\n´Ë¼Ò×åÄ¿Ç°ÎŞ·¨ÕĞÊÕ³ÉÔ±£¬¼Ò×å³ÉÔ±ÈËÊıÒÑµ½´ïÉÏÏŞ£¡", buf, sizeof(buf)));
+			makeEscapeString( "\næ­¤å®¶æ—ç›®å‰æ— æ³•æ‹›æ”¶æˆå‘˜ï¼Œå®¶æ—æˆå‘˜äººæ•°å·²åˆ°è¾¾ä¸Šé™ï¼", buf, sizeof(buf)));
 	}
 	else
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\nÉêÇë¼ÓÈë¼Ò×åÊ§°Ü£¡", buf, sizeof(buf)));
+			makeEscapeString( "\nç”³è¯·åŠ å…¥å®¶æ—å¤±è´¥ï¼", buf, sizeof(buf)));
    }
 
    CHAR_sendStatusString( meindex, "F");
@@ -714,7 +714,7 @@ void FAMILY_Leave(int fd, int meindex, char *message)
 	lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 		WINDOW_BUTTONTYPE_OK,
 		-1, -1,
-		makeEscapeString( "\nÄã²¢Ã»ÓĞ¼ÓÈë¼Ò×åà¸£¡", buf, sizeof(buf)));
+		makeEscapeString( "\nä½ å¹¶æ²¡æœ‰åŠ å…¥å®¶æ—å–”ï¼", buf, sizeof(buf)));
       	return;
    }
 
@@ -732,7 +732,7 @@ void FAMILY_Leave(int fd, int meindex, char *message)
 	    		   lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 		                             WINDOW_BUTTONTYPE_OK,
 		                             -1, -1,
-		                             makeEscapeString( "\nÄãÄ¿Ç°µÄ¼Ò×åÕıÔ¼Õ½ÖĞ£¬Òò´ËÎŞ·¨½âÉ¢¼Ò×å£¡", buf, sizeof(buf)));
+		                             makeEscapeString( "\nä½ ç›®å‰çš„å®¶æ—æ­£çº¦æˆ˜ä¸­ï¼Œå› æ­¤æ— æ³•è§£æ•£å®¶æ—ï¼", buf, sizeof(buf)));
       	           return;
 			   }
 		   }
@@ -758,7 +758,7 @@ void FAMILY_Leave(int fd, int meindex, char *message)
          saacproto_ACDelFM_send(acfd, fmname, fmindex, index, charname, charid,
 				CONNECT_getFdid(fd));
 
-         // ÒªÇó×îĞÂ¼Ò×åÁĞ±í
+         // è¦æ±‚æœ€æ–°å®¶æ—åˆ—è¡¨
          //saacproto_ACShowFMList_send( acfd );
       }
       else {
@@ -785,7 +785,7 @@ void ACLeaveFM( int fd, int result, int resultflag)
 			CHAR_getInt( meindex, CHAR_FMINDEX),
 			CHAR_getChar( meindex, CHAR_NAME),
 			CHAR_getChar( meindex, CHAR_CDKEY),
-	    	"LEAVEFAMILY(Àë¿ª¼Ò×å)",
+	    	"LEAVEFAMILY(ç¦»å¼€å®¶æ—)",
 				""
 				);
 		if(  CHAR_getWorkInt( meindex, CHAR_WORKFMCHANNEL) != -1 )
@@ -794,20 +794,20 @@ void ACLeaveFM( int fd, int result, int resultflag)
 		SetFMVarInit(meindex);
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK, -1, -1,
-			makeEscapeString( "\nÉêÇëÍË³ö¼Ò×å£Ï£Ë£¡", buf, sizeof(buf)));
+			makeEscapeString( "\nç”³è¯·é€€å‡ºå®¶æ—ï¼¯ï¼«ï¼", buf, sizeof(buf)));
 
 #ifdef _FM_JOINLIMIT
 		CHAR_setInt( meindex, CHAR_FMTIMELIMIT, (int)time(NULL)+(7*24)*(60*60) );
 #endif
 #ifdef _NEW_MANOR_LAW
 		CHAR_setInt(meindex,CHAR_MOMENTUM,0);
-//		CHAR_talkToCli(meindex,-1,"ÍË³ö¼Ò×å¸öÈËÆøÊÆ¹éÁã",CHAR_COLORYELLOW);
+//		CHAR_talkToCli(meindex,-1,"é€€å‡ºå®¶æ—ä¸ªäººæ°”åŠ¿å½’é›¶",CHAR_COLORYELLOW);
 #endif
 
 	}else
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 		WINDOW_BUTTONTYPE_OK, -1, -1,
-		makeEscapeString( "\nÉêÇëÍË³ö¼Ò×åÊ§°Ü£¡", buf, sizeof(buf)));
+		makeEscapeString( "\nç”³è¯·é€€å‡ºå®¶æ—å¤±è´¥ï¼", buf, sizeof(buf)));
 
 	CHAR_sendStatusString( meindex, "F" );
 }
@@ -830,7 +830,7 @@ void ACDelFM(int fd, int result)
 		CHAR_getInt( meindex, CHAR_FMINDEX),
 		CHAR_getChar( meindex, CHAR_NAME),
 		CHAR_getChar( meindex, CHAR_CDKEY),
-		"DELFAMILY(¼Ò×å½âÉ¢)",
+		"DELFAMILY(å®¶æ—è§£æ•£)",
 		""
 	);
 
@@ -846,19 +846,19 @@ void ACDelFM(int fd, int result)
 	lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 		WINDOW_BUTTONTYPE_OK,
 		-1, -1,
-		makeEscapeString( "\n¼Ò×åÒÑ¾­½âÉ¢ÁË£¡", buf, sizeof(buf)));
+		makeEscapeString( "\nå®¶æ—å·²ç»è§£æ•£äº†ï¼", buf, sizeof(buf)));
 
-	// ÒªÇó×îĞÂ¼Ò×åÁĞ±í
+	// è¦æ±‚æœ€æ–°å®¶æ—åˆ—è¡¨
 	saacproto_ACShowFMList_send( acfd );
 
-// won ÒÆµ½Ç°ÃæÈ¥
+// won ç§»åˆ°å‰é¢å»
 /*
 	LogFamily(
 		CHAR_getChar( meindex, CHAR_FMNAME),
 		CHAR_getInt( meindex, CHAR_FMINDEX),
 		CHAR_getChar( meindex, CHAR_NAME),
 		CHAR_getChar( meindex, CHAR_CDKEY),
-		"DELFAMILY(¼Ò×å½âÉ¢)",
+		"DELFAMILY(å®¶æ—è§£æ•£)",
 		""
 	);
 */
@@ -867,7 +867,7 @@ void ACDelFM(int fd, int result)
 	 lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 		WINDOW_BUTTONTYPE_OK,
 		-1, -1,
-		makeEscapeString( "\nÉêÇë½âÉ¢¼Ò×åÊ§°Ü£¡", buf, sizeof(buf)));
+		makeEscapeString( "\nç”³è¯·è§£æ•£å®¶æ—å¤±è´¥ï¼", buf, sizeof(buf)));
 
    CHAR_sendStatusString( meindex, "F");
 }
@@ -1099,7 +1099,7 @@ void ACShowFMMemo(int result, int index, int num, int dataindex, char *data)
    }
 }
 
-#ifdef _PERSONAL_FAME   // Arminius: ¼Ò×åÏÔ\\¸öÈËÉùÍû
+#ifdef _PERSONAL_FAME   // Arminius: å®¶æ—æ˜¾\\ä¸ªäººå£°æœ›
 void ACFMCharLogin(int fd, int result, int index, int floor, int fmdp,
 	int joinflag, int fmsetupflag, int flag, int charindex, int charfame
 	#ifdef _NEW_MANOR_LAW
@@ -1117,7 +1117,7 @@ void ACFMCharLogin(int fd, int result, int index, int floor, int fmdp,
    if (!CHAR_CHECKINDEX(meindex))	return;
    if (result == 1){
 #ifdef _NEW_MANOR_LAW
-		 // ÆøÊÆ»Ø´«Îª0Ê±Òª°ÑÈËÎïµÄÆøÊÆÉè¶¨Îª0,ÒòÎª»Ø´«ÊÇ0ÓĞ¿ÉÄÜÊÇ´òÍê×¯Ô°Õ½,ËùÒÔÆøÊÆÒª¹éÁã
+		 // æ°”åŠ¿å›ä¼ ä¸º0æ—¶è¦æŠŠäººç‰©çš„æ°”åŠ¿è®¾å®šä¸º0,å› ä¸ºå›ä¼ æ˜¯0æœ‰å¯èƒ½æ˜¯æ‰“å®Œåº„å›­æˆ˜,æ‰€ä»¥æ°”åŠ¿è¦å½’é›¶
 		 if(momentum == 0) CHAR_setInt(meindex,CHAR_MOMENTUM,0);
 		 else CHAR_setInt(meindex,CHAR_MOMENTUM,momentum);
 #endif
@@ -1171,7 +1171,7 @@ void ACFMCharLogin(int fd, int result, int index, int floor, int fmdp,
 			 lssproto_WN_send(fd, WINDOW_MESSAGETYPE_MESSAGE,
 				 WINDOW_BUTTONTYPE_OK,
 				 -1, -1,
-				 makeEscapeString("\n¼Ò×åÊØ»¤ÊŞÏûÊ§ÁË£¡\nÇëÁ¢¿ÌÔÙÑ¡¶¨Ò»Ö»ÊØ»¤ÊŞ£¬\n·ñÔò¼Ò×åÔÚÆßÌìÖ®áá»áÏûÊ§à¡£¡\n", buf, sizeof(buf)));
+				 makeEscapeString("\nå®¶æ—å®ˆæŠ¤å…½æ¶ˆå¤±äº†ï¼\nè¯·ç«‹åˆ»å†é€‰å®šä¸€åªå®ˆæŠ¤å…½ï¼Œ\nå¦åˆ™å®¶æ—åœ¨ä¸ƒå¤©ä¹‹å¾Œä¼šæ¶ˆå¤±å”·ï¼\n", buf, sizeof(buf)));
 			 saacproto_ACFixFMData_send(acfd,
 				 CHAR_getChar(meindex, CHAR_FMNAME),
 				 CHAR_getInt(meindex, CHAR_FMINDEX),
@@ -1187,7 +1187,7 @@ void ACFMCharLogin(int fd, int result, int index, int floor, int fmdp,
 		CHAR_setInt( meindex, CHAR_FMTIMELIMIT, (int)time(NULL)+(7*24)*(60*60) );
 #endif
    	   if (flag == 0)
-   		   CHAR_talkToCli(meindex, -1, "ÄãÒÑ¾­ÍË³ö¼Ò×å»ò¼Ò×åÒÑ¾­²»´æÔÚÁË£¡", CHAR_COLORYELLOW);
+   		   CHAR_talkToCli(meindex, -1, "ä½ å·²ç»é€€å‡ºå®¶æ—æˆ–å®¶æ—å·²ç»ä¸å­˜åœ¨äº†ï¼", CHAR_COLORYELLOW);
 
 	   // Robin 0928 ride bobo check
 	   if( CHAR_getInt( meindex, CHAR_RIDEPET ) != -1 )
@@ -1260,10 +1260,10 @@ void FAMILY_Detail(int fd, int meindex, char *message)
 #else
 		personfame = CHAR_getWorkInt( meindex, CHAR_WORKFMDP);
 #endif
-		sprintf( sendbuf, "ÄãÄ¿Ç°µÄ¸öÈËÉùÍûµãÊıÎª£º%d", personfame);
+		sprintf( sendbuf, "ä½ ç›®å‰çš„ä¸ªäººå£°æœ›ç‚¹æ•°ä¸ºï¼š%d", personfame);
 		CHAR_talkToCli(meindex, -1, sendbuf, CHAR_COLORYELLOW);
 #ifdef _NEW_MANOR_LAW
-//		sprintf(sendbuf,"ÄãÄ¿Ç°µÄ¸öÈËÆøÊÆµãÊıÎª£º%d",CHAR_getInt(meindex,CHAR_MOMENTUM)/100);
+//		sprintf(sendbuf,"ä½ ç›®å‰çš„ä¸ªäººæ°”åŠ¿ç‚¹æ•°ä¸ºï¼š%d",CHAR_getInt(meindex,CHAR_MOMENTUM)/100);
 //		CHAR_talkToCli(meindex, -1, sendbuf, CHAR_COLORYELLOW);
 #endif
 	}
@@ -1307,7 +1307,7 @@ void FAMILY_Detail(int fd, int meindex, char *message)
 					{
           		struct tm tm1;
 							memcpy(&tm1, localtime((time_t *)&fmpks[fmpks_pos + 1].dueltime), sizeof(tm1));
-							sprintf(tmpbuf, "%d/%d %d:%d¡¾%s¡¿ %s £ö£ó %s",
+							sprintf(tmpbuf, "%d/%d %d:%dã€%sã€‘ %s ï½–ï½“ %s",
 								tm1.tm_mon + 1, tm1.tm_mday, tm1.tm_hour, tm1.tm_min,
 								fmpks[fmpks_pos + 2].host_name,
 								fmpks[fmpks_pos + 1].guest_name,
@@ -1316,11 +1316,11 @@ void FAMILY_Detail(int fd, int meindex, char *message)
 				}
 			}
 			if (strcmp(tmpbuf, "") == 0)
-				sprintf(tmpbuf, "ÎŞÌôÕ½ÅÅ³Ì");
+				sprintf(tmpbuf, "æ— æŒ‘æˆ˜æ’ç¨‹");
 
       getStringFromIndexWithDelim(memberlist[fmindex_wk].numberlistarray[0],
 				"|",2,leadernamebuf,sizeof(leadernamebuf));
-      // sendbuf -> ¼Ò×åÃû³Æ|ÈËÊı|×å³¤Ãû³Æ|¼Ò×åÅÅĞĞ|¼Ò×åÉùÍû|¸öÈËÉùÍû|¸öÈËÖ°Î»|¼Ò×å¾«Áé|PK
+      // sendbuf -> å®¶æ—åç§°|äººæ•°|æ—é•¿åç§°|å®¶æ—æ’è¡Œ|å®¶æ—å£°æœ›|ä¸ªäººå£°æœ›|ä¸ªäººèŒä½|å®¶æ—ç²¾çµ|PK
 #ifdef _NEW_MANOR_LAW
 			sprintf( sendbuf, "%s|%d|%s|%d|%d|%d|%d|%d|%s|%d|%d",
 #else
@@ -1344,8 +1344,8 @@ void FAMILY_Detail(int fd, int meindex, char *message)
 				CHAR_getInt( meindex, CHAR_FMSPRITE ),
 				tmpbuf
 #ifdef _NEW_MANOR_LAW
-				,fmdptop.fmMomentum[h]/100	// ¼Ò×åÆøÊÆ
-				,CHAR_getInt(meindex,CHAR_MOMENTUM)/100 // ¸öÈËÆøÊÆ
+				,fmdptop.fmMomentum[h]/100	// å®¶æ—æ°”åŠ¿
+				,CHAR_getInt(meindex,CHAR_MOMENTUM)/100 // ä¸ªäººæ°”åŠ¿
 #endif
 				);
 
@@ -1438,7 +1438,7 @@ void FAMILY_CheckMember(int fd, int meindex, char *message)
 	lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 		WINDOW_BUTTONTYPE_OK,
 		-1, -1,
-		makeEscapeString( "\nÄã²»ÊÇ×å³¤£¬ËùÒÔÃ»ÓĞĞŞ¸ÄµÄÈ¨Á¦à¡£¡", buf, sizeof(buf)));
+		makeEscapeString( "\nä½ ä¸æ˜¯æ—é•¿ï¼Œæ‰€ä»¥æ²¡æœ‰ä¿®æ”¹çš„æƒåŠ›å”·ï¼", buf, sizeof(buf)));
       	return;
    }
    if (getStringFromIndexWithDelim(message, "|", 2, token,
@@ -1462,7 +1462,7 @@ void FAMILY_CheckMember(int fd, int meindex, char *message)
    {
 	// shan begin
     char sbuf[1024];
-	sprintf( sbuf, "×å³¤´úºÅ:%d -> ÈËÎïÃû³Æ:%s ÈËÎïË÷Òı (Éè¸ÃÈËÎïÎª×åÔ±):%d\n", CHAR_getInt(meindex, CHAR_FMLEADERFLAG), charname, charindex);
+	sprintf( sbuf, "æ—é•¿ä»£å·:%d -> äººç‰©åç§°:%s äººç‰©ç´¢å¼• (è®¾è¯¥äººç‰©ä¸ºæ—å‘˜):%d\n", CHAR_getInt(meindex, CHAR_FMLEADERFLAG), charname, charindex);
 	LogFamily(
 		CHAR_getChar(meindex, CHAR_FMNAME),
 		CHAR_getInt(meindex, CHAR_FMINDEX),
@@ -1506,7 +1506,7 @@ void FAMILY_CheckMember(int fd, int meindex, char *message)
       	 	lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
       	 		WINDOW_BUTTONTYPE_OK,
       	 		-1, -1,
-      	 		makeEscapeString( "\n¼Ò×åÄ¿Ç°ÕıÔÚÕ½¶·ÖĞ£¬ËùÒÔÎŞ·¨ÉóºË³ÉÔ±¡£", buf, sizeof(buf)));
+      	 		makeEscapeString( "\nå®¶æ—ç›®å‰æ­£åœ¨æˆ˜æ–—ä¸­ï¼Œæ‰€ä»¥æ— æ³•å®¡æ ¸æˆå‘˜ã€‚", buf, sizeof(buf)));
 //      	 	print("fmpks_pos:%d index:%d host:%d guest:%d\n", fmpks_pos,
 //      	 		index, fmpks[fmpks_pos].host_index, fmpks[fmpks_pos].guest_index);
       	 	return;
@@ -1516,7 +1516,7 @@ void FAMILY_CheckMember(int fd, int meindex, char *message)
 	  {
 	  // shan begin
       char sbuf[1024];
-	  sprintf( sbuf, "×å³¤´úºÅ:%d -> ÈËÎïÃû³Æ:%s ÈËÎïË÷Òı:%d (½«¸ÃÈËÎïÍË³ö¼Ò×å)\n", CHAR_getInt(meindex, CHAR_FMLEADERFLAG), charname, charindex);
+	  sprintf( sbuf, "æ—é•¿ä»£å·:%d -> äººç‰©åç§°:%s äººç‰©ç´¢å¼•:%d (å°†è¯¥äººç‰©é€€å‡ºå®¶æ—)\n", CHAR_getInt(meindex, CHAR_FMLEADERFLAG), charname, charindex);
 
 	  LogFamily(
 		  CHAR_getChar(meindex, CHAR_FMNAME),
@@ -1555,7 +1555,7 @@ void FAMILY_CheckMember(int fd, int meindex, char *message)
 	  {
 	  // shan begin
       char sbuf[1024];
-	  sprintf( sbuf, "×å³¤´úºÅ:%d -> ÈËÎïÃû³Æ:%s ÈËÎïË÷Òı:%d (Éè¸ÃÈËÎïÎª³¤ÀÏ)\n", CHAR_getInt(meindex, CHAR_FMLEADERFLAG), charname, charindex);
+	  sprintf( sbuf, "æ—é•¿ä»£å·:%d -> äººç‰©åç§°:%s äººç‰©ç´¢å¼•:%d (è®¾è¯¥äººç‰©ä¸ºé•¿è€)\n", CHAR_getInt(meindex, CHAR_FMLEADERFLAG), charname, charindex);
 	  LogFamily(
 		  CHAR_getChar(meindex, CHAR_FMNAME),
 		  CHAR_getInt(meindex, CHAR_FMINDEX),
@@ -1583,7 +1583,7 @@ void FAMILY_CheckMember(int fd, int meindex, char *message)
 #endif
    }
 #endif
-   // ÒªÇó×îĞÂ¼Ò×åÁĞ±í
+   // è¦æ±‚æœ€æ–°å®¶æ—åˆ—è¡¨
    saacproto_ACShowFMList_send( acfd );
 }
 
@@ -1601,7 +1601,7 @@ void FAMILY_Channel(int fd, int meindex, char *message)
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\nÄã»¹Ã»ÓĞ¼ÓÈëÈÎºÎ¼Ò×å£¡", buf, sizeof(buf)));
+			makeEscapeString( "\nä½ è¿˜æ²¡æœ‰åŠ å…¥ä»»ä½•å®¶æ—ï¼", buf, sizeof(buf)));
 		return;
 	}
 
@@ -1636,14 +1636,14 @@ void FAMILY_Channel(int fd, int meindex, char *message)
 				i++;
 			}
 			if( i >= FAMILY_MAXCHANNELMEMBER ) {
-				CHAR_talkToCli( meindex, -1, "´ËÆµµÀÈËÊıÒÑÂú¡£", CHAR_COLORWHITE);
+				CHAR_talkToCli( meindex, -1, "æ­¤é¢‘é“äººæ•°å·²æ»¡ã€‚", CHAR_COLORWHITE);
 				return;
 			}
-			sprintf( buf, "¼ÓÈë¼Ò×åÆµµÀ [%d]¡£", channel );
+			sprintf( buf, "åŠ å…¥å®¶æ—é¢‘é“ [%d]ã€‚", channel );
 			CHAR_talkToCli( meindex, -1, buf, CHAR_COLORWHITE);
 
 			if( nowchannel >=0 && nowchannel < FAMILY_MAXCHANNEL ) {
-				sprintf( buf, "%s ÍË³öÆµµÀ¡£", CHAR_getChar( meindex, CHAR_NAME) );
+				sprintf( buf, "%s é€€å‡ºé¢‘é“ã€‚", CHAR_getChar( meindex, CHAR_NAME) );
 				for( i=0; i < FAMILY_MAXCHANNELMEMBER; i++ ) {
 					if( CHAR_CHECKINDEX(channelMember[fmindexi][nowchannel][i])
 						&& channelMember[fmindexi][nowchannel][i] != meindex ) {
@@ -1651,7 +1651,7 @@ void FAMILY_Channel(int fd, int meindex, char *message)
 					}
 				}
 			}
-			sprintf( buf, "%s ¼ÓÈëÆµµÀ¡£", CHAR_getChar( meindex, CHAR_NAME) );
+			sprintf( buf, "%s åŠ å…¥é¢‘é“ã€‚", CHAR_getChar( meindex, CHAR_NAME) );
 			for( i=0; i < FAMILY_MAXCHANNELMEMBER; i++ ) {
 				if( CHAR_CHECKINDEX(channelMember[fmindexi][channel][i])
 					&& channelMember[fmindexi][channel][i] != meindex ) {
@@ -1671,15 +1671,15 @@ void FAMILY_Channel(int fd, int meindex, char *message)
 			}
 			if( i >= FAMILY_MAXMEMBER ) {
 #ifndef _CHANNEL_MODIFY
-				CHAR_talkToCli( meindex, -1, "´ËÆµµÀÈËÊıÒÑÂú¡£", CHAR_COLORWHITE);
+				CHAR_talkToCli( meindex, -1, "æ­¤é¢‘é“äººæ•°å·²æ»¡ã€‚", CHAR_COLORWHITE);
 #endif
 				return;
 			}
 #ifndef _CHANNEL_MODIFY
-			sprintf( buf, "¼ÓÈë¼Ò×åÆµµÀ [È«]¡£");
+			sprintf( buf, "åŠ å…¥å®¶æ—é¢‘é“ [å…¨]ã€‚");
 			CHAR_talkToCli( meindex, -1, buf, CHAR_COLORWHITE);
 			if( nowchannel >=0 && nowchannel < FAMILY_MAXCHANNEL ) {
-				sprintf( buf, "%s ÍË³öÆµµÀ¡£", CHAR_getChar( meindex, CHAR_NAME) );
+				sprintf( buf, "%s é€€å‡ºé¢‘é“ã€‚", CHAR_getChar( meindex, CHAR_NAME) );
 				for( i=0; i < FAMILY_MAXCHANNELMEMBER; i++ ) {
 					if( CHAR_CHECKINDEX(channelMember[fmindexi][nowchannel][i])
 						&& channelMember[fmindexi][nowchannel][i] != meindex ) {
@@ -1687,7 +1687,7 @@ void FAMILY_Channel(int fd, int meindex, char *message)
 					}
 				}
 			}
-			sprintf( buf, "%s ¼ÓÈëÆµµÀ¡£", CHAR_getChar( meindex, CHAR_NAME) );
+			sprintf( buf, "%s åŠ å…¥é¢‘é“ã€‚", CHAR_getChar( meindex, CHAR_NAME) );
 			for( i=0; i < FAMILY_MAXCHANNELMEMBER; i++ ) {
 				if( CHAR_CHECKINDEX(channelMember[fmindexi][channel][i])
 					&& channelMember[fmindexi][channel][i] != meindex ) {
@@ -1702,14 +1702,14 @@ void FAMILY_Channel(int fd, int meindex, char *message)
 		else if( channel == FAMILY_MAXCHANNEL && CHAR_getInt( meindex, CHAR_FMLEADERFLAG ) == 1 )
 #endif
 		{
-			CHAR_talkToCli( meindex, -1, "Æô¶¯×å³¤¹ã²¥¡£", CHAR_COLORWHITE);
+			CHAR_talkToCli( meindex, -1, "å¯åŠ¨æ—é•¿å¹¿æ’­ã€‚", CHAR_COLORWHITE);
 		}
 		else {
 			channel = -1;
 #ifndef _CHANNEL_MODIFY
-			CHAR_talkToCli( meindex, -1, "ÍË³ö¼Ò×åÆµµÀ¡£", CHAR_COLORWHITE);
+			CHAR_talkToCli( meindex, -1, "é€€å‡ºå®¶æ—é¢‘é“ã€‚", CHAR_COLORWHITE);
 #else
-			CHAR_talkToCli( meindex, -1, "¹Ø±Õ×å³¤¹ã²¥¡£", CHAR_COLORWHITE);
+			CHAR_talkToCli( meindex, -1, "å…³é—­æ—é•¿å¹¿æ’­ã€‚", CHAR_COLORWHITE);
 			channel = 0;
 			i = 0;
 			while(i < FAMILY_MAXMEMBER){
@@ -1721,7 +1721,7 @@ void FAMILY_Channel(int fd, int meindex, char *message)
 			}
 #endif
 
-			sprintf( buf, "%s ÍË³öÆµµÀ¡£", CHAR_getChar( meindex, CHAR_NAME) );
+			sprintf( buf, "%s é€€å‡ºé¢‘é“ã€‚", CHAR_getChar( meindex, CHAR_NAME) );
 			for( i=0; i < FAMILY_MAXCHANNELMEMBER; i++ ) {
 				if( CHAR_CHECKINDEX(channelMember[fmindexi][nowchannel][i])
 					&& channelMember[fmindexi][nowchannel][i] != meindex ) {
@@ -1789,7 +1789,7 @@ void FAMILY_Bank(int fd, int meindex, char *message)
 	fmindex = CHAR_getInt( meindex, CHAR_FMINDEX);
 	// add shan
 	if( fmindex <= 0 && CHAR_getInt( meindex, CHAR_BANKGOLD) < 1) {
-		CHAR_talkToCli( meindex, -1, "Äã±ØĞëÏÈ¼ÓÈë¼Ò×å¡£", CHAR_COLORWHITE);
+		CHAR_talkToCli( meindex, -1, "ä½ å¿…é¡»å…ˆåŠ å…¥å®¶æ—ã€‚", CHAR_COLORWHITE);
 		return;
 	}
 
@@ -1807,7 +1807,7 @@ void FAMILY_Bank(int fd, int meindex, char *message)
 			&&((bank + toBank) >= 0)&&((bank + toBank) <= CHAR_MAXBANKGOLDHAVE) ) {
 			// shan add
 			if( toBank > 0 && CHAR_getInt( meindex, CHAR_FMINDEX ) < 1 ) {
-				sprintf(buf, "±§Ç¸£¡ÄãÃ»ÓĞ¼ÓÈëÈÎºÎ¼Ò×å£¬ËùÒÔ½öÄÜÁìÈ¡´æ¿î");
+				sprintf(buf, "æŠ±æ­‰ï¼ä½ æ²¡æœ‰åŠ å…¥ä»»ä½•å®¶æ—ï¼Œæ‰€ä»¥ä»…èƒ½é¢†å–å­˜æ¬¾");
 				CHAR_talkToCli( meindex, -1, buf, CHAR_COLORWHITE);
 				return;
 			}
@@ -1817,15 +1817,15 @@ void FAMILY_Bank(int fd, int meindex, char *message)
 			CHAR_send_P_StatusString( meindex , CHAR_P_STRING_GOLD);
 
 			if( toBank >= 0 ) {
-				sprintf(buf, "´æÈë%dµ½¼Ò×åÒøĞĞ¸öÈËÕÊ»§¡£", toBank);
+				sprintf(buf, "å­˜å…¥%dåˆ°å®¶æ—é“¶è¡Œä¸ªäººå¸æˆ·ã€‚", toBank);
 				CHAR_talkToCli( meindex, -1, buf, CHAR_COLORWHITE);
-				// Syu ADD ĞÂÔö¼Ò×å¸öÈËÒøĞĞ´æÈ¡Log (²»º¬¼Ò×åÒøĞĞ)
+				// Syu ADD æ–°å¢å®¶æ—ä¸ªäººé“¶è¡Œå­˜å–Log (ä¸å«å®¶æ—é“¶è¡Œ)
 				LogFamilyBankStone(
 					CHAR_getChar( meindex, CHAR_NAME ),
 					CHAR_getChar( meindex, CHAR_CDKEY ),
 					toBank,
 					CHAR_getInt( meindex, CHAR_GOLD ),
-					"myBank(´æ¿î)(¼Ò×å¸öÈËÒøĞĞ)",
+					"myBank(å­˜æ¬¾)(å®¶æ—ä¸ªäººé“¶è¡Œ)",
 					CHAR_getInt( meindex,CHAR_FLOOR),
 					CHAR_getInt( meindex,CHAR_X ),
 					CHAR_getInt( meindex,CHAR_Y ),
@@ -1834,15 +1834,15 @@ void FAMILY_Bank(int fd, int meindex, char *message)
 
 			}
 			else {
-				sprintf(buf, "´Ó¼Ò×åÒøĞĞ¸öÈËÕÊ»§È¡³ö%d¡£", -toBank);
+				sprintf(buf, "ä»å®¶æ—é“¶è¡Œä¸ªäººå¸æˆ·å–å‡º%dã€‚", -toBank);
 				CHAR_talkToCli( meindex, -1, buf, CHAR_COLORWHITE);
-				// Syu ADD ĞÂÔö¼Ò×å¸öÈËÒøĞĞ´æÈ¡Log (²»º¬¼Ò×åÒøĞĞ)
+				// Syu ADD æ–°å¢å®¶æ—ä¸ªäººé“¶è¡Œå­˜å–Log (ä¸å«å®¶æ—é“¶è¡Œ)
 				LogFamilyBankStone(
 					CHAR_getChar( meindex, CHAR_NAME ),
 					CHAR_getChar( meindex, CHAR_CDKEY ),
 					toBank,
 					CHAR_getInt( meindex, CHAR_GOLD ),
-					"myBank(Ìá¿î)(¼Ò×å¸öÈËÒøĞĞ)",
+					"myBank(ææ¬¾)(å®¶æ—ä¸ªäººé“¶è¡Œ)",
 					CHAR_getInt( meindex,CHAR_FLOOR),
 					CHAR_getInt( meindex,CHAR_X ),
 					CHAR_getInt( meindex,CHAR_Y ),
@@ -1850,14 +1850,14 @@ void FAMILY_Bank(int fd, int meindex, char *message)
 					);
 
 			}
-			// Syu ADD ĞÂÔö¼Ò×å¸öÈËÒøĞĞ´æÈ¡Log (²»º¬¼Ò×åÒøĞĞ)
+			// Syu ADD æ–°å¢å®¶æ—ä¸ªäººé“¶è¡Œå­˜å–Log (ä¸å«å®¶æ—é“¶è¡Œ)
 			LogStone(
 				-1,
-				CHAR_getChar( meindex, CHAR_NAME ), /* Æ½ÅÒ·Â   */
-				CHAR_getChar( meindex, CHAR_CDKEY ), /* ½»¡õ°Ç¡õID */
-				-toBank,                                 /* àÅº° */
+				CHAR_getChar( meindex, CHAR_NAME ), /* å¹³ä¹“ä»¿   */
+				CHAR_getChar( meindex, CHAR_CDKEY ), /* äº¤â–¡æ‰’â–¡ID */
+				-toBank,                                 /* å—¯å–Š */
 				CHAR_getInt( meindex, CHAR_GOLD ),
-				"myBank(¼Ò×å¸öÈËÒøĞĞ)",
+				"myBank(å®¶æ—ä¸ªäººé“¶è¡Œ)",
 				CHAR_getInt( meindex,CHAR_FLOOR),
 				CHAR_getInt( meindex,CHAR_X ),
 				CHAR_getInt( meindex,CHAR_Y )
@@ -1890,21 +1890,21 @@ void FAMILY_Bank(int fd, int meindex, char *message)
 		FMindex = CHAR_getWorkInt( meindex, CHAR_WORKFMINDEXI );
 		mygold = CHAR_getInt( meindex, CHAR_GOLD);
 		if( mygold < 0 || mygold > MaxGold || toTax == 0 )	return;
-		if( toTax > 0 )	{//+´æ¿î
+		if( toTax > 0 )	{//+å­˜æ¬¾
 			if( ((mygold-toTax) < 0) || (familyTax[ FMindex] + toTax) > CHAR_MAXFMBANKGOLDHAVE )	{
 				return;
 			}
-		}else if( toTax < 0 ){ //-È¡¿î
+		}else if( toTax < 0 ){ //-å–æ¬¾
 			if( ((mygold-toTax)>MaxGold) || (familyTax[ FMindex] + toTax) < 0 )	{
 				return;
 			}
 		}
 
 
-		if( toTax>0 ) {	//´æ¿îÔ¤ÏÈ¿Û¿î
+		if( toTax>0 ) {	//å­˜æ¬¾é¢„å…ˆæ‰£æ¬¾
 			CHAR_setInt( meindex, CHAR_GOLD, CHAR_getInt( meindex, CHAR_GOLD)-toTax );
 		}
-		sprintf( buf, "¼Ò×åÒøĞĞ%s´¦ÀíÖĞ....", (toTax>0)?"´æ¿î":"È¡¿î");
+		sprintf( buf, "å®¶æ—é“¶è¡Œ%så¤„ç†ä¸­....", (toTax>0)?"å­˜æ¬¾":"å–æ¬¾");
 		CHAR_talkToCli( meindex , -1, buf, CHAR_COLORYELLOW);
 
 		CHAR_send_P_StatusString( meindex , CHAR_P_STRING_GOLD);
@@ -1931,7 +1931,7 @@ void ACFMPointList(int ret, char *data)
 }
 
 
-#ifdef _CK_ONLINE_PLAYER_COUNT    // WON ADD ¼ÆËãÏßÉÏÈËÊı
+#ifdef _CK_ONLINE_PLAYER_COUNT    // WON ADD è®¡ç®—çº¿ä¸Šäººæ•°
 void GS_SEND_PLAYER_COUNT(void)
 {
 	int i, count = 0;
@@ -1970,7 +1970,7 @@ void FAMILY_SetPoint(int fd, int meindex, char *message)
 	lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 		WINDOW_BUTTONTYPE_OK,
 		-1, -1,
-		makeEscapeString( "\nÄã²»ÊÇ×å³¤£¬ËùÒÔÃ»ÓĞĞŞ¸ÄµÄÈ¨Á¦à¡£¡", buf, sizeof(buf)));
+		makeEscapeString( "\nä½ ä¸æ˜¯æ—é•¿ï¼Œæ‰€ä»¥æ²¡æœ‰ä¿®æ”¹çš„æƒåŠ›å”·ï¼", buf, sizeof(buf)));
       	return;
    }
    fmdp = CHAR_getWorkInt(meindex, CHAR_WORKFMDP);
@@ -1987,11 +1987,11 @@ void FAMILY_SetPoint(int fd, int meindex, char *message)
 			break;
 		}
 	}
-   if ((fmlevel < MINFMLEVLEFORPOINT) || (fmdptop.fmtopdp[iFmIndex]<30000)){//3W¼Ò×åÉùÍû or ÈËÊıĞ¡ì¶30ÈË
+   if ((fmlevel < MINFMLEVLEFORPOINT) || (fmdptop.fmtopdp[iFmIndex]<30000)){//3Wå®¶æ—å£°æœ› or äººæ•°å°æ–¼30äºº
 	lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 		WINDOW_BUTTONTYPE_OK,
 		-1, -1,
-		makeEscapeString( "\n¼Ò×åµÈ¼¶ÉĞÎ´µ½´ïÉêÇë¼Ò×å¾İµãµÄÌõ¼ş£¡", buf, sizeof(buf)));
+		makeEscapeString( "\nå®¶æ—ç­‰çº§å°šæœªåˆ°è¾¾ç”³è¯·å®¶æ—æ®ç‚¹çš„æ¡ä»¶ï¼", buf, sizeof(buf)));
       	return;
    }
 #endif
@@ -2001,7 +2001,7 @@ void FAMILY_SetPoint(int fd, int meindex, char *message)
    	   && ((fmpks[i * MAX_SCHEDULE + 1].flag = FMPKS_FLAG_MANOR_BATTLEBEGIN)
    	   	|| (fmpks[i * MAX_SCHEDULE + 1].flag == FMPKS_FLAG_MANOR_PREPARE))){
    		char	tmpbuf[256];
-   		sprintf(tmpbuf, "\nÄã¸ú%sÒÑ¾­ÓĞÔ¤Ô¼×¯Ô°Õù¶áÈüÁË¡«\nÎŞ·¨ÔÙÉêÇë×¯Ô°ÁËà¸£¡",
+   		sprintf(tmpbuf, "\nä½ è·Ÿ%så·²ç»æœ‰é¢„çº¦åº„å›­äº‰å¤ºèµ›äº†ï½\næ— æ³•å†ç”³è¯·åº„å›­äº†å–”ï¼",
    			fmpks[i * MAX_SCHEDULE + 1].host_name);
    		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
    			WINDOW_BUTTONTYPE_OK,
@@ -2048,18 +2048,18 @@ void ACSetFMPoint(int ret, int r, int clifd)
          return;
    if (ret == 0){
    		if (r == -1)
-   			sprintf(message, "ÉêÇë¼Ò×åÊ§°Ü£¡");
+   			sprintf(message, "ç”³è¯·å®¶æ—å¤±è´¥ï¼");
    		else if (r == -2)
-   			sprintf(message, "ÄãÒÑ¾­ÓĞ¼Ò×å¾İµãÁË¡«²»µÃÖØ¸´ÉêÇë£¡");
+   			sprintf(message, "ä½ å·²ç»æœ‰å®¶æ—æ®ç‚¹äº†ï½ä¸å¾—é‡å¤ç”³è¯·ï¼");
    		else if (r == -3)
-   			sprintf(message, "ÉĞÎ´µ½´ïÉêÇë¼Ò×å¾İµãµÄ×Ê¸ñ£¡");
+   			sprintf(message, "å°šæœªåˆ°è¾¾ç”³è¯·å®¶æ—æ®ç‚¹çš„èµ„æ ¼ï¼");
    		else if (r == -4)
-   			sprintf(message, "¼Ò×å¾İµãÒÑ¾­ÓĞ¼Ò×åÔÚÊ¹ÓÃÖĞÂŞ£¡");
+   			sprintf(message, "å®¶æ—æ®ç‚¹å·²ç»æœ‰å®¶æ—åœ¨ä½¿ç”¨ä¸­ç½—ï¼");
    		else if (r == -5)
-   			sprintf(message, "ÄúµÄ¼Ò×åÈËÊıÎ´´ïÉêÇë±ê×¼à¡£¡");
+   			sprintf(message, "æ‚¨çš„å®¶æ—äººæ•°æœªè¾¾ç”³è¯·æ ‡å‡†å”·ï¼");
    }
    else if (ret == 1)
-	sprintf(message, "ÉêÇë¼Ò×å¾İµã£Ï£Ë£¡");
+	sprintf(message, "ç”³è¯·å®¶æ—æ®ç‚¹ï¼¯ï¼«ï¼");
 
    lssproto_WN_send( clifd, WINDOW_MESSAGETYPE_MESSAGE,
    	WINDOW_BUTTONTYPE_OK,
@@ -2070,7 +2070,7 @@ void ACSetFMPoint(int ret, int r, int clifd)
 void ACFMAnnounce(int ret, char *fmname, int fmindex, int index,
 	int kindflag, char *data, int color)
 {
-   // kindflag 1:×å³¤¹ã²¥ 2:ÏµÍ³¹«¸æ¼Ò×å±»É¾³ı 3:ÏµÍ³Í¨ÖªÑ¶Ï¢
+   // kindflag 1:æ—é•¿å¹¿æ’­ 2:ç³»ç»Ÿå…¬å‘Šå®¶æ—è¢«åˆ é™¤ 3:ç³»ç»Ÿé€šçŸ¥è®¯æ¯
    int i, chindex;
    if( ret != 1 )	return;
 //   print("fmname:%s fmindex:%d index:%d kindflag:%d data:%s color:%d\n",
@@ -2098,7 +2098,7 @@ void ACFMAnnounce(int ret, char *fmname, int fmindex, int index,
                int fd = getfdFromCharaIndex( chindex );
                if (fd == -1)	return;
                SetFMVarInit( chindex );
-               CHAR_talkToCli( chindex , -1, "ÓÉì¶ÄúµÄ¼Ò×åÔÚÆßÌìÖ®ÄÚÃ»ÓĞÕÙÊÕµ½£±£°Ãû¼Ò×å³ÉÔ±£¬ËùÒÔ±»ÆÈ½âÉ¢ÁË£¡",
+               CHAR_talkToCli( chindex , -1, "ç”±æ–¼æ‚¨çš„å®¶æ—åœ¨ä¸ƒå¤©ä¹‹å†…æ²¡æœ‰å¬æ”¶åˆ°ï¼‘ï¼åå®¶æ—æˆå‘˜ï¼Œæ‰€ä»¥è¢«è¿«è§£æ•£äº†ï¼",
                		CHAR_COLORRED);
             }
          }
@@ -2158,7 +2158,7 @@ void FAMILY_SetAcceptFlag(int fd, int meindex, char *message)
 	lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 		WINDOW_BUTTONTYPE_OK,
 		-1, -1,
-		makeEscapeString( "\nÄã²»ÊÇ×å³¤£¬ËùÒÔÃ»ÓĞĞŞ¸ÄµÄÈ¨Á¦à¡£¡", buf, sizeof(buf)));
+		makeEscapeString( "\nä½ ä¸æ˜¯æ—é•¿ï¼Œæ‰€ä»¥æ²¡æœ‰ä¿®æ”¹çš„æƒåŠ›å”·ï¼", buf, sizeof(buf)));
       	return;
    }
 
@@ -2194,7 +2194,7 @@ void FAMILY_FixRule( int fd, int meindex, char* message )
 	lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 		WINDOW_BUTTONTYPE_OK,
 		-1, -1,
-		makeEscapeString( "\nÄã²»ÊÇ×å³¤£¬ËùÒÔÃ»ÓĞĞŞ¸ÄµÄÈ¨Á¦à¡£¡", buf, sizeof(buf)));
+		makeEscapeString( "\nä½ ä¸æ˜¯æ—é•¿ï¼Œæ‰€ä»¥æ²¡æœ‰ä¿®æ”¹çš„æƒåŠ›å”·ï¼", buf, sizeof(buf)));
       	return;
    }
 
@@ -2211,7 +2211,7 @@ void FAMILY_FixRule( int fd, int meindex, char* message )
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\n¼Ò×åÖ÷Ö¼²»¿ÉÎª¿Õ°×à¡£¡", buf, sizeof(buf)));
+			makeEscapeString( "\nå®¶æ—ä¸»æ—¨ä¸å¯ä¸ºç©ºç™½å”·ï¼", buf, sizeof(buf)));
 	      	return;
 	   }
 
@@ -2229,7 +2229,7 @@ void FAMILY_FixRule( int fd, int meindex, char* message )
 	   int havepetindex, petindex, i;
 	   char petname[20], petattr[512];
 
-	   // ¼ì²éÊÇ·ñÒÑÓĞÊØ»¤ÊŞ
+	   // æ£€æŸ¥æ˜¯å¦å·²æœ‰å®ˆæŠ¤å…½
 	   for( i =0; i< CHAR_MAXPETHAVE; i++ )
 	   {
 	   	int petindex = CHAR_getCharPet(meindex, i);
@@ -2239,11 +2239,11 @@ void FAMILY_FixRule( int fd, int meindex, char* message )
 			lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 				WINDOW_BUTTONTYPE_OK,
 				-1, -1,
-				makeEscapeString( "\nÔ­±¾µÄÊØ»¤ÊŞ»¹ÔÚà¡¡£", buf, sizeof(buf)));
+				makeEscapeString( "\nåŸæœ¬çš„å®ˆæŠ¤å…½è¿˜åœ¨å”·ã€‚", buf, sizeof(buf)));
 		      	return;
 	   	}
 	   }
-	   // ¼ì²éÊÇ·ñÒÑÓĞÊØ»¤ÊŞ(¼Ä³è)
+	   // æ£€æŸ¥æ˜¯å¦å·²æœ‰å®ˆæŠ¤å…½(å¯„å® )
 	   for( i =0; i< CHAR_MAXPOOLPETHAVE; i++ )
 	   {
 	   	int petindex = CHAR_getCharPoolPet(meindex, i);
@@ -2253,7 +2253,7 @@ void FAMILY_FixRule( int fd, int meindex, char* message )
 			lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 				WINDOW_BUTTONTYPE_OK,
 				-1, -1,
-				makeEscapeString( "\nÔ­±¾µÄÊØ»¤ÊŞ»¹ÔÚà¡¡£", buf, sizeof(buf)));
+				makeEscapeString( "\nåŸæœ¬çš„å®ˆæŠ¤å…½è¿˜åœ¨å”·ã€‚", buf, sizeof(buf)));
 		      	return;
 	   	}
 	   }
@@ -2305,7 +2305,7 @@ void JoinMemberIndex( int meindex, int fmindexi )
 	}
 #ifdef _CHANNEL_MODIFY
 	i = 0;
-	// ÏÈÇåµô¾ÉµÄÆµµÀ¼ÇÂ¼
+	// å…ˆæ¸…æ‰æ—§çš„é¢‘é“è®°å½•
 	while(i < FAMILY_MAXMEMBER){
 	 if(channelMember[fmindexi][0][i] == meindex){
 		 channelMember[fmindexi][0][i] = -1;
@@ -2313,7 +2313,7 @@ void JoinMemberIndex( int meindex, int fmindexi )
 	 i++;
 	}
 	i = 0;
-	// ¼ÓÈëÆµµÀ
+	// åŠ å…¥é¢‘é“
 	while(i < FAMILY_MAXMEMBER){
 	 if(channelMember[fmindexi][0][i] == -1){
 		 channelMember[fmindexi][0][i] = meindex;
@@ -2334,7 +2334,7 @@ void LeaveMemberIndex( int meindex, int fmindexi )
   }
 #ifdef _CHANNEL_MODIFY
 	i = 0;
-	// Çåµô¾ÉµÄÆµµÀ¼ÇÂ¼
+	// æ¸…æ‰æ—§çš„é¢‘é“è®°å½•
 	while(i < FAMILY_MAXMEMBER){
 	 if(channelMember[fmindexi][0][i] == meindex){
 		 channelMember[fmindexi][0][i] = -1;
@@ -2355,13 +2355,13 @@ void FAMILY_RidePet( int fd, int meindex, char* message )
 #endif
 	if (!CHAR_CHECKINDEX(meindex))return;
 
-	// Robin fix Õ½¶·ÖĞ²»¿ÉÆï
+	// Robin fix æˆ˜æ–—ä¸­ä¸å¯éª‘
 	if( CHAR_getWorkInt( meindex, CHAR_WORKBATTLEMODE) != BATTLE_CHARMODE_NONE )	return;
 
 #ifdef _PETSKILL_BECOMEPIG
-    if( CHAR_getInt( meindex, CHAR_BECOMEPIG) > -1 ){ //´¦ì¶ÎÚÁ¦»¯×´Ì¬
+    if( CHAR_getInt( meindex, CHAR_BECOMEPIG) > -1 ){ //å¤„æ–¼ä¹ŒåŠ›åŒ–çŠ¶æ€
 	    CHAR_setInt( meindex, CHAR_RIDEPET, -1 );
-		//³èÎïÑ¡ÏîµÄ×´Ì¬ÒÀÈ»Îª"Æï³Ë",ÕâÀïĞŞÕı¹ıÀ´
+		//å® ç‰©é€‰é¡¹çš„çŠ¶æ€ä¾ç„¶ä¸º"éª‘ä¹˜",è¿™é‡Œä¿®æ­£è¿‡æ¥
 		CHAR_complianceParameter( meindex );
 		CHAR_send_P_StatusString( meindex, CHAR_P_STRING_RIDEPET);
 		return;
@@ -2385,7 +2385,7 @@ void FAMILY_RidePet( int fd, int meindex, char* message )
 			if( CHAR_getInt( meindex, CHAR_LEARNRIDE) < CHAR_getInt( petindex, CHAR_LV )  ) return;
 			if( CHAR_getWorkInt( petindex, CHAR_WORKFIXAI ) < 100 )return;
 			if( CHAR_getInt( meindex, CHAR_LV)+5 < CHAR_getInt( petindex, CHAR_LV )  ) return;
-				//ÅĞ¶ÏÊÇ·ñ2×ª³è
+				//åˆ¤æ–­æ˜¯å¦2è½¬å® 
 #ifdef _PET_2TRANS
 			if( CHAR_getInt( petindex, CHAR_TRANSMIGRATION) > 1 && !getridets()) return;
 #endif
@@ -2486,7 +2486,7 @@ void FAMILY_RidePet( int fd, int meindex, char* message )
 				CHAR_send_P_StatusString( meindex, CHAR_P_STRING_RIDEPET );
 			}else
 				return;
-		}else    {	//»¹Ô­ÈËÎï basebaseimage
+		}else    {	//è¿˜åŸäººç‰© basebaseimage
 			CHAR_setInt( meindex , CHAR_RIDEPET, -1 );
 			CHAR_setInt( meindex , CHAR_BASEIMAGENUMBER , CHAR_getInt( meindex , CHAR_BASEBASEIMAGENUMBER) );
 			CHAR_complianceParameter( meindex );
@@ -2502,8 +2502,8 @@ void ACFixFMPK(int winindex, int loseindex, int data)
    int i = 0, charindex = 0;
    char msg1[256], msg2[256];
 
-   sprintf(msg1, "¹§Ï²Äú£¡¼Ò×åÉùÍûÌá¸ßÁË%8dµã£¡", (data / 100));
-   sprintf(msg2, "¼Ò×åÉùÍû¼õÉÙÁË%8dµã£¡", (data / 100));
+   sprintf(msg1, "æ­å–œæ‚¨ï¼å®¶æ—å£°æœ›æé«˜äº†%8dç‚¹ï¼", (data / 100));
+   sprintf(msg2, "å®¶æ—å£°æœ›å‡å°‘äº†%8dç‚¹ï¼", (data / 100));
    for (i = 0; i < FAMILY_MAXMEMBER; i++)
    {
       charindex = familyMemberIndex[winindex][i];
@@ -2532,7 +2532,7 @@ void getNewFMList()
 //int     familyMemberIndex[FAMILY_MAXNUM][FAMILY_MAXMEMBER];
 
 
-#ifdef _DEATH_FAMILY_GM_COMMAND	// WON ADD ¼Ò×åÕ½GMÖ¸Áî
+#ifdef _DEATH_FAMILY_GM_COMMAND	// WON ADD å®¶æ—æˆ˜GMæŒ‡ä»¤
 int get_fm_leader_index( int fm1 )
 {
 	int charindex = -1;
@@ -2609,7 +2609,7 @@ void FAMILY_LeaderFunc( int fd, int meindex, char *message )
 	lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 		WINDOW_BUTTONTYPE_OK,
 		-1, -1,
-		makeEscapeString( "Äã»¹Î´¼ÓÈë¼Ò×å£¬ËùÒÔ²»ÄÜÊ¹ÓÃà¡£¡", buf, sizeof(buf) ));
+		makeEscapeString( "ä½ è¿˜æœªåŠ å…¥å®¶æ—ï¼Œæ‰€ä»¥ä¸èƒ½ä½¿ç”¨å”·ï¼", buf, sizeof(buf) ));
       	return;
    }
 
@@ -2636,7 +2636,7 @@ void FAMILY_LeaderFunc( int fd, int meindex, char *message )
        }
        saacproto_ACShowMemberList_send( acfd, fmindex_wk);
 
-       sprintf( sendbuf, "               ¡º×å ³¤ Ğè Öª¡»\nÇëĞ¡ĞÄ´¦Àí×åÔ±µÄ×ÊÁÏ£¬Ò»¾­ĞŞ¸Äáá¾ÍÎŞ·¨»Ø¸´Ô­Ì¬£¬¾´ÇëĞ¡ĞÄ¡£");
+       sprintf( sendbuf, "               ã€æ— é•¿ éœ€ çŸ¥ã€\nè¯·å°å¿ƒå¤„ç†æ—å‘˜çš„èµ„æ–™ï¼Œä¸€ç»ä¿®æ”¹å¾Œå°±æ— æ³•å›å¤åŸæ€ï¼Œæ•¬è¯·å°å¿ƒã€‚");
 
        lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 	                 WINDOW_BUTTONTYPE_OK,
@@ -2688,7 +2688,7 @@ void FAMILY_LeaderFunc( int fd, int meindex, char *message )
 				case 9:
 					letterNo = 20233; break;
 #endif
-#ifdef _FIX_10_FMPOINT			//±ù×¯ÑûÇëº¯
+#ifdef _FIX_10_FMPOINT			//å†°åº„é‚€è¯·å‡½
 				case 10:
 					letterNo = 20768; break;
 #endif
@@ -2716,7 +2716,7 @@ void FAMILY_LeaderFunc( int fd, int meindex, char *message )
 				case 9:
 					letterNo = 20228; break;
 #endif
-#ifdef _FIX_10_FMPOINT			//±ù×¯Æï³èÖ¤
+#ifdef _FIX_10_FMPOINT			//å†°åº„éª‘å® è¯
 				case 10:
 					letterNo = 20766; break;
 #endif
@@ -2729,7 +2729,7 @@ void FAMILY_LeaderFunc( int fd, int meindex, char *message )
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString("\nÖ»ÓĞÓµÓĞ×¯Ô°µÄ×å³¤£¬²ÅÄÜÖÆ×÷à¡£¡", buf, sizeof(buf)));
+			makeEscapeString("\nåªæœ‰æ‹¥æœ‰åº„å›­çš„æ—é•¿ï¼Œæ‰èƒ½åˆ¶ä½œå”·ï¼", buf, sizeof(buf)));
       		return;
 	}
 	else {
@@ -2738,7 +2738,7 @@ void FAMILY_LeaderFunc( int fd, int meindex, char *message )
 
 		if( itemindex == -1 )	return;
 		if( emptyitemindexinchara < 0 ) {
-			CHAR_talkToCli( meindex, -1, "µÀ¾ßÀ¸ÒÑÂú¡£", CHAR_COLORWHITE);
+			CHAR_talkToCli( meindex, -1, "é“å…·æ å·²æ»¡ã€‚", CHAR_COLORWHITE);
 			return;
 		}
 
@@ -2746,7 +2746,7 @@ void FAMILY_LeaderFunc( int fd, int meindex, char *message )
 		ITEM_setWorkInt( itemindex, ITEM_WORKOBJINDEX,-1);
 		ITEM_setWorkInt( itemindex, ITEM_WORKCHARAINDEX, meindex);
 		CHAR_sendItemDataOne( meindex, emptyitemindexinchara);
-		snprintf( buf, sizeof( buf), "ÖÆ×÷%s³É¹¦\¡£",
+		snprintf( buf, sizeof( buf), "åˆ¶ä½œ%sæˆåŠŸ\ã€‚",
 			ITEM_getChar( itemindex, ITEM_NAME));
 		CHAR_talkToCli( meindex, -1, buf, CHAR_COLORWHITE);
 	}
@@ -2763,7 +2763,7 @@ void FAMILY_LeaderFunc( int fd, int meindex, char *message )
 
 	fmindexi = CHAR_getWorkInt( meindex, CHAR_WORKFMINDEXI );
 
-	// ÒªÇó×å³¤ºòÑ¡ÈËÁĞ±í
+	// è¦æ±‚æ—é•¿å€™é€‰äººåˆ—è¡¨
 	if( strcmp( token2, "L") == 0 ){
 		char subsub[128];
 
@@ -2799,7 +2799,7 @@ void FAMILY_LeaderFunc( int fd, int meindex, char *message )
 			sendbuf );
 
 	}
-	// Ñ¯ÎÊ×å³¤ºòÑ¡ÈËÊÇ·ñÔ¸Òâ½ÓÊÜ
+	// è¯¢é—®æ—é•¿å€™é€‰äººæ˜¯å¦æ„¿æ„æ¥å—
 	if( strcmp( token2, "Q") == 0 )
 	{
 		char token3[64], token4[64];
@@ -2823,7 +2823,7 @@ void FAMILY_LeaderFunc( int fd, int meindex, char *message )
 		if( strcmp( token4, CHAR_getChar( toindex, CHAR_NAME)) != 0 )	return;
 		if( CheckLeaderQ(toindex) < 0 )	return;
 
-		// Ë«·½¶¼¾ö¶¨ÈÃÎ»Ê±£¬CHAR_WORKLEADERCHANGE´æ·Å¶Ô·½µÄcharaindex
+		// åŒæ–¹éƒ½å†³å®šè®©ä½æ—¶ï¼ŒCHAR_WORKLEADERCHANGEå­˜æ”¾å¯¹æ–¹çš„charaindex
 		CHAR_setWorkInt( toindex, CHAR_WORKLEADERCHANGE, meindex);
 		CHAR_setWorkInt( meindex, CHAR_WORKLEADERCHANGE, toindex);
 
@@ -2835,7 +2835,7 @@ void FAMILY_LeaderFunc( int fd, int meindex, char *message )
 			sendbuf );
 
 	}
-	// ºòÑ¡ÈËµÄ´ğ¸²
+	// å€™é€‰äººçš„ç­”è¦†
 	if( strcmp( token2, "A") == 0 )
 	{
 		int leaderindex, answerflag;
@@ -2858,7 +2858,7 @@ void FAMILY_LeaderFunc( int fd, int meindex, char *message )
 
 		leaderindex = atoi( token4 );
 
-		// ¼ì²éË«·½µÄCHAR_WORKLEADERCHANGEÊÇ·ñÏà·û
+		// æ£€æŸ¥åŒæ–¹çš„CHAR_WORKLEADERCHANGEæ˜¯å¦ç›¸ç¬¦
 		if( CHAR_getWorkInt( meindex, CHAR_WORKLEADERCHANGE ) != leaderindex )	return;
 		if( !CHAR_CHECKINDEX(leaderindex) )	return;
 		if( strcmp( leadername, CHAR_getChar( leaderindex, CHAR_NAME) ) != 0 )	return;
@@ -2878,7 +2878,7 @@ void FAMILY_LeaderFunc( int fd, int meindex, char *message )
 			lssproto_WN_send( CHAR_getWorkInt( leaderindex, CHAR_WORKFD) , WINDOW_MESSAGETYPE_MESSAGE,
 				WINDOW_BUTTONTYPE_OK,
 				-1, -1,
-				makeEscapeString( "\n¶Ô²»Æğ£¡¶Ô·½²»Ô¸Òâ½ÓÊÜ£¡", buf, sizeof(buf)) );
+				makeEscapeString( "\nå¯¹ä¸èµ·ï¼å¯¹æ–¹ä¸æ„¿æ„æ¥å—ï¼", buf, sizeof(buf)) );
 		   	return;
 		}
 
@@ -2920,8 +2920,8 @@ void ACFMJob( int fd, int ret, char* data1, char* data2 )
         	CHAR_setWorkInt( leaderindex, CHAR_WORKLEADERCHANGE, 0 );
 
         	if( ret == 0 ){
-        		CHAR_talkToCli( charaindex, -1, "×å³¤ÈÃÎ»Ê§°Ü£¡", CHAR_COLORYELLOW );
-        		CHAR_talkToCli( leaderindex, -1, "×å³¤ÈÃÎ»Ê§°Ü£¡", CHAR_COLORYELLOW );
+        		CHAR_talkToCli( charaindex, -1, "æ—é•¿è®©ä½å¤±è´¥ï¼", CHAR_COLORYELLOW );
+        		CHAR_talkToCli( leaderindex, -1, "æ—é•¿è®©ä½å¤±è´¥ï¼", CHAR_COLORYELLOW );
 	        	return;
 	        }
 
@@ -2940,7 +2940,7 @@ void ACFMJob( int fd, int ret, char* data1, char* data2 )
 				CHAR_getInt(charaindex, CHAR_FMINDEX),
 				CHAR_getChar(charaindex, CHAR_NAME),
 				CHAR_getChar(charaindex, CHAR_CDKEY),
-				"LEADERCHANGE_ERROR(×å³¤ÈÃÎ»Ê§°Ü)",
+				"LEADERCHANGE_ERROR(æ—é•¿è®©ä½å¤±è´¥)",
 				buf
 			);
 			return;
@@ -2956,9 +2956,9 @@ void ACFMJob( int fd, int ret, char* data1, char* data2 )
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
-			makeEscapeString( "\n¹§Ï²Äã£¡ÄãÒÑ¾­ÊÇĞÂÈÎµÄ×å³¤ÁË¡£\nÇëºÃºÃµÄÅ¬Á¦°É£¡\n¶ÔÁË¡«¼ÇµÃÇëÏÈµ½´å³¤¼ÒµÄ¼Ò×å¹ÜÀíÔ±Ñ¡Ôñ\nĞÂµÄ¼Ò×åÊØ»¤ÊŞ£¬·ñÔò¼Ò×å½«»á±»½âÉ¢à¡£¡", buf, sizeof(buf)));
+			makeEscapeString( "\næ­å–œä½ ï¼ä½ å·²ç»æ˜¯æ–°ä»»çš„æ—é•¿äº†ã€‚\nè¯·å¥½å¥½çš„åŠªåŠ›å§ï¼\nå¯¹äº†ï½è®°å¾—è¯·å…ˆåˆ°æ‘é•¿å®¶çš„å®¶æ—ç®¡ç†å‘˜é€‰æ‹©\næ–°çš„å®¶æ—å®ˆæŠ¤å…½ï¼Œå¦åˆ™å®¶æ—å°†ä¼šè¢«è§£æ•£å”·ï¼", buf, sizeof(buf)));
 
-		sprintf( buf2, "\nĞÁ¿àÄãÁË£¡ÄãÒÑ¾­½«×å³¤µÄÎ»×Ó½»¸ø%sÁË¡£", CHAR_getChar( charaindex, CHAR_NAME) );
+		sprintf( buf2, "\nè¾›è‹¦ä½ äº†ï¼ä½ å·²ç»å°†æ—é•¿çš„ä½å­äº¤ç»™%säº†ã€‚", CHAR_getChar( charaindex, CHAR_NAME) );
 		lssproto_WN_send( CHAR_getWorkInt( leaderindex, CHAR_WORKFD) , WINDOW_MESSAGETYPE_MESSAGE,
 			WINDOW_BUTTONTYPE_OK,
 			-1, -1,
@@ -2977,7 +2977,7 @@ void ACFMJob( int fd, int ret, char* data1, char* data2 )
 			CHAR_getInt(charaindex, CHAR_FMINDEX),
 			CHAR_getChar(charaindex, CHAR_NAME),
 			CHAR_getChar(charaindex, CHAR_CDKEY),
-			"LEADERCHANGE(×å³¤ÈÃÎ»)",
+			"LEADERCHANGE(æ—é•¿è®©ä½)",
 			buf
 		);
 
@@ -2986,7 +2986,7 @@ void ACFMJob( int fd, int ret, char* data1, char* data2 )
 }
 
 
-#ifdef _DEATH_FAMILY_GM_COMMAND	// WON ADD ¼Ò×åÕ½GMÖ¸Áî
+#ifdef _DEATH_FAMILY_GM_COMMAND	// WON ADD å®¶æ—æˆ˜GMæŒ‡ä»¤
 
 FM_PK_STRUCT	fm_pk_struct;
 

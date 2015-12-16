@@ -15,14 +15,14 @@ void NPC_PrintpassmanTalked( int meindex , int talkerindex , char *msg ,int colo
 #if 0
 typedef struct roomadmin_tag
 {
-    int index;              /*   ºĞ¼°index */
+    int index;              /*   ç›’åŠindex */
 
-    char doorname[256];     /* ¹«¼°  ºĞ¼°ÓñÊ§¼°  ó¡ */
+    char doorname[256];     /* å…¬åŠ  ç›’åŠç‰å¤±åŠ  èŸ† */
     char explanation[256];  /*      */
-    char passwd[256];       /* ÓÉµ©·¥¡õÓñ */
-    int expire_time_mod;    /* ŞËÇÂ */
-    time_t expire_time;     /* Óåò×å©Ä¾¼°ÁİÃŞ */
-    int least_cost;         /*   ìµàÅº° */
+    char passwd[256];       /* ç”±æ—¦ä¼â–¡ç‰ */
+    int expire_time_mod;    /* åŒé”¹ */
+    time_t expire_time;     /* æ¸èœƒæ¿ æœ¨åŠå‡›æ£‰ */
+    int least_cost;         /*   æ–“å—¯å–Š */
 
 }NPC_ROOMINFO;
 #endif
@@ -35,11 +35,11 @@ typedef struct npc_roomadminnew_tag {
 }NPC_ROOMINFO;
 
 typedef struct npc_roomadminnew_ranking_tag {
-	int		gold;				/*   Ú¿àÅº° */
-	int		biddate;			/*   Ú¿ÁİÃŞ */
-	char	cdkey[CDKEYLEN];	/*   ÎçØÆĞ×ÚĞ¼°    Æ½¡õ */
-	char	charaname[32];		/*   ÎçØÆĞ×ÚĞ¼°  ó¡ */
-	char	owntitle[32];		/* ±¹Ä¯*/
+	int		gold;				/*   è¯³å—¯å–Š */
+	int		biddate;			/*   è¯³å‡›æ£‰ */
+	char	cdkey[CDKEYLEN];	/*   åˆä»„å‡¶è°›åŠ    å¹³â–¡ */
+	char	charaname[32];		/*   åˆä»„å‡¶è°›åŠ  èŸ† */
+	char	owntitle[32];		/* æƒ«å¯*/
 
 }NPC_RANKING_INFO;
 

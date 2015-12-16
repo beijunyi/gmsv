@@ -86,15 +86,15 @@ int MAPPOINT_creatMapWarpObj( int pointindex, char *buf, int objtype)
 	obj.index= pointindex;
 	memset( obj.objname, 0, sizeof( obj.objname));
 	if( getStringFromIndexWithDelim( buf, ",", 1, buf1, sizeof(buf1)) ==FALSE ){
-		return -1;//原点
+		return -1;//鍘熺偣
 	}
 	obj.floor   = atoi( buf1);
 	if( getStringFromIndexWithDelim( buf, ",", 2, buf1, sizeof(buf1)) ==FALSE ){
-		return -1;//原点
+		return -1;//鍘熺偣
 	}
 	obj.x = atoi( buf1);
 	if( getStringFromIndexWithDelim( buf, ",", 3, buf1, sizeof(buf1)) ==FALSE ){
-		return -1;//原点
+		return -1;//鍘熺偣
 	}
 	obj.y = atoi( buf1);
 	obj.type = OBJTYPE_WARPPOINT;
@@ -134,11 +134,11 @@ int  MAPPOINT_setMapWarpFrom( int ps, char *buf)
 	}
 
 	memset( buf1, 0, sizeof( buf1));
-	if( getStringFromIndexWithDelim( buf, ",", 1, buf1, sizeof(buf1)) ==FALSE ) return -1;//原点
+	if( getStringFromIndexWithDelim( buf, ",", 1, buf1, sizeof(buf1)) ==FALSE ) return -1;//鍘熺偣
 	MapWarppoint[ps].ofloor = atoi( buf1);
-	if( getStringFromIndexWithDelim( buf, ",", 2, buf1, sizeof(buf1)) ==FALSE ) return -1;//原点
+	if( getStringFromIndexWithDelim( buf, ",", 2, buf1, sizeof(buf1)) ==FALSE ) return -1;//鍘熺偣
 	MapWarppoint[ps].ox = atoi( buf1);
-	if( getStringFromIndexWithDelim( buf, ",", 3, buf1, sizeof(buf1)) ==FALSE ) return -1;//原点
+	if( getStringFromIndexWithDelim( buf, ",", 3, buf1, sizeof(buf1)) ==FALSE ) return -1;//鍘熺偣
 	MapWarppoint[ps].oy = atoi( buf1);
 	return 1;
 }
@@ -152,11 +152,11 @@ int  MAPPOINT_setMapWarpGoal( int ps, char *buf)
 	}
 
 	memset( buf1, 0, sizeof( buf1));
-	if( getStringFromIndexWithDelim( buf, ",", 1, buf1, sizeof(buf1)) ==FALSE ) return -1;//原点
+	if( getStringFromIndexWithDelim( buf, ",", 1, buf1, sizeof(buf1)) ==FALSE ) return -1;//鍘熺偣
 	MapWarppoint[ps].floor = atoi( buf1);
-	if( getStringFromIndexWithDelim( buf, ",", 2, buf1, sizeof(buf1)) ==FALSE ) return -1;//原点
+	if( getStringFromIndexWithDelim( buf, ",", 2, buf1, sizeof(buf1)) ==FALSE ) return -1;//鍘熺偣
 	MapWarppoint[ps].x = atoi( buf1);
-	if( getStringFromIndexWithDelim( buf, ",", 3, buf1, sizeof(buf1)) ==FALSE ) return -1;//原点
+	if( getStringFromIndexWithDelim( buf, ",", 3, buf1, sizeof(buf1)) ==FALSE ) return -1;//鍘熺偣
 	MapWarppoint[ps].y = atoi( buf1);
 	return 1;
 }
@@ -173,7 +173,7 @@ int MAPPOINT_getMapWarpGoal( int ps, int ofl, int ox, int oy, int *fl, int *x, i
 		print( "Warp MAPPOINT: old Invalid %d %d %d !!\n" , ofl,ox,oy );
 		return -1;
 	}
-	//可加判断条件
+	//鍙姞鍒ゆ柇鏉′欢
 	if( MAP_IsValidCoordinate( MapWarppoint[ps].floor, MapWarppoint[ps].x, MapWarppoint[ps].y)== FALSE ){
 		print( "*Warp MAPPOINT:Invalid %d %d %d !!\n" ,
 			MapWarppoint[ps].floor,MapWarppoint[ps].x, MapWarppoint[ps].y );

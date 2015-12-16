@@ -21,10 +21,10 @@
 
 extern  struct  FM_POINTLIST fmpointlist;
 
-#ifdef _PERSONAL_FAME	// Arminius 8.30: ¼Ò×å¸öÈËÉùÍû
+#ifdef _PERSONAL_FAME	// Arminius 8.30: å®¶æ—ä¸ªäººå£°æœ›
 
-// Arminius: ÎÒ°ÑÉùÍûÖµ¼õ°ë
-int FMAdvTbl[] = {	// ¼Ò×åÃ°ÏÕ Table
+// Arminius: æˆ‘æŠŠå£°æœ›å€¼å‡åŠ
+int FMAdvTbl[] = {	// å®¶æ—å†’é™© Table
 	0,	// 0
 	15,	// 1
 	5,	// 2
@@ -242,8 +242,8 @@ static struct ynset
     { 0 , "NO" },
     { 0 , "No" },
     { 0 , "no" },
-    { 0 , "·ñ" },
-    { 0 , "·ñ" },
+    { 0 , "å¦" },
+    { 0 , "å¦" },
 
     { 1 , "yes" },
     { 1 , "Yes" },
@@ -251,8 +251,8 @@ static struct ynset
     { 1 , "YES" },
     { 1 , "Yes" },
     { 1 , "yes" },
-    { 1 , "ÊÇ" },
-    { 1 , "ÊÇ" },
+    { 1 , "æ˜¯" },
+    { 1 , "æ˜¯" },
 
 };
 
@@ -403,12 +403,12 @@ BOOL NPC_Util_isFaceToChara( int index1, int index2, int distance )
     }
     if(CHAR_getInt(index1,CHAR_X) == CHAR_getInt(index2,CHAR_X )
        && CHAR_getInt(index1,CHAR_Y) == CHAR_getInt(index2,CHAR_Y) ){
-        /* ¾®½ñØ¦ÔÈ»¯ÖĞĞ×ÈÕFALSE */
+        /* äº•ä»Šå…åŒ€åŒ–ä¸­å‡¶æ—¥FALSE */
         return FALSE;
     }
 
     for( i=1;i<=distance;i++ ){
-        /* ÒıÄÚ£ıÖĞÔÈ³ğ»§¼°Æ½ÅÒ·Â»¥ĞÚÖĞĞ×  ¼°Õç  Ã«·Æ»§ÔÂ */
+        /* å¼•å†…ï½ä¸­åŒ€ä»‡æˆ·åŠå¹³ä¹“ä»¿äº’æ±¹ä¸­å‡¶  åŠç”„  æ¯›è²æˆ·æœˆ */
         int walked_x, walked_y;
         CHAR_getCoordinationDir( CHAR_getInt(index1,CHAR_DIR)
                                  , CHAR_getInt(index1,CHAR_X)
@@ -422,7 +422,7 @@ BOOL NPC_Util_isFaceToChara( int index1, int index2, int distance )
             return FALSE;
         }
     }
-    /* ÙâÊÏÙâÊÏºÖØ¦ÈÕØ¦¾®ÔÈĞ×ÈÕFALSE */
+    /* å…®æ°å…®æ°è¤å…æ—¥å…äº•åŒ€å‡¶æ—¥FALSE */
     return FALSE;
 }
 
@@ -618,36 +618,36 @@ static int  SearchNearLine(
 
 
 static int SearchNearAround(
-	int x, 	   /* ¸¹³ñ  ËÒ¼°  Õç   */
-	int y,     /* ¸¹³ñ  ËÒ¼°  Õç   */
-	int floor, /* ¸¹³ñ  ËÒ¼°°×·òÊ§ */
-	int Part,  /* ¸¹³ñ·°ï§ÔÊÔÂ  âÙ¼°·ÂÄÌ¼ş */
-	int Level, /*   ËÒ·½Ô»  Ä¾»¯ÖĞÔÂñû   */
-	int type   /* ¸¹³ñÔÊÔÂ CHAR ÕıÄÌÃó */
+	int x, 	   /* è…¹ç»¸  è‰˜åŠ  ç”„   */
+	int y,     /* è…¹ç»¸  è‰˜åŠ  ç”„   */
+	int floor, /* è…¹ç»¸  è‰˜åŠç™½å¤«å¤± */
+	int Part,  /* è…¹ç»¸é’’é“µå…æœˆ  èµ“åŠä»¿å¥¶ä»¶ */
+	int Level, /*   è‰˜æ–¹æ›°  æœ¨åŒ–ä¸­æœˆè¦ƒ   */
+	int type   /* è…¹ç»¸å…æœˆ CHAR æ­£å¥¶çš¿ */
 ){
 	int i, iTarget = -1;
 	for( i = 0; i < 4; i ++ ){
-		if( Part == 0 ){ /* Ïş¼°·ÂÄÌ¼şÃ«¸¹³ñ */
+		if( Part == 0 ){ /* æ™“åŠä»¿å¥¶ä»¶æ¯›è…¹ç»¸ */
 			iTarget = SearchNearLine( x-Level+1, y-Level,
 				floor, 1, 0, Level*2, type );
 			if( iTarget >= 0 )break;
 		}else
-		if( Part == 1 ){ /* ã¯¼°·ÂÄÌ¼şÃ«¸¹³ñ */
+		if( Part == 1 ){ /* æƒ˜åŠä»¿å¥¶ä»¶æ¯›è…¹ç»¸ */
 			iTarget = SearchNearLine( x+Level, y-Level+1,
 				floor, 0, 1, Level*2, type );
 			if( iTarget >= 0 )break;
 		}else
-		if( Part == 2 ){ /* Æ±¼°·ÂÄÌ¼şÃ«¸¹³ñ */
+		if( Part == 2 ){ /* ç¥¨åŠä»¿å¥¶ä»¶æ¯›è…¹ç»¸ */
 			iTarget = SearchNearLine( x+Level-1, y+Level,
 				floor, -1, 0, Level*2, type );
 			if( iTarget >= 0 ) break;
 		}else
-		if( Part == 3 ){ /* ¶û¼°·ÂÄÌ¼şÃ«¸¹³ñ */
+		if( Part == 3 ){ /* å°”åŠä»¿å¥¶ä»¶æ¯›è…¹ç»¸ */
 			iTarget = SearchNearLine( x-Level, y+Level-1,
 				floor, 0, -1, Level*2, type );
 			if( iTarget >= 0 ) break;
 		}
-		Part ++; Part &= 3; /* Æİ¼°ÓÉ¡õĞşÃ«¸¹³ñ */
+		Part ++; Part &= 3; /* æˆšåŠç”±â–¡ç„æ¯›è…¹ç»¸ */
 	}
 	return iTarget;
 }
@@ -655,15 +655,15 @@ static int SearchNearAround(
 int NPC_Util_SearchNear( int meindex, int maxlen, int type )
 {
 #if 1
-	/* MAP ¾®ÈÕ¼°Øø¼şÛÍÆ¥¸¹³ñÔÊÔÂ·½µ¤±å  µÊ */
+	/* MAP äº•æ—¥åŠä¼‰ä»¶å¼åŒ¹è…¹ç»¸å…æœˆæ–¹ä¸¹å  å‡³ */
     int	floor, x, y, i,iTarget = -1;
-	/* òØ»ş¼°·ßÛĞ¼°Ê÷  Ã«Â¦ÎåÇëÔÊ */
+	/* èœ‡ç®•åŠæ„¤åŒåŠæ ‘  æ¯›å¨„äº”è¯·å… */
     if( !CHAR_CHECKINDEX( meindex ) )return -1;
     floor = CHAR_getInt( meindex, CHAR_FLOOR );
     x  = CHAR_getInt( meindex, CHAR_X );
     y  = CHAR_getInt( meindex, CHAR_Y );
 
-	/*       Çø  Æ¥Æ©ÍÍÔÂ */
+	/*       åŒº  åŒ¹è­¬å±¯æœˆ */
 	for( i = 0; i < maxlen; i ++ ){
 		iTarget = SearchNearAround( x, y, floor, RAND( 0,3 ), i+1, type );
 		if( iTarget >= 0 )break;
@@ -672,39 +672,39 @@ int NPC_Util_SearchNear( int meindex, int maxlen, int type )
 
 
 #else
-	/* ³ğÇĞÈÕ·´ÑÃÖĞÖ§Ô»   */
+	/* ä»‡åˆ‡æ—¥åè¡™ä¸­æ”¯æ›°   */
     int	floor, x, y, i,iTarget = -1, iLen, iMin = 655360, tX, tY;
-    /*   ĞÑ±ØÓÀĞş*/
+    /*   é†’å¿…æ°¸ç„*/
     if( !CHAR_CHECKINDEX( meindex ) )return -1;
     floor = CHAR_getInt( meindex, CHAR_FLOOR );
     x  = CHAR_getInt( meindex, CHAR_X );
     y  = CHAR_getInt( meindex, CHAR_Y );
 
-    /*  ¸¹³ñ */
+    /*  è…¹ç»¸ */
     for( i = 0 ; i<objnum ; i++ ){
-        /*Æ½ÅÒ·ÂÛÍÕı¡õ¼°Áİ*/
+        /*å¹³ä¹“ä»¿å¼æ­£â–¡åŠå‡›*/
         if( obj[i].type != OBJTYPE_CHARA ) continue;
-		/* ÅË  Ã«Î­ÔÂ*/
+		/* æ½˜  æ¯›è‹‡æœˆ*/
         if( CHAR_getInt( obj[i].index,CHAR_WHICHTYPE)
             != type ) continue;
-		/*   Ôª°×·òÊ§¼°Áİ*/
+		/*   å…ƒç™½å¤«å¤±åŠå‡›*/
 	    if( floor != obj[i].floor ) continue;
 
-	    /* CHAR_TYPEENEMY ¼°Áİ·´index»¥·ßÛĞ¼°èëÄş»¥Ø¤ÔÂ¼°Æ¥ÃñÄáÓÀÛÍÔÊÔÂ */
+	    /* CHAR_TYPEENEMY åŠå‡›åindexäº’æ„¤åŒåŠæ¡¦å®äº’ä¸æœˆåŠåŒ¹æ°‘å°¼æ°¸å¼å…æœˆ */
         if( obj[i].index == meindex ) continue;
 
-		/*     ¼°ñû  Ã«»ÍÒ£*/
+		/*     åŠè¦ƒ  æ¯›ç…Œé¥*/
 		tX = ABS( x-CHAR_getInt(obj[i].index,CHAR_X) );
 		tY = ABS( y-CHAR_getInt(obj[i].index,CHAR_Y) );
-		if( tX > maxlen )continue;	/*   Ä¾ÔÊ¿º*/
-		if( tY > maxlen )continue;	/* Ø¦ÈÕÆİ³ß*/
+		if( tX > maxlen )continue;	/*   æœ¨å…äº¢*/
+		if( tY > maxlen )continue;	/* å…æ—¥æˆšå°º*/
 
-        /* ³Æ¾®ÖĞñû  Ã«»ÍÒ£*/
+        /* ç§°äº•ä¸­è¦ƒ  æ¯›ç…Œé¥*/
 		iLen = tX*tX+tY*tY;
-		/* Óò  àÍ¾®ÔÈĞ×èëÄş·´·¤  µÊŞ¥*/
+		/* åŸŸ  å—¤äº•åŒ€å‡¶æ¡¦å®åç­  å‡³è•™*/
 		if( iMin > iLen ){
 			iMin = iLen;
-			iTarget = obj[i].index;	/* ÄÌ¼ş·¸ÓÀÛÍµ©Ã«è¶  */
+			iTarget = obj[i].index;	/* å¥¶ä»¶çŠ¯æ°¸å¼æ—¦æ¯›ç“’  */
 		}
 	}
 
@@ -712,14 +712,14 @@ int NPC_Util_SearchNear( int meindex, int maxlen, int type )
 #endif
 }
 /*------------------------------------------------------------
-* Óò  àÍÖĞÃóÒÁÄÌØÀ¡õ¼°¸¹³ñ
+* åŸŸ  å—¤ä¸­çš¿ä¼Šå¥¶ä¹©â–¡åŠè…¹ç»¸
 ------------------------------------------------------------*/
 int NPC_Util_SearchNearPlayer( int meindex, int maxlen )
 {
 	return( NPC_Util_SearchNear( meindex, maxlen, CHAR_TYPEPLAYER));
 }
 /*------------------------------------------------------------
-* Óò  àÍÖĞ³Ä¼°¸¹³ñ-
+* åŸŸ  å—¤ä¸­è¡¬åŠè…¹ç»¸-
 -----------------------------------------------------------*/
 int NPC_Util_SearchNearEnemy( int meindex, int maxlen )
 {
@@ -730,45 +730,45 @@ int NPC_Util_SearchNearEnemy( int meindex, int maxlen )
 
 /*******************************************************
 
-  ±ê»§à¢  ÔÊÔÂó¡±åÖÏ¾®±åÉÙ¹´¾®ÔÈ»¯ÖĞÔÂ¾®Éıµ¤¾®Æ©ÍÍÔÂ
+  æ ‡æˆ·å•–  å…æœˆèŸ†åçª’äº•åå°‘å‹¾äº•åŒ€åŒ–ä¸­æœˆäº•å‡ä¸¹äº•è­¬å±¯æœˆ
   int NPC_Util_SuberiWalk(
-	int	index,	CHAR ¼°ÄÌ¼ş·¸ÓÀÛÍµ©
-	int	dir		ĞÚÈÊéùÎå
+	int	index,	CHAR åŠå¥¶ä»¶çŠ¯æ°¸å¼æ—¦
+	int	dir		æ±¹ä»è½¾äº”
   );
 
-    Ô»°À  0  7¡°ĞÚØêÔÂ  éù
-          -1  ¡°Ñ¨ÓÀÃó±åÂ¦ÔÈ¾®¾®ÔÈ»¯¾Ş·Â¡õ
-          -2  ¡°Æ½ÅÒ·ÂÛÍÕı±åÂ¦ÔÈ¾®¾®ÔÈ»¯¾Ş·Â¡õ
-          -3  ¡°    ±åÂ¦ÔÈ¾®¾®ÔÈ»¯¾Ş·Â¡õ
+    æ›°è¢„  0  7â€œæ±¹ä»ƒæœˆ  è½¾
+          -1  â€œç©´æ°¸çš¿åå¨„åŒ€äº•äº•åŒ€åŒ–å·¨ä»¿â–¡
+          -2  â€œå¹³ä¹“ä»¿å¼æ­£åå¨„åŒ€äº•äº•åŒ€åŒ–å·¨ä»¿â–¡
+          -3  â€œ    åå¨„åŒ€äº•äº•åŒ€åŒ–å·¨ä»¿â–¡
 
-  ±ê»§à¢  ÔÊÔÂèëÄşÒıÄÚ³å£ı²ú±åà¢  Æ¥ÎåÔÂ¾®Æ©ÍÍÔÂ£Û
-      à¢  Æ¥ÎåÄ¾ÈÉ±ê»§Ã«ÃñÄáÓÀÛÍÔÊÔÂ£Û    ØÆ¾®à¢  Æ¥ÎåØ¦ØêÄ¾ÈÉ
-  ¹«ÇĞÈÕ¼°  éùÃ«ß¯ÔÊ£Û
+  æ ‡æˆ·å•–  å…æœˆæ¡¦å®å¼•å†…å†²ï½äº§åå•–  åŒ¹äº”æœˆäº•è­¬å±¯æœˆï¼»
+      å•–  åŒ¹äº”æœ¨å£¬æ ‡æˆ·æ¯›æ°‘å°¼æ°¸å¼å…æœˆï¼»    ä»„äº•å•–  åŒ¹äº”å…ä»ƒæœ¨å£¬
+  å…¬åˆ‡æ—¥åŠ  è½¾æ¯›å¿’å…ï¼»
 
- ¹«³ğ±åÖÏ¾®Ø¤ÔÈĞ×ÈÕ  Ñ¨ÓÀÃó¶¯Â½  ¨àÃ«ß¯ÔÊ
+ å…¬ä»‡åçª’äº•ä¸åŒ€å‡¶æ—¥  ç©´æ°¸çš¿åŠ¨é™†  ã„ æ¯›å¿’å…
 *******************************************************/
 int NPC_Util_OtherCharCheck( int ff, int fx, int fy)
 {
 #if 1
-	/* ¸¹³ñ  Ö¿Ã«      ¾®ÈÕ¼°Øø¼şÛÍ±å  µÊ */
+	/* è…¹ç»¸  æŒšæ¯›      äº•æ—¥åŠä¼‰ä»¶å¼å  å‡³ */
 	OBJECT object;
 	for( object=MAP_getTopObj(ff,fx,fy); object ;
 		object = NEXT_OBJECT(object) )
 	{
 		int objindex = GET_OBJINDEX(object);
-		/*   ÔªÕç  ±åÆ½ÅÒ·ÂÛÍÕı»¥Ø¤ÔÂ¾® */
+		/*   å…ƒç”„  åå¹³ä¹“ä»¿å¼æ­£äº’ä¸æœˆäº• */
     	if( OBJECT_getType(objindex) == OBJTYPE_CHARA ){
     		return 1;
 		}
 	}
 	return 0;
 #else
-	/* ³ğÇĞÈÕ·´ÍÜÖ¿¼°Ö§Ô»   */
+	/* ä»‡åˆ‡æ—¥åè›™æŒšåŠæ”¯æ›°   */
     int i;
     for( i = 0 ; i < objnum ; i ++){
-		/* Õç  »¥  Ôª¾®£¢*/
+		/* ç”„  äº’  å…ƒäº•ï¼‚*/
         if( obj[i].x == fx && obj[i].y == fy && obj[i].floor == ff ){
-        	/* Æ½ÅÒ·ÂÛÍÕı¾®£¢*/
+        	/* å¹³ä¹“ä»¿å¼æ­£äº•ï¼‚*/
 	        if( obj[i].type != OBJTYPE_NOUSE ){
 	            return 1;
             }
@@ -779,7 +779,7 @@ int NPC_Util_OtherCharCheck( int ff, int fx, int fy)
 }
 
 
-/* ĞÚØêØ¦ÖĞèëÄş·´»½ÔÈ»¯ĞÄÔÂ*/
+/* æ±¹ä»ƒå…ä¸­æ¡¦å®åå”¤åŒ€åŒ–å¿ƒæœˆ*/
 int NPC_Util_SuberiWalk(
 	int	index,
 	int	dir
@@ -793,7 +793,7 @@ int NPC_Util_SuberiWalk(
     y  = CHAR_getInt(index,CHAR_Y);
     fl = CHAR_getInt(index,CHAR_FLOOR);
 
-	/* ±ê»§  éù¾®£¢*/
+	/* æ ‡æˆ·  è½¾äº•ï¼‚*/
 	switch( dir ){
 	case 1: aDirList[0] = 0; aDirList[1] = 2; aDirList[2] = 1;
 		break;
@@ -806,70 +806,70 @@ int NPC_Util_SuberiWalk(
 	default:
 		tX = x+CHAR_getDX(dir);
 		tY = y+CHAR_getDY(dir);
-		/* ñ×»§Ğ×*/
+		/* è¤¡æˆ·å‡¶*/
 		if( MAP_walkAble( index,fl,tX,tY ) == 0 ){
-			dir = -1;/* Ñ¨ÓÀÃó±åÂ¦ÔÈ¾®¾®ÔÈĞ×*/
+			dir = -1;/* ç©´æ°¸çš¿åå¨„åŒ€äº•äº•åŒ€å‡¶*/
 		}
 //		}else
 //		if( NPC_Util_OtherCharCheck( fl,tX, tY ) ){
-//			dir = -2;/* Æ½ÅÒ·Â±åÂ¦ÔÈ¾®¾®ÔÈĞ×*/
+//			dir = -2;/* å¹³ä¹“ä»¿åå¨„åŒ€äº•äº•åŒ€å‡¶*/
 //		}
-		/* ÒıÔÈÔÊÊ²·Ö!! ¹«¼°ÒıÒıĞÚÈÊ*/
+		/* å¼•åŒ€å…ä»€åˆ†!! å…¬åŠå¼•å¼•æ±¹ä»*/
 /*		CHAR_walk( index, dir, 0 );*/
 		return dir;
 	}
 
-	/* ÒıÔÈÔÊÊ²Ø¦ÈÕ  ÀÃØ¦ØÆ*/
+	/* å¼•åŒ€å…ä»€å…æ—¥  çƒ‚å…ä»„*/
 	for( i = 0; i < 3; i ++ ){
 		dir2 = aDirList[i];
 		tX = x+CHAR_getDX(dir2);
 		tY = y+CHAR_getDY(dir2);
 		if( MAP_walkAble( index,fl,tX,tY ) == 0 ){
-			aDirList[i] = -1; /* µæØêØ¦ÖĞèëÄş·´¹«¼°  éùÛãÚ½*/
+			aDirList[i] = -1; /* å«ä»ƒå…ä¸­æ¡¦å®åå…¬åŠ  è½¾å«è¯®*/
 //		}else if( NPC_Util_OtherCharCheck( fl,tX, tY ) ){
-//			aDirList[i] = -2; /* µæØêØ¦ÖĞèëÄş·´¹«¼°  éùÛãÚ½*/
+//			aDirList[i] = -2; /* å«ä»ƒå…ä¸­æ¡¦å®åå…¬åŠ  è½¾å«è¯®*/
 		}else{
-			/* µæØêĞ×!!*/
+			/* å«ä»ƒå‡¶!!*/
 			OkFlg ++;
 		}
 	}
 
-	/* ¨â¹´òå  µÚ  Ø¦èëÄş·´£ı  âÙ¼°É§Ô»  ÈÊ*/
+	/* ã„¢å‹¾èˆ  ç¬¬  å…æ¡¦å®åï½  èµ“åŠéªšæ›°  ä»*/
 	if( aDirList[0] >= 0 && aDirList[1] >= 0 && aDirList[2] >= 0 ){
 	}else
-        /* ³ğÇĞÈÕ±å  ØêÔÂ¾®£¢*/
+        /* ä»‡åˆ‡æ—¥å  ä»ƒæœˆäº•ï¼‚*/
 	if( aDirList[0] >= 0 ){
 		dir = aDirList[0];
 	}else
-        /* ¹«Ä¾ÎçÊÖ³ğÇĞÈÕ¾®£¢*/
+        /* å…¬æœ¨åˆæ‰‹ä»‡åˆ‡æ—¥äº•ï¼‚*/
 	if( aDirList[1] >= 0 ){
 		dir = aDirList[1];
 	}else{
 		dir = aDirList[0]+aDirList[1];
 	}
 
-	/* à¢  */
+	/* å•–  */
 /*	CHAR_walk( index, dir, 0 );*/
 
 	return dir;
 }
 /*-----------------------------------------------------------------------
-* NPC¼°createÁİ¼°Â¦ĞÑ¼°  ¾®ÈÕÏ¶ÀÃ½ñÄ¾Ğ×  Ù¯  Ã«¸¹³ñØÆ£İ
-* ¹«¼°  ¼°ĞÑ°ÀÃ«äú  ÔÊÔÂ£Û×óÃóÆËÒà¼şÆ¥ĞÑ°ÀÃ«Ï¶ÀÃ½ñÁù»¯Ö§Ô»Ğ×ÖĞÎçÎå±åìşØÇ
+* NPCåŠcreateå‡›åŠå¨„é†’åŠ  äº•æ—¥éš™çƒ‚ä»Šæœ¨å‡¶  ä¾¬  æ¯›è…¹ç»¸ä»„ï¼½
+* å…¬åŠ  åŠé†’è¢„æ¯›æ½¸  å…æœˆï¼»å·¦çš¿æ‰‘äº¦ä»¶åŒ¹é†’è¢„æ¯›éš™çƒ‚ä»Šå…­åŒ–æ”¯æ›°å‡¶ä¸­åˆäº”åå¿å
 *
-* ïÛÀ²¡°·¸ØøÁ¢Õı·´"|"±åò×ÀÃØÆ»¯ÒıÔÊ£Û
-*       Â¦ĞÑ±å  Ôª  Ù¯  »¥¨á¹´á¬ÊÏ·ÖèëÄş£İ
-*       ÛÆ¼°  »¥ñ¶ÛÆ½ñÄ¾ÒıÔÊ£Û
+* é•—å•¦â€œçŠ¯ä¼‰ç«‹æ­£å"|"åèœƒçƒ‚ä»„åŒ–å¼•å…ï¼»
+*       å¨„é†’å  å…ƒ  ä¾¬  äº’ã„¡å‹¾å²ˆæ°åˆ†æ¡¦å®ï¼½
+*       ç‡®åŠ  äº’ç©¸ç‡®ä»Šæœ¨å¼•å…ï¼»
 * ----------------------------------
-* IN : int meindex : Æ½ÅÒ·Âindex
-*    : char* in    : ¸¹³ñÔÊÔÂ  Ù¯  
+* IN : int meindex : å¹³ä¹“ä»¿index
+*    : char* in    : è…¹ç»¸å…æœˆ  ä¾¬  
 * OUT:
 * RETURN:
-* äú  Çë  Ø¦¾®ÔÈĞ×Áİ :-1
-* äú  Çë  Ğ×Áİ       :ĞÑ°À
+* æ½¸  è¯·  å…äº•åŒ€å‡¶å‡› :-1
+* æ½¸  è¯·  å‡¶å‡›       :é†’è¢„
 * ----------------------------------
 *
-*   ¡°
+*   â€œ
 * [File:enemykill.create]
 * enemy=enemykill|range:4
 *
@@ -885,7 +885,7 @@ int NPC_Util_GetNumFromArg( int meindex, char* in)
 	char 	*a = CHAR_getChar( meindex, CHAR_NPCARGUMENT);
 
 	for( i = 1; ; i++ ) {
-		/* ·¸ØøÁ¢Õı¨à¹´ÄÚ¹´  ¸ê */
+		/* çŠ¯ä¼‰ç«‹æ­£ã„ å‹¾å†…å‹¾  æˆˆ */
 		rc = getStringFromIndexWithDelim( a, "|", i, outstr, sizeof(outstr));
 		if( rc == FALSE) break;
 		if( strstr( outstr, in) != NULL ) {
@@ -898,20 +898,20 @@ int NPC_Util_GetNumFromArg( int meindex, char* in)
 }
 
 /*
- * Ê§ÄÌ  Ø©¼° index ÎçÆ½ÅÒ·Â index ¼°¿×Ğ×¹´¼°Ê÷  ¾®ÈÕ£ı
- * Æ½ÅÒ·Â»¥¹«¼°Ê§ÄÌ  Ø©Ã«  ÔÈ»¯ÔÂ¾®Éıµ¤¾®ØÆÈÕÍÍ»¯  ÔÈ»¯Ğ×ÈÕÉı¼°
- * ŞË  ±å  ÔÈ»¯ÔÂ¾®Ã«ß¯ÔÊ£Û  Ê§ÄÌ  Ø©èú  ¼°NPCåÃ£ÛCHAR_±åà¢µæ
- * Æ¥ÎåÔÂ¾®ÊÖØÆÄ¾ÊÏèúĞÑ¹ÏØø
+ * å¤±å¥¶  ä¸åŠ index åˆå¹³ä¹“ä»¿ index åŠå­”å‡¶å‹¾åŠæ ‘  äº•æ—¥ï½
+ * å¹³ä¹“ä»¿äº’å…¬åŠå¤±å¥¶  ä¸æ¯›  åŒ€åŒ–æœˆäº•å‡ä¸¹äº•ä»„æ—¥å±¯åŒ–  åŒ€åŒ–å‡¶æ—¥å‡åŠ
+ * åŒ  å  åŒ€åŒ–æœˆäº•æ¯›å¿’å…ï¼»  å¤±å¥¶  ä¸æ¥®  åŠNPCè¿•ï¼»CHAR_åå•–å«
+ * åŒ¹äº”æœˆäº•æ‰‹ä»„æœ¨æ°æ¥®é†’ç“œä¼‰
  * by ringo
  *
- * int charindex : ¸²ÀŞÆ½ÅÒ·Â¼° index
- * int itemindex : Ê§ÄÌ  Ø©¼°index
+ * int charindex : è¦†æ“‚å¹³ä¹“ä»¿åŠ index
+ * int itemindex : å¤±å¥¶  ä¸åŠindex
  *
- * ß¯Ô»°À
+ * å¿’æ›°è¢„
  *
- *  >=0 : Éı¼°ŞË  ±å  ÔÈ»¯ÖĞÔÂ¼°¾®£Û  ¶ãØ¦°À£Û
- *  -1 : ÊÖØÆÈÊ·´  ÔÈ»¯Ø¦ÖĞ£Û
- *  -2 : ¾Ş·Â¡õ£Û
+ *  >=0 : å‡åŠåŒ  å  åŒ€åŒ–ä¸­æœˆåŠäº•ï¼»  èº²å…è¢„ï¼»
+ *  -1 : æ‰‹ä»„ä»å  åŒ€åŒ–å…ä¸­ï¼»
+ *  -2 : å·¨ä»¿â–¡ï¼»
  */
 int NPC_Util_SearchItemInChar( int charindex , int itemindex)
 {
@@ -931,20 +931,20 @@ int NPC_Util_SearchItemInChar( int charindex , int itemindex)
 
 
 /*------------------------------------------------------------------------
-* Æ½ÅÒ·Â¾®ÈÕĞÄĞ×Ö°¼°Æ½ÅÒ·Â¼°  éùÃ«·Æ»§ÔÂ
+* å¹³ä¹“ä»¿äº•æ—¥å¿ƒå‡¶èŒåŠå¹³ä¹“ä»¿åŠ  è½¾æ¯›è²æˆ·æœˆ
 *
 * int NPC_Util_GetDirCharToChar( int fromindex, int toindex, int mode)
 *
-* int	fromindex 	³ğ¼°Æ½ÅÒ·Âindex¾®ÈÕ
-* int	toindex		³ğ¼°Æ½ÅÒ·Âindex±å¸²ØÆ»¯¼°  éù»¥·Æ»§ÈÕÄ¾ÔÂ
-* int	mode		äú  ÔÊÔÂ  éù
-*                   0:toindex±åéù¾®ÔÈ»¯
-*                   1:toindex¼°  ¸²  éù
-*                   2:toindex±å¸²ØÆ»¯ã¯¨è¨ßÕº  éù
-*                   3:toindex±å¸²ØÆ»¯¶û¨è¨ßÕº  éù
+* int	fromindex 	ä»‡åŠå¹³ä¹“ä»¿indexäº•æ—¥
+* int	toindex		ä»‡åŠå¹³ä¹“ä»¿indexåè¦†ä»„åŒ–åŠ  è½¾äº’è²æˆ·æ—¥æœ¨æœˆ
+* int	mode		æ½¸  å…æœˆ  è½¾
+*                   0:toindexåè½¾äº•åŒ€åŒ–
+*                   1:toindexåŠ  è¦†  è½¾
+*                   2:toindexåè¦†ä»„åŒ–æƒ˜ã„¨ã„Ÿè˜¸  è½¾
+*                   3:toindexåè¦†ä»„åŒ–å°”ã„¨ã„Ÿè˜¸  è½¾
 *
-* ß¯Ô»°À ÔÀ   ¡°dir    éùÃ«ß¯ÔÊ  
-*        ÁÃ   ¡°-1
+* å¿’æ›°è¢„ å²³   â€œdir    è½¾æ¯›å¿’å…  
+*        æ’©   â€œ-1
 ------------------------------------------------------------------------*/
 int NPC_Util_GetDirCharToChar( int fromindex, int toindex, int mode)
 {
@@ -969,21 +969,21 @@ int NPC_Util_GetDirCharToChar( int fromindex, int toindex, int mode)
 }
 
 /*------------------------------------------------------------------------
-*     Æ½ÅÒ·Â±å¸²ØÆ»¯£İØ¤ÔÂ  éù±åà¢  ÔÊÔÂ£Û
+*     å¹³ä¹“ä»¿åè¦†ä»„åŒ–ï¼½ä¸æœˆ  è½¾åå•–  å…æœˆï¼»
 *
 * int NPC_Util_WalkCharToChar( int fromindex, int toindex, int mode)
 *
-* int	fromindex 	ĞÚÈÊÆ½ÅÒ·Âindex
-* int	toindex		ĞÚÈÊ    ¼°Æ½ÅÒ·Âindex
-* int	mode		ĞÚÈÊ  éù
-*                   0:toindex±åéù¾®ÔÈ»¯
-*                   1:toindex¼°  ¸²  éù
-*                   2:toindex±å¸²ØÆ»¯ã¯¨è¨ßÕº  éù
-*                   3:toindex±å¸²ØÆ»¯¶û¨è¨ßÕº  éù
-* BOOL	suberi		NPC_Util_SuberiWalkÃ«ßÙ  ÔÊÔÂ¾®£¢TRUE:ÔÊÔÂ FALSE:ØÆØ¦ÖĞ
+* int	fromindex 	æ±¹ä»å¹³ä¹“ä»¿index
+* int	toindex		æ±¹ä»    åŠå¹³ä¹“ä»¿index
+* int	mode		æ±¹ä»  è½¾
+*                   0:toindexåè½¾äº•åŒ€åŒ–
+*                   1:toindexåŠ  è¦†  è½¾
+*                   2:toindexåè¦†ä»„åŒ–æƒ˜ã„¨ã„Ÿè˜¸  è½¾
+*                   3:toindexåè¦†ä»„åŒ–å°”ã„¨ã„Ÿè˜¸  è½¾
+* BOOL	suberi		NPC_Util_SuberiWalkæ¯›å“”  å…æœˆäº•ï¼‚TRUE:å…æœˆ FALSE:ä»„å…ä¸­
 *
-* ß¯Ô»°À ÔÀ    ĞÚÖĞĞ×  ¡°dir  ĞÚÖĞĞ×  éùÃ«ß¯ÔÊ  
-*        ÁÃ            ¡°-1
+* å¿’æ›°è¢„ å²³    æ±¹ä¸­å‡¶  â€œdir  æ±¹ä¸­å‡¶  è½¾æ¯›å¿’å…  
+*        æ’©            â€œ-1
 ------------------------------------------------------------------------*/
 int NPC_Util_WalkCharToChar( int fromindex, int toindex, int mode, int suberi)
 {
@@ -1011,11 +1011,11 @@ int NPC_Util_WalkCharToChar( int fromindex, int toindex, int mode, int suberi)
 
 
 /*------------------------------------------------------------------------
-* NPCÃ«ÛÕ  ½ñÁùÔÂ£Û
+* NPCæ¯›å£…  ä»Šå…­æœˆï¼»
 *
 * void NPC_Util_NPCDelete( int srcindex)
 *
-* int	srcindex 	ÛÕÔÊindex
+* int	srcindex 	å£…å…index
 *
 ------------------------------------------------------------------------*/
 void NPC_Util_NPCDelete( int srcindex)
@@ -1023,10 +1023,10 @@ void NPC_Util_NPCDelete( int srcindex)
     //int objindex;
     //objindex = CHAR_getWorkInt(srcindex,CHAR_WORKOBJINDEX);
 
-	/* createnum »¥    ¼°Áİ£İÏ·ÒıÄ¾Ğ×ÁİÃŞÃ«±¾ÓÀĞşÔÊÔÂ
-	 * Ø¦Ùâ³ğ³ğÆ¥³ğÊÏØ¦ÒÇÃ«ØÆ»¯ÖĞÔÂ¾®ÎçÖĞµ¤Îç
-	 * create°×ÑëÄÌ»ï¼°time°À»¥Ï·ÒıÄ¾»¯¾®ÈÕ¹«Ä¾·ÖØêÛĞ·³ÔÈ»¯ÖĞÔÂÎç£İ
-	 * å§¸²±åÔÊÊ²±åÏ·ÒıÄ¾»¯ÈÊÔÂÎçÖĞµ¤¿á  Ã«Ø¦ÊÏÎç¾®ØÆ·½µ¤ÎçÔÊÔÂ¿Ğ
+	/* createnum äº’    åŠå‡›ï¼½æˆå¼•æœ¨å‡¶å‡›æ£‰æ¯›æœ¬æ°¸ç„å…æœˆ
+	 * å…å…®ä»‡ä»‡åŒ¹ä»‡æ°å…ä»ªæ¯›ä»„åŒ–ä¸­æœˆäº•åˆä¸­ä¸¹åˆ
+	 * createç™½å¤®å¥¶ä¼™åŠtimeè¢„äº’æˆå¼•æœ¨åŒ–äº•æ—¥å…¬æœ¨åˆ†ä»ƒåŒçƒ¦åŒ€åŒ–ä¸­æœˆåˆï¼½
+	 * æ¿®è¦†åå…ä»€åæˆå¼•æœ¨åŒ–ä»æœˆåˆä¸­ä¸¹é…·  æ¯›å…æ°åˆäº•ä»„æ–¹ä¸¹åˆå…æœˆå•ƒ
 	 */
 	if( CHAR_getInt( srcindex, CHAR_WHICHTYPE) == CHAR_TYPEPLAYER ) return;
 	if( NPC_createCheckMaxEnemynum( CHAR_getInt(srcindex,CHAR_NPCCREATEINDEX )))
@@ -1053,7 +1053,7 @@ char *NPC_Util_CheckAssignArgFile( int index, char *filename)
 	}
 
 	for( i = 1; ; i++ ) {
-		/* ·¸ØøÁ¢Õı¨à¹´ÄÚ¹´  ¸ê */
+		/* çŠ¯ä¼‰ç«‹æ­£ã„ å‹¾å†…å‹¾  æˆˆ */
 		rc = getStringFromIndexWithDelim( a, "|", i, outstr, sizeof(outstr));
 		if( rc == FALSE) break;
 		if( strstr( outstr, "file") != NULL ) {
@@ -1125,7 +1125,7 @@ int NPC_Util_GetNumFromStrWithDelim( char *srcstr, char* in)
 	int		out = -1;
 
 	for( i = 1; ; i++ ) {
-		/* ·¸ØøÁ¢Õı¨à¹´ÄÚ¹´  ¸ê */
+		/* çŠ¯ä¼‰ç«‹æ­£ã„ å‹¾å†…å‹¾  æˆˆ */
 		rc = getStringFromIndexWithDelim( srcstr, "|", i, outstr, sizeof(outstr));
 		if( rc == FALSE) break;
 		if( strstr( outstr, in) != NULL ) {
@@ -1326,27 +1326,27 @@ int *NPC_Util_getEnemy( int meindex, int charaindex)
 		curEnemy = ENEMY_getEnemyArrayFromId( atoi( data));
 		if( !ENEMY_CHECKINDEX( curEnemy) ) continue;
 		et_array = ENEMYTEMP_getEnemyTempArray( curEnemy );
-		/* ÈÓÄÌÊõ»¥  ÎåÖĞ¼°»¥ÖĞĞ×Áİ¼°¿Ğ¼°á¬Ì«×¸Òü */
+		/* æ‰”å¥¶æœ¯äº’  äº”ä¸­åŠäº’ä¸­å‡¶å‡›åŠå•ƒåŠå²ˆå¤ªèµ˜å°¹ */
 		if( ENEMYTEMP_getInt( et_array, E_T_SIZE ) == E_T_SIZE_BIG) {
 			if( bigcnt >= 5 ) {
 				continue;
 			}
-			/* èëô÷»¥    ±åØ¦ÔÈ»¯ÖĞĞ×èëÄş·´  Ä¾¾§ÒüÔÂ */
+			/* æ¡¦èµ­äº’    åå…åŒ€åŒ–ä¸­å‡¶æ¡¦å®å  æœ¨æ™¶å°¹æœˆ */
 			if( insert > 4 ) {
 				int	target_et_array;
 				int	flg = FALSE;
 				int	j;
-				/*   Ä¾ÔÂèëô÷Ã«¼ëÔÊ */
+				/*   æœ¨æœˆæ¡¦èµ­æ¯›èŒ§å… */
 				for( j = 0; j < 5; j ++ ) {
-					/* ÎëÖĞ»¯ÔÂ¼°·´ÔÆ¾®ØÆÖĞ */
+					/* åä¸­åŒ–æœˆåŠåäº‘äº•ä»„ä¸­ */
 					if( !ENEMY_CHECKINDEX( NPCUtil_enemytbl[j])) break;
 
 					target_et_array = ENEMYTEMP_getEnemyTempArray(
 													NPCUtil_enemytbl[j]);
-					/* ÔÆ¾®ØÆÖĞ */
+					/* äº‘äº•ä»„ä¸­ */
 					if( !ENEMYTEMP_CHECKINDEX( target_et_array)) break;
 
-					/*   Ä¾Ò½´õÄ¾ÔÂ */
+					/*   æœ¨åŒ»æ­¹æœ¨æœˆ */
 					if( ENEMYTEMP_getInt( target_et_array, E_T_SIZE)
 						== E_T_SIZE_NORMAL )
 					{
@@ -1372,10 +1372,10 @@ int *NPC_Util_getEnemy( int meindex, int charaindex)
 	return NPCUtil_enemytbl;
 }
 
-/*==================¶¯Æ±£ı°×·ÂºëÉêÓÀĞşèúÒç=============================*/
+/*==================åŠ¨ç¥¨ï½ç™½ä»¿å¼˜ç”³æ°¸ç„æ¥®æº¢=============================*/
 
-/* ÄÌÃ¬¼şĞş±Î  
- * ÉêÓÀĞş°×·ÂºëÃ«  »¯ÔÂ·ÖØê¼°ÖÊ  
+/* å¥¶çŸ›ä»¶ç„è”½  
+ * ç”³æ°¸ç„ç™½ä»¿å¼˜æ¯›  åŒ–æœˆåˆ†ä»ƒåŠè´¨  
  */
 void  NPC_EventSetFlg(int talker,int shiftbit)
 
@@ -1387,7 +1387,7 @@ void  NPC_EventSetFlg(int talker,int shiftbit)
 	int iGetFame = 0;
 #endif
 
-	/*--  -1·´°×·Âºë±åèúÒç»¥Ø¦ÖĞÄÌÃ¬¼şĞş   -*/
+	/*--  -1åç™½ä»¿å¼˜åæ¥®æº¢äº’å…ä¸­å¥¶çŸ›ä»¶ç„   -*/
 	if(shiftbit==-1) return;
 
 	array = shiftbit / 32;
@@ -1404,23 +1404,23 @@ void  NPC_EventSetFlg(int talker,int shiftbit)
 #endif
 	}
 #ifdef _TEACHER_SYSTEM
-	iGetFame /= 20; // µ¼Ê¦»ñµÃÑ§ÉúËùµÃÉùÍûµÄ 5% (1/20)
-	// ¼ì²éËùµÃµÄÉùÍûÓĞÃ»ÓĞ´óì¶0
+	iGetFame /= 20; // å¯¼å¸ˆè·å¾—å­¦ç”Ÿæ‰€å¾—å£°æœ›çš„ 5% (1/20)
+	// æ£€æŸ¥æ‰€å¾—çš„å£°æœ›æœ‰æ²¡æœ‰å¤§æ–¼0
 	if(iGetFame > 0){
-		// ¼ì²éÓĞÃ»ÓĞµ¼Ê¦
+		// æ£€æŸ¥æœ‰æ²¡æœ‰å¯¼å¸ˆ
 		if(strlen(CHAR_getChar(talker,CHAR_TEACHER_ID)) > 0 && strlen(CHAR_getChar(talker,CHAR_TEACHER_NAME)) > 0){
 			int iPlayernum = CHAR_getPlayerMaxNum(),i;
 			char szMsg[128];
 			
-			// ¼ì²éµ¼Ê¦ÔÚ²»ÔÚÏßÉÏ
+			// æ£€æŸ¥å¯¼å¸ˆåœ¨ä¸åœ¨çº¿ä¸Š
 			for(i=0;i<iPlayernum;i++){
 				if(CHAR_getCharUse(i) == FALSE) continue;
 				if(strcmp(CHAR_getChar(talker,CHAR_TEACHER_ID),CHAR_getChar(i,CHAR_CDKEY)) == 0 &&
 					strcmp(CHAR_getChar(talker,CHAR_TEACHER_NAME),CHAR_getChar(i,CHAR_NAME)) == 0){
 					float fGetFame = (float)iGetFame/100;
-					// µ¼Ê¦ÔÚÏßÉÏ
+					// å¯¼å¸ˆåœ¨çº¿ä¸Š
 					CHAR_setWorkInt(i,CHAR_WORK_GET_TEACHER_FAME,CHAR_getWorkInt(i,CHAR_WORK_GET_TEACHER_FAME) + iGetFame);
-					sprintf(szMsg,"»ñµÃÑ§Éú %s %.2f µãÉùÍû",CHAR_getChar(talker,CHAR_NAME),fGetFame);
+					sprintf(szMsg,"è·å¾—å­¦ç”Ÿ %s %.2f ç‚¹å£°æœ›",CHAR_getChar(talker,CHAR_NAME),fGetFame);
 					CHAR_talkToCli(i,-1,szMsg,CHAR_COLORYELLOW);
 					break;
 				}
@@ -1433,18 +1433,18 @@ void  NPC_EventSetFlg(int talker,int shiftbit)
 	CHAR_setInt( talker, CHAR_ENDEVENT+array, point);
 }
 
-/* ÄÌÃ¬¼şĞş±Î  
- * ÉêÓÀĞş°×·Âºë»¥  ÔÈ»¯ÔÂ¾®Ã«Æ©ÍÍÔÂ
+/* å¥¶çŸ›ä»¶ç„è”½  
+ * ç”³æ°¸ç„ç™½ä»¿å¼˜äº’  åŒ€åŒ–æœˆäº•æ¯›è­¬å±¯æœˆ
  *
- *	  ÔÈ»¯ÖĞÄ¾ÈÉ	TRUE
- *	Ø¦ØêÄ¾ÈÉ		FALSE
+ *	  åŒ€åŒ–ä¸­æœ¨å£¬	TRUE
+ *	å…ä»ƒæœ¨å£¬		FALSE
  */
 BOOL NPC_EventCheckFlg(int talker,int shiftbit)
 {
 	int point=0;
 	int array;
 	int shift;
-	/*--  -1·´°×·Âºë±åèúÒç»¥Ø¦ÖĞÄÌÃ¬¼şĞş   -*/
+	/*--  -1åç™½ä»¿å¼˜åæ¥®æº¢äº’å…ä¸­å¥¶çŸ›ä»¶ç„   -*/
 	if(shiftbit==-1) return FALSE;
 
 	array = shiftbit / 32;
@@ -1457,15 +1457,15 @@ BOOL NPC_EventCheckFlg(int talker,int shiftbit)
 	return FALSE;
 }
 
-/* ÄÌÃ¬¼şĞş  
- * ÉêÓÀĞş°×·ÂºëÃ«  »¯ÔÂ·ÖØê¼°ÖÊ  
+/* å¥¶çŸ›ä»¶ç„  
+ * ç”³æ°¸ç„ç™½ä»¿å¼˜æ¯›  åŒ–æœˆåˆ†ä»ƒåŠè´¨  
  */
 void  NPC_NowEventSetFlg(int talker,int shiftbit)
 {
 	int point=0;
 	int array;
 	int shift;
-	/*--  -1·´°×·Âºë±åèúÒç»¥Ø¦ÖĞÄÌÃ¬¼şĞş   -*/
+	/*--  -1åç™½ä»¿å¼˜åæ¥®æº¢äº’å…ä¸­å¥¶çŸ›ä»¶ç„   -*/
 	if(shiftbit==-1) return;
 
 	array = shiftbit / 32;
@@ -1550,7 +1550,7 @@ void AddFMAdv(int talker, int shiftbit)
 		fmadv = FMAdvTbl[shiftbit];
 	if (fmadv <= 0)	return;
 	sprintf(buf, "%d", fmadv);
-	#ifdef _PERSONAL_FAME	// Arminius 8.30: ¼Ò×å¸öÈËÉùÍû
+	#ifdef _PERSONAL_FAME	// Arminius 8.30: å®¶æ—ä¸ªäººå£°æœ›
 	  CHAR_earnFame(talker, fmadv);
 	#endif
 	#ifdef _NEW_MANOR_LAW
@@ -1580,7 +1580,7 @@ void AddFMAdv(int talker, int shiftbit)
 		 {
 			 int i;
 			 for(i=0;i<FAMILY_MAXHOME;i++){
-				 // ÈÎºÎÒ»¸ö×¯Ô°ÓĞÔÚÌôÕ½ÅÅ³Ì,ÆøÊÆÖµÒ»¸Ä±ä¾ÍÏòACÒª×îĞÂÆøÊÆ×ÊÁÏ
+				 // ä»»ä½•ä¸€ä¸ªåº„å›­æœ‰åœ¨æŒ‘æˆ˜æ’ç¨‹,æ°”åŠ¿å€¼ä¸€æ”¹å˜å°±å‘ACè¦æœ€æ–°æ°”åŠ¿èµ„æ–™
 				 if(fmpointlist.fm_inwar[i]){
 					 saacproto_ACShowTopFMList_send(acfd, FM_TOP_MOMENTUM);
 					 break;
@@ -1590,7 +1590,7 @@ void AddFMAdv(int talker, int shiftbit)
 #endif
 	}
 #ifdef _NEW_MANOR_LAW
-	// Î´ÉóºËÍ¨¹ıÊ±Ö»¸üĞÂ³ÉÔ±ÆøÊÆÖµ
+	// æœªå®¡æ ¸é€šè¿‡æ—¶åªæ›´æ–°æˆå‘˜æ°”åŠ¿å€¼
 	else if(CHAR_getInt(talker, CHAR_FMLEADERFLAG) == FMMEMBER_APPLY){
 		int fd = getfdFromCharaIndex(talker);
 		sprintf(buf,"%d",CHAR_getInt(talker,CHAR_FAME));
@@ -1671,7 +1671,7 @@ int addNpcFamilyTax( int meindex, int talkerindex, int income )
 		case 60:
 			npc_village = 6;
 			break;
-// Syu ADD ĞŞÕıËÄ´ó³ÇÎŞË°ÊÕÎÊÌâ
+// Syu ADD ä¿®æ­£å››å¤§åŸæ— ç¨æ”¶é—®é¢˜
 		case 71:
 			npc_village = 6;
 			break;
@@ -1712,7 +1712,7 @@ int addNpcFamilyTax( int meindex, int talkerindex, int income )
 					if( getStringFromIndexWithDelim(fmpointlist.pointlistarray[i], "|", 5, token, sizeof(token)) == FALSE)
 						return 0;
 					fmindex = atoi(token);
-// Terry add for Èç¹û×¯Ô°Ã»ÈËÕ¼ÁìÔò²»¼ÆËã
+// Terry add for å¦‚æœåº„å›­æ²¡äººå é¢†åˆ™ä¸è®¡ç®—
 					if(fmindex < 0) return 0;
 // end
 					memset( token, 0, sizeof( token));

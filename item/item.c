@@ -13,7 +13,7 @@
 #include "function.h"
 #include "magic_base.h"
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 #include "profession_skill.h"
 #endif
 
@@ -217,7 +217,7 @@ static ITEM_intDataSetting ITEM_setintdata[ITEM_DATAINTNUM]={
 	{"arr",  0},					/*ITEM_MODIFYARRANGE*/
 	{"seqce",  0},					//ITEM_MODIFYSEQUENCE,
 	{"iapi", 0},					//ITEM_ATTACHPILE
-	{"hirt", 0},					//ITEM_HITRIGHT		//¶îÍâÃüÖĞ
+	{"hirt", 0},					//ITEM_HITRIGHT		//é¢å¤–å‘½ä¸­
 #endif
 
 #ifdef _ITEMSET6_TXT
@@ -1272,25 +1272,25 @@ CHAR_EquipPlace ITEM_getEquipPlace( int charaindex, int itmid )
 	case ITEM_BREAKTHROW:
 	case ITEM_BOUNDTHROW:
 
-/*#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+/*#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 		{
 			int i=0;
 
-			// ÓÂÊ¿Ö°Òµ¼¼ÄÜ¶şµ¶Á÷
+			// å‹‡å£«èŒä¸šæŠ€èƒ½äºŒåˆ€æµ
 			char *skill_name;
 			int skillid,Pskillid,get_item,right_hand,left_hand;
 			for( i=0; i<CHAR_SKILLMAXHAVE; i++ ){
 
-				// ¼¼ÄÜID
+				// æŠ€èƒ½ID
 				skillid = CHAR_getCharSkill( charaindex, i);
 				Pskillid = PROFESSION_SKILL_getskillArray( skillid);
 				if( Pskillid <= 0 ) continue;
 
-				// ¼¼ÄÜÃû³Æ
+				// æŠ€èƒ½åç§°
 				skill_name = PROFESSION_SKILL_getChar( Pskillid, PROFESSION_SKILL_FUNCNAME);
 				if( skill_name == NULL ) continue;
 
-				// ¶şµ¶Á÷
+				// äºŒåˆ€æµ
 				if( (strcmp( skill_name , "PROFESSION_DUAL_WEAPON" )) == 0 ){
 					get_item = BATTLE_GetWepon( charaindex );
 
@@ -1401,7 +1401,7 @@ char*  ITEM_makeItemStatusString( int haveitemindex, int itemindex )
 				char    tmpbuf[128];
 				value = ITEM_getInt(itemindex,showparamint[i].intindex);
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 
 
 
@@ -1473,18 +1473,18 @@ char*  ITEM_makeItemStatusString( int haveitemindex, int itemindex )
 	strcpy( INGNAME0, ITEM_getChar( itemindex, ITEM_INGNAME0) );
 	strcpy( INGNAME1, ITEM_getChar( itemindex, ITEM_INGNAME1) );
 	if( (INGNAME0[0] != NULL && INGNAME1[0] != NULL) || (INGNAME0[0] == NULL) ) {
-		strcpy( INGNAME0, "ÔÓ" );
+		strcpy( INGNAME0, "æ‚" );
 	}
 #endif
 
 	if( haveitemindex == -1 ) {
-#ifdef _ADD_SHOW_ITEMDAMAGE  // WON ADD ÏÔÊ¾ÎïÆ·ÄÍ¾Ã¶È
+#ifdef _ADD_SHOW_ITEMDAMAGE  // WON ADD æ˜¾ç¤ºç‰©å“è€ä¹…åº¦
 		char buff1[256];
 		int crushe	= ITEM_getInt( itemindex, ITEM_DAMAGECRUSHE);
 		int maxcrushe = ITEM_getInt( itemindex, ITEM_MAXDAMAGECRUSHE);
 		if(crushe < 1) crushe = 1;
 		if(maxcrushe < 1){
-			sprintf(buff1, "²»»áËğ»µ");
+			sprintf(buff1, "ä¸ä¼šæŸå");
 		}else{
 			maxcrushe = maxcrushe/1000;
 			crushe = crushe/1000;
@@ -1532,13 +1532,13 @@ char*  ITEM_makeItemStatusString( int haveitemindex, int itemindex )
 				  );
 #endif
 	}else {
-#ifdef _ADD_SHOW_ITEMDAMAGE  // WON ADD ÏÔÊ¾ÎïÆ·ÄÍ¾Ã¶È
+#ifdef _ADD_SHOW_ITEMDAMAGE  // WON ADD æ˜¾ç¤ºç‰©å“è€ä¹…åº¦
 		char buff1[256];
 		int crushe	= ITEM_getInt( itemindex, ITEM_DAMAGECRUSHE);
 		int maxcrushe = ITEM_getInt( itemindex, ITEM_MAXDAMAGECRUSHE);
 		if(crushe < 1) crushe = 1;
 		if(maxcrushe < 1){
-			sprintf(buff1, "²»»áËğ»µ");
+			sprintf(buff1, "ä¸ä¼šæŸå");
 		}else{
 			maxcrushe = maxcrushe/1000;
 			crushe = crushe/1000;
@@ -1594,7 +1594,7 @@ char*  ITEM_makeItemStatusString( int haveitemindex, int itemindex )
 char*   ITEM_makeItemFalseString( void )
 {
 
-#ifdef _ADD_SHOW_ITEMDAMAGE  // WON ADD ÏÔÊ¾ÎïÆ·ÄÍ¾Ã¶È
+#ifdef _ADD_SHOW_ITEMDAMAGE  // WON ADD æ˜¾ç¤ºç‰©å“è€ä¹…åº¦
 	strcpysafe( ITEM_itemStatusStringBuffer,
 				sizeof( ITEM_itemStatusStringBuffer),
 #ifdef _ITEM_PILENUMS
@@ -1618,7 +1618,7 @@ char*   ITEM_makeItemFalseString( void )
 
 char*   ITEM_makeItemFalseStringWithNum( int haveitemindex )
 {
-#ifdef _ADD_SHOW_ITEMDAMAGE  // WON ADD ÏÔÊ¾ÎïÆ·ÄÍ¾Ã¶È
+#ifdef _ADD_SHOW_ITEMDAMAGE  // WON ADD æ˜¾ç¤ºç‰©å“è€ä¹…åº¦
 	snprintf(  ITEM_itemStatusStringBuffer, sizeof( ITEM_itemStatusStringBuffer),
 
 #ifdef _ITEM_PILENUMS
@@ -1697,7 +1697,7 @@ void ITEM_equipEffect( int index )
 		{ ITEM_MODIFYDEFENCE,	CHAR_WORKDEFENCEPOWER,	-100,	0,	EQUIP_FIX_MAX,	0},
 		{ ITEM_MODIFYQUICK,		CHAR_WORKQUICK,			-100,	0,	EQUIP_FIX_MAX,	0},
 		{ ITEM_MODIFYHP,		CHAR_WORKMAXHP,			0,	0,	EQUIP_FIX_MAX,	0},
-		{ ITEM_MODIFYMP,        CHAR_WORKMAXMP,			0,	0,	1000,	0}, // MP ·´100ÒıÆ¥
+		{ ITEM_MODIFYMP,        CHAR_WORKMAXMP,			0,	0,	1000,	0}, // MP å100å¼•åŒ¹
 
 		{ ITEM_MODIFYLUCK,       CHAR_WORKFIXLUCK,	0,	1,	5,	0},
 		{ ITEM_MODIFYCHARM,      CHAR_WORKFIXCHARM,	0,	0,	100,	0},
@@ -1740,38 +1740,38 @@ void ITEM_equipEffect( int index )
 			int     j;
 			int		attrib = 0;
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 			if( i == CHAR_ARM )
 					CHAR_sendStatusString( index , "S");
 #endif
 
 			for( j=0; j < arraysizeof( itemEffect ); j ++ ) {
-/*#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+/*#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 
 				if( i == CHAR_EQSHIELD ){
 					int item_type = ITEM_FIST;
 					item_type = ITEM_getInt( id, ITEM_TYPE );
 
-					// µ±×óÊÖ×°±¸ÎäÆ÷µÄÊ±ºò
+					// å½“å·¦æ‰‹è£…å¤‡æ­¦å™¨çš„æ—¶å€™
 					if( item_type != ITEM_WSHIELD ){
 						int k;
-						// ÓÂÊ¿Ö°Òµ¼¼ÄÜ¶şµ¶Á÷
+						// å‹‡å£«èŒä¸šæŠ€èƒ½äºŒåˆ€æµ
 						for( k=0; k<CHAR_SKILLMAXHAVE; k++ ){
 							char *skill_name;
-							// ¼¼ÄÜID
+							// æŠ€èƒ½ID
 							int skillid = CHAR_getCharSkill( index, k);
 							int Pskillid = PROFESSION_SKILL_getskillArray( skillid);
 							if( Pskillid <= 0 ) continue;
 
-							// ¼¼ÄÜÃû³Æ
+							// æŠ€èƒ½åç§°
 							skill_name = PROFESSION_SKILL_getChar( Pskillid, PROFESSION_SKILL_FUNCNAME);
 							if( skill_name == NULL ) continue;
 
-							// ¶şµ¶Á÷
+							// äºŒåˆ€æµ
 							if( (strcmp( skill_name , "PROFESSION_DUAL_WEAPON" )) == 0 ){
 								int skill=k, skill_level=0, rate=0, value=0;
 								CHAR_HaveSkill* hskill;
-								// ÈËÎï¼¼ÄÜµÈ¼¶
+								// äººç‰©æŠ€èƒ½ç­‰çº§
 								hskill = CHAR_getCharHaveSkill( index, skill );
 								skill_level = SKILL_getInt( &hskill->skill, SKILL_LEVEL);
 								skill_level = PROFESSION_CHANGE_SKILL_LEVEL_A( skill_level );
@@ -1795,7 +1795,7 @@ void ITEM_equipEffect( int index )
 #ifdef _ANGEL_SUMMON
 			//if( !strcmp( ITEM_getChar( id, ITEM_USEFUNC), "ITEM_AngelToken") ) {
 			if( ITEM_getInt( id, ITEM_ID) == ANGELITEM ) {
-				//print(" Ê¹ÕßĞÅÎï×°±¸ÖĞ ");
+				//print(" ä½¿è€…ä¿¡ç‰©è£…å¤‡ä¸­ ");
 				angelequip = TRUE;
 			}
 #endif
@@ -1808,13 +1808,13 @@ void ITEM_equipEffect( int index )
 	if( angelmode == TRUE && angelequip == FALSE ) {
 		CHAR_setWorkInt( index, CHAR_WORKANGELMODE, FALSE);
 		CHAR_sendAngelMark( CHAR_getWorkInt( index, CHAR_WORKOBJINDEX), 0);
-		print(" Ğ¶ÏÂÊ¹ÕßĞÅÎï ");
+		print(" å¸ä¸‹ä½¿è€…ä¿¡ç‰© ");
 	}
 	if( angelmode == FALSE && angelequip == TRUE ) {
 		CHAR_setWorkInt( index, CHAR_WORKANGELMODE, TRUE);
 		CHAR_sendAngelMark( CHAR_getWorkInt( index, CHAR_WORKOBJINDEX), 1);
-		CHAR_talkToCli( index, -1, "ÄãÊÜµ½ÁË¾«Áé±£»¤£¬²»»á±»µĞÈË¹¥»÷¡£", CHAR_COLORYELLOW );
-		print(" ×°±¸Ê¹ÕßĞÅÎï ");
+		CHAR_talkToCli( index, -1, "ä½ å—åˆ°äº†ç²¾çµä¿æŠ¤ï¼Œä¸ä¼šè¢«æ•Œäººæ”»å‡»ã€‚", CHAR_COLORYELLOW );
+		print(" è£…å¤‡ä½¿è€…ä¿¡ç‰© ");
 	}
 #endif
 
@@ -1893,7 +1893,7 @@ void Other_DefcharWorkInt( int index)
 #endif
 #endif//_SUIT_ITEM
 
-#ifdef _MAGIC_RESIST_EQUIT			// WON ADD Ö°Òµ¿¹ĞÔ×°±¸
+#ifdef _MAGIC_RESIST_EQUIT			// WON ADD èŒä¸šæŠ—æ€§è£…å¤‡
 	/*{
 		int f_res = -1, i_res = -1, t_res = -1;
 		f_res = CHAR_getWorkInt( index, CHAR_WORK_F_RESIST );
@@ -1909,7 +1909,7 @@ void Other_DefcharWorkInt( int index)
 
 #ifdef _PETSKILL_SETDUCK
 	//profession fix
-	//Ê¹ÓÃ»Ø±ÜÕĞÊ½Ê±,»á½«·ÀÖµ¼õÈ¥30%È»ááÉè¶¨³É»Ø±ÜÖµ,Ææ¹ÖµÄÉè¶¨,Ò²Ôì³ÉÔ­±¾Éè¶¨µÄ»Ø±ÜÖµ¸úÃ»ÉèÒ»Ñù,Òò´ËÎÒ(Change)ÏÈ°ÑÕû¶ÎÄÃµô
+	//ä½¿ç”¨å›é¿æ‹›å¼æ—¶,ä¼šå°†é˜²å€¼å‡å»30%ç„¶å¾Œè®¾å®šæˆå›é¿å€¼,å¥‡æ€ªçš„è®¾å®š,ä¹Ÿé€ æˆåŸæœ¬è®¾å®šçš„å›é¿å€¼è·Ÿæ²¡è®¾ä¸€æ ·,å› æ­¤æˆ‘(Change)å…ˆæŠŠæ•´æ®µæ‹¿æ‰
 	/*if( CHAR_getWorkInt( index, CHAR_MYSKILLDUCK) > 0 ){
 		int mtgh = CHAR_getWorkInt( index, CHAR_WORKFIXTOUGH);
 		mtgh -= (mtgh*30)/100;
@@ -1944,7 +1944,7 @@ void Other_DefcharWorkInt( int index)
 	}
 #endif
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 	if( CHAR_getWorkInt( index, CHAR_MYSKILLHIT) > 0 ){
 		int mpower, mdef;
 		mpower = CHAR_getWorkInt( index, CHAR_MYSKILLHIT);
@@ -1953,7 +1953,7 @@ void Other_DefcharWorkInt( int index)
 		if( mtgh < 0 ) mtgh=0;
 		CHAR_setWorkInt( index, CHAR_MYSKILLHIT, mpower);
 	}
-	if( CHAR_getWorkInt( index, CHAR_WORK_WEAPON) > 0 ){	// ÎäÆ÷×¨¾«
+	if( CHAR_getWorkInt( index, CHAR_WORK_WEAPON) > 0 ){	// æ­¦å™¨ä¸“ç²¾
 		int mpower, mdef;
 		mpower = CHAR_getWorkInt( index, CHAR_WORKFIXSTR);
 		mdef = CHAR_getWorkInt( index, CHAR_WORKMOD_WEAPON);
@@ -1994,7 +1994,7 @@ void Other_DefcharWorkInt( int index)
             CHAR_setWorkInt( index, CHAR_WORKWEAKEN, CHAR_getWorkInt( index, CHAR_WORKWEAKEN)-1);
 	}
 #endif
-#ifdef _MAGIC_BARRIER// vincent  ¾«Áé:Ä§ÕÏ
+#ifdef _MAGIC_BARRIER// vincent  ç²¾çµ:é­”éšœ
 	if( CHAR_getWorkInt( index, CHAR_WORKBARRIER) > 0){
             CHAR_setWorkInt( index, CHAR_WORKBARRIER, CHAR_getWorkInt( index, CHAR_WORKBARRIER) - 1);
 	}
@@ -2096,13 +2096,13 @@ int ITEM_isTargetValid( int charaindex, int itemindex, int toindex)
 	Myside = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLESIDE );
 	if ((toindex >= 0x0) && (toindex <= 0x13)) return 0;
 
-	if (toindex == 0x14) {//20 ÓÒÏÂÈ« 0
+	if (toindex == 0x14) {//20 å³ä¸‹å…¨ 0
 		if (itemtarget == ITEM_TARGET_ALLMYSIDE){
 			if( Myside == 0 )return 0;
 		}else if(itemtarget == ITEM_TARGET_ALLOTHERSIDE ){
 			if( Myside == 1 )return 0;
 		}
-	}else if (toindex == 0x15) {//21 ×óÉÏÈ« 1
+	}else if (toindex == 0x15) {//21 å·¦ä¸Šå…¨ 1
 		if (itemtarget == ITEM_TARGET_ALLMYSIDE){
 			if( Myside == 1 )return 0;
 		}else if( itemtarget == ITEM_TARGET_ALLOTHERSIDE ){
@@ -2130,7 +2130,7 @@ BOOL CHAR_CheckInItemForWares( int charaindex, int flg)
 			if( flg == 0 ){
 				return FALSE;
 			}
-			sprintf(token,"½»³ö%s",ITEM_getChar( itemindex, ITEM_NAME));
+			sprintf(token,"äº¤å‡º%s",ITEM_getChar( itemindex, ITEM_NAME));
 			CHAR_talkToCli( charaindex, -1, token, CHAR_COLORYELLOW);
 
 			CHAR_setItemIndex( charaindex, i ,-1);
@@ -2252,7 +2252,7 @@ void ITEM_reChangeItemToPile( int itemindex)
 		ITEM_setInt( itemindex, ITEM_USEPILENUMS, 1);
 	itemID = ITEM_getInt( itemindex, ITEM_ID);
 	if( !ITEM_CHECKITEMTABLE( itemID) ) return;
-	if( itemID == 20284 ) return;//ÌúÇ¹ÈşÁíÍâ´¦Àí
+	if( itemID == 20284 ) return;//é“æªåå¦å¤–å¤„ç†
 	if( ITEM_getInt( itemindex, ITEM_CANBEPILE) != ITEMTBL_getInt( itemID, ITEM_CANBEPILE) )
 		ITEM_setInt( itemindex, ITEM_CANBEPILE, ITEMTBL_getInt( itemID, ITEM_CANBEPILE) );
 }
@@ -2310,7 +2310,7 @@ void ITEM_checkItemModify( int charaindex, int itemindex)
 		if( nowData > baseData + randData ) {
 			char szBuffer[1024];
 			ITEM_setInt( itemindex, checkList[i], baseData);
-			sprintf( szBuffer, " ĞŞÕıÒì³£µÀ¾ß: id=%d a=%d now=%d base=%d rand=%d ",
+			sprintf( szBuffer, " ä¿®æ­£å¼‚å¸¸é“å…·: id=%d a=%d now=%d base=%d rand=%d ",
 				item_ID, checkList[i], nowData, baseData, randData );
 			print( szBuffer);
 			if( CHAR_CHECKINDEX(charaindex) ) {
